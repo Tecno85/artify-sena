@@ -1,0 +1,28 @@
+/* Fuentes personalizada Anek Latin */
+@font-face {
+  font-family: 'Anek Latin';
+  src: url(../assets/fonts/Anek_Latin/AnekLatin-VariableFont_wdth_wght.ttf)
+    format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+/* Reset básico - box-sizing y limpieza de margenes */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body centrado con altura completa */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: rgb(26, 26, 26);
+  /* background: #eaefef; */
+  background: #4a70a9;
+  font-family: 'Anek Latin', sans-serif;
+}
+

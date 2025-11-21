@@ -1,0 +1,238 @@
+/*  Fuente personalizada Anek Latin */
+@font-face {
+  font-family: 'Anek latin';
+  src: url(../assets/fonts/Anek_Latin/AnekLatin-VariableFont_wdth\wght.ttf)
+    format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+/* Reset básico - box-sizing y limpieza de margenes */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body centrado con altura completa */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eaefef;
+  font-family: 'Anek latin', sans-serif;
+  min-height: 100vh;
+  padding: 20px 0;
+    background: #959696b4;
+  border-radius: 0.5rem;
+}
+
+/* Layout Principal */
+
+/* Contenedor principal - con tarjeta oscura centrada */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgb(39, 39, 38);
+  border-radius: 0.5rem;
+  width: 500px;
+  min-height: 600px;
+  color: aliceblue;
+  gap: 40px;
+  padding: 30px 0px 50px;
+}
+
+/* Contenido centrado */
+.align {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Header */
+
+.header img {
+  width: 25%;
+}
+
+.header h1 {
+  color: rgb(40, 252, 206);
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.header p {
+  font-size: 0.9rem;
+}
+
+/* Contenido Principal */
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 300px;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Contenedor para el input de contraseña - necesario para posicionar el icono del ojo  */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Inputs */
+input::placeholder {
+  color: #eeeeee;
+  opacity: 0.5;
+}
+
+/* Estilos compartidos para inputs con iconos */
+
+.input-icon-user,
+.input-icon-email,
+.input-icon-password,
+.input-icon-id,
+.input-icon-calendar {
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-size: 18px;
+  padding-left: 45px;
+}
+
+/* Iconos específicos para cada tipo de input */
+
+.input-icon-user {
+  background-image: url(../assets/icons/person.svg);
+}
+
+.input-icon-email {
+  background-image: url(../assets/icons/mail.svg);
+}
+
+.input-icon-id {
+  background-image: url(../assets/icons/id.svg);
+}
+
+.input-icon-password {
+  background-image: url(../assets/icons/lock.svg);
+}
+
+.input-icon-calendar {
+  background-image: url(../assets/icons/calendar.svg);
+}
+
+/* Labels */
+
+label {
+  display: block;
+}
+
+/* Asterisco rojo para campos obligatorios */
+.label-required::after {
+  content: '*';
+  color: rgb(255, 0, 0);
+  margin-left: 5px;
+  font-size: 1.1rem;
+}
+
+/* Estilos base de inputs */
+input {
+  border-radius: 0.5rem;
+  border: none;
+  height: 37px;
+  color: rgb(253, 253, 253);
+  background: rgb(93, 92, 93);
+  width: 100%;
+}
+
+/* Icono para mostrar/ocultar contraseña */
+.eye-icon {
+  position: absolute;
+  bottom: 8px;
+  right: 20px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.eye-icon:hover {
+  opacity: 1;
+}
+
+/* Botones */
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+button {
+  border-radius: 0.3rem;
+  height: 40px;
+  background: rgb(0, 123, 255);
+  color: #eeeeee;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  min-width: 120px;
+}
+
+button a {
+  text-decoration: none;
+  color: #eeeeee;
+}
+
+/* Botón secundario para cancelar  */
+
+.cancelar {
+  background: #eeeeee;
+  color: rgb(39, 39, 38);
+}
+
+/* Footer */
+
+footer {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: #e0e0e0;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: #e0e0e0;
+  text-decoration: none;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+}
+
+.github {
+  display: flex;
+  align-items: center;
+}

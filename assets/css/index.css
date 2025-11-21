@@ -1,0 +1,190 @@
+/* Fuentes personalizada Anek Latin */
+@font-face {
+  font-family: 'Paytone One';
+  src: url(../fonts/Paytone_One/PaytoneOne-Regular.ttf) format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inconsolata';
+  src: url(../fonts/Inconsolata/Inconsolata-VariableFont_wdth_wght.ttf)
+    format('truetype');
+  font-style: normal;
+}
+
+/* Reset básico - box-sizing y limpieza de margenes */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 40px;
+  min-height: 100vh;
+  width: 100%;
+  color: whitesmoke;
+  font-family: 'Anek Latin', sans-serif;
+  background: rgb(24, 24, 23);
+  /* border: 6px solid rgba(255, 255, 255, 0.605); */
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 500px;
+  font-family: 'Inconsolata', sans-serif;
+  /* border: 2px solid rgb(236, 12, 12); */
+}
+
+.header-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  /* border: 1px solid grey;
+  border-radius: 0.5rem;
+  padding: 7px; */
+}
+
+.header-img img {
+  max-width: 30px;
+  /* border: 1px solid grey; */
+}
+
+.header-img p {
+  font-size: 1.1rem;
+}
+
+/* Enlaces Iniciar Sesión y Registrarse */
+.enlaces {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  letter-spacing: 1.4px;
+  gap: 20px;
+}
+
+.enlace {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.enlace a {
+  color: aliceblue;
+  text-decoration: none;
+}
+
+/* main */
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 4px solid yellow; */
+  gap: 100px;
+}
+
+/* Bienvenida */
+.bienvenida {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  /* border: 4px solid rgb(255, 255, 255); */
+}
+
+.bienvenida img {
+  width: 150px;
+}
+
+.bienvenida h1 {
+  font-size: 3.5rem;
+  font-family: 'Paytone One', sans-serif;
+}
+
+.bienvenida p {
+  font-size: 1.2rem;
+  font-family: 'Inconsolata', sans-serif;
+}
+
+/* Cards */
+.cards {
+  /* border: 4px solid orangered; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: 'card-1 card-2 card-3';
+  gap: 70px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  font-family: 'Inconsolata', sans-serif;
+  border: 1px solid grey;
+  padding: 10px;
+  border-radius: 0.5rem;
+}
+
+.card-1 {
+  grid-area: card-1;
+}
+
+.card-1 img {
+  width: 80px;
+}
+
+.card-2 {
+  grid-area: card-2;
+}
+
+.card-2 img {
+  width: 75px;
+}
+
+.card-3 {
+  grid-area: card-3;
+}
+
+.card-3 img {
+  width: 85px;
+}
+
+/* Footer */
+footer {
+  padding-top: 110px;
+  font-family: 'Inconsolata', sans-serif;
+}
+
+footer p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 1.2px;
+  font-size: 1rem;
+  padding: 2.5px;
+  /* border: 4px solid greenyellow; */
+}
+
+p img {
+  padding: 0px 5px;
+}
+
+p b {
+  padding: 2px;
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro - Artify</title>
+    <link rel="icon" href="../assets/icons/check.svg" type="image/svg" />
+    <link rel="stylesheet" href="../assets/css/registro.css" />
+  </head>
+
+  <body>
+    <!-- Contenedor principal -->
+    <div class="container align">
+      <!-- Header -->
+      <header class="header align">
+        <img src="../assets/images/logo.svg" alt="Logo Artify" />
+        <h1>Crear nueva cuenta</h1>
+        <p>Completa la información para registrarte</p>
+      </header>
+
+      <!-- Main - Formulario de registro -->
+      <main>
+        <form action="">
+          <!-- Nombres -->
+          <div class="input-group">
+            <label for="nombres" class="label-required">Nombres</label>
+            <input
+              type="text"
+              name="nombres"
+              id="nombres"
+              placeholder="Ivan Dario"
+              class="input-icon-user"
+              required
+            />
+          </div>
+
+          <!-- Apellidos -->
+          <div class="input-group">
+            <label for="apellidos" class="label-required">Apellidos</label>
+            <input
+              type="text"
+              name="apellidos"
+              id="apellidos"
+              placeholder="Madrid Daza"
+              class="input-icon-user"
+              required
+            />
+          </div>
+
+          <!-- Cédula -->
+          <div class="input-group">
+            <label for="cedula" class="label-required">Cédula</label>
+            <input
+              type="text"
+              name="cedula"
+              id="cedula"
+              placeholder="1065577527"
+              class="input-icon-id"
+              required
+            />
+          </div>
+
+          <!-- Fecha de Nacimiento -->
+          <div class="input-group">
+            <label for="email" class="label-required"
+              >Fecha de Nacimiento</label
+            >
+            <input
+              type="fecha_nacimiento"
+              name="fecha_nacimiento"
+              id="fecha_nacimiento"
+              placeholder="dd/mm/aaaa"
+              class="input-icon-calendar"
+              required
+            />
+          </div>
+
+          <!-- Correo Electrónico -->
+          <div class="input-group">
+            <label for="email" class="label-required">Correo Electrónico</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="ejemplo@correo.com"
+              class="input-icon-email"
+              required
+            />
+          </div>
+
+          <!-- Contraseña con toggle de visibilidad -->
+          <div class="input-group">
+            <label for="password" class="label-required">Contraseña</label>
+            <div class="password-wrapper">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="1234567890"
+                class="input-icon-password"
+                required
+              />
+              <img
+                src="../assets/icons/eye.svg"
+                alt="Mostrar contraseña"
+                class="eye-icon"
+              />
+            </div>
+          </div>
+
+          <!-- Confirmar Contraseña con toggle de visibilidad -->
+          <div class="input-group">
+            <label for="password" class="label-required"
+              >Confirmar Contraseña</label
+            >
+            <div class="password-wrapper">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="1234567890"
+                class="input-icon-password"
+                required
+              />
+              <img
+                src="../assets/icons/eye.svg"
+                alt="Mostrar contraseña"
+                class="eye-icon"
+              />
+            </div>
+          </div>
+
+          <!-- Botones de acción -->
+          <div class="buttons">
+            <button type="submit" class="cancelar">Cancelar</button>
+            <button type="submit"><a href="../pages/login.html">Registrar</a></button>
+          </div>
+        </form>
+      </main>
+
+      <!-- Footer - Info del desarrollador -->
+      <footer>
+        <article class="icon">
+          <section class="github">
+            <a href="#" target="_blank" rel="noopener noreferrer" class="github"
+              ><img src="../assets/icons/github.svg" alt="" />GitHub</a
+            >
+          </section>
+        </article>
+        <article class="created-by">Created_by__Ivan Dario Madrid Daza</article>
+      </footer>
+    </div>
+  </body>
+</html>

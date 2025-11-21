@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+Icon?
+
+# VS Code
+.vscode/
+
+# Files temporales
+*.log
+*.tmp
+*.swp
+*.swo
