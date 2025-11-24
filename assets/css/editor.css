@@ -287,10 +287,10 @@ header {
 }
 
 .drop-icon {
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   margin-bottom: 20px;
-  filter: invert(1);
+  /* filter: invert(1); */
   opacity: 0.6;
 }
 

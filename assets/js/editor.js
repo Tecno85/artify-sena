@@ -9,6 +9,29 @@ let currentFilter = null;
 
 // ========== ELEMENTOS DEL DOM ==========
 const fileInput = document.getElementById('fileInput');
+// ========== CARGAR DATOS DEL USUARIO ==========
+window.addEventListener('DOMContentLoaded', () => {
+  // Verificar si hay usuario logueado
+  const usuarioData = localStorage.getItem('artifyUser');
+  const token = localStorage.getItem('artifyToken');
+
+  if (usuarioData && token) {
+    const usuario = JSON.parse(usuarioData);
+
+    // Actualizar nombre en header
+    const userNameElement = document.getElementById('userName');
+    if (userNameElement) {
+      userNameElement.textContent = `${usuario.nombres} ${usuario.apellidos}`;
+    }
+
+    console.log('✅ Usuario autenticado:', usuario.nombres);
+  } else {
+    // Si no hay sesión, redirigir al login
+    console.warn('⚠️ No hay sesión activa. Redirigiendo...');
+    // Descomentar para forzar login:
+    // window.location.href = './login.html';
+  }
+});
 const btnSubir = document.getElementById('btnSubir');
 const btnDescargar = document.getElementById('btnDescargar');
 const dropZone = document.getElementById('dropZone');

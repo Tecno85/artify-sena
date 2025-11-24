@@ -1,3 +1,25 @@
+// ========== FUNCIONES DE VALIDACIÓN ==========
+function mostrarError(inputId, mensaje) {
+  const input = document.getElementById(inputId);
+  const errorSpan = document.getElementById(`${inputId}-error`);
+
+  if (input && errorSpan) {
+    input.classList.add('error');
+    errorSpan.textContent = mensaje;
+    errorSpan.classList.add('show');
+  }
+}
+
+function limpiarError(inputId) {
+  const input = document.getElementById(inputId);
+  const errorSpan = document.getElementById(`${inputId}-error`);
+
+  if (input && errorSpan) {
+    input.classList.remove('error');
+    errorSpan.classList.remove('show');
+  }
+}
+
 // Toggle mostrar/ocultar contraseña
 const togglePassword = document.querySelector('.toggle-password');
 const passwordInput = document.getElementById('password');
@@ -51,10 +73,48 @@ loginForm.addEventListener('submit', (e) => {
   }
 
   if (isValid) {
-    // Aquí iría la lógica de autenticación
-    console.log('Formulario válido');
-    alert('Inicio de sesión exitoso (simulado)');
-    // window.location.href = './editor.html';
+    // Deshabilitar botón
+    const btnLogin = loginForm.querySelector('button[type="submit"]');
+    btnLogin.disabled = true;
+    btnLogin.textContent = 'Iniciando sesión...';
+
+    // Simular autenticación
+    setTimeout(() => {
+      // Buscar usuario en LocalStorage (simulado)
+      const usuarioGuardado = localStorage.getItem('artifyUser');
+
+      if (usuarioGuardado) {
+        const usuario = JSON.parse(usuarioGuardado);
+
+        // Validar email (simulación básica)
+        if (usuario.email === emailInput.value) {
+          // Crear token de sesión
+          localStorage.setItem('artifyToken', 'token-simulado-' + Date.now());
+          usuario.sesionActiva = true;
+          localStorage.setItem('artifyUser', JSON.stringify(usuario));
+
+          // Verificar "Recordar sesión"
+          const remember = document.getElementById('remember');
+          if (remember.checked) {
+            localStorage.setItem('artifyRememberSession', 'true');
+          }
+
+          // Redirigir al editor
+          window.location.href = './editor.html';
+        } else {
+          // Credenciales incorrectas
+          btnLogin.disabled = false;
+          btnLogin.textContent = 'Iniciar Sesión';
+          mostrarError('email', 'Usuario o contraseña incorrectos');
+          mostrarError('password', 'Usuario o contraseña incorrectos');
+        }
+      } else {
+        // Usuario no existe
+        btnLogin.disabled = false;
+        btnLogin.textContent = 'Iniciar Sesión';
+        mostrarError('email', 'Usuario no encontrado. Regístrate primero');
+      }
+    }, 1000);
   }
 });
 

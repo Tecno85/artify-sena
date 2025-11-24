@@ -484,3 +484,57 @@ p b {
     gap: 15px;
   }
 }
+
+/* ========== NOTIFICACIÓN DE REGISTRO ========== */
+.notification-registro {
+  position: fixed;
+  top: 100px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 25px;
+  background: var(--background-darker);
+  border: 1px solid var(--border);
+  border-left: 4px solid;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transform: translateX(450px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 9999;
+  max-width: 400px;
+}
+
+.notification-registro.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.notification-registro.notification-success {
+  border-left-color: var(--success);
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.notification-registro.notification-error {
+  border-left-color: var(--error);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.notification-registro .notif-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.notification-registro .notif-message {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+/* Spinner en botón de registro */
+button[type='submit']:disabled {
+  background: rgba(0, 123, 255, 0.6);
+  cursor: not-allowed;
+  position: relative;
+}
