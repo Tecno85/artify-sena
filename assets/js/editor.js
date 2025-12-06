@@ -794,9 +794,13 @@ window.addEventListener('DOMContentLoaded', () => {
     canvas.height = cropArea.height;
     ctx.drawImage(tempCanvas, 0, 0);
 
-    // Actualizar currentImage a la nueva imagen recortada
-    currentImage = new Image();
-    currentImage.src = canvas.toDataURL();
+    // Actualizar currentImage a la nueva imagen recortada (asegurar onload)
+    const newDataUrl = canvas.toDataURL();
+    const newImg = new Image();
+    newImg.onload = () => {
+      currentImage = newImg;
+    };
+    newImg.src = newDataUrl;
 
     // Desactivar modo recorte
     desactivarModoRecorte();
