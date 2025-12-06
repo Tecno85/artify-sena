@@ -696,10 +696,11 @@ window.addEventListener('DOMContentLoaded', () => {
     cropMode = true;
     canvas.style.cursor = 'crosshair';
 
-    // Event listeners para dibujar área de recorte
-    canvas.addEventListener('mousedown', iniciarRecorte);
-    canvas.addEventListener('mousemove', dibujarRecorte);
-    canvas.addEventListener('mouseup', finalizarRecorte);
+    console.log('activarModoRecorte: activado');
+    // Usar Pointer Events (más fiables en distintos dispositivos)
+    canvas.addEventListener('pointerdown', iniciarRecorte);
+    canvas.addEventListener('pointermove', dibujarRecorte);
+    canvas.addEventListener('pointerup', finalizarRecorte);
   }
 
   function iniciarRecorte(e) {
@@ -709,6 +710,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const rect = canvas.getBoundingClientRect();
     startX = e.clientX - rect.left;
     startY = e.clientY - rect.top;
+    console.log('iniciarRecorte:', { startX, startY });
   }
 
   function dibujarRecorte(e) {
@@ -724,11 +726,13 @@ window.addEventListener('DOMContentLoaded', () => {
     cropArea.height = Math.abs(currentY - startY);
 
     // Redibujar canvas con área de recorte
+    console.log('dibujarRecorte:', { x: cropArea.x, y: cropArea.y, w: cropArea.width, h: cropArea.height });
     redibujarConRecorte();
   }
 
   function finalizarRecorte() {
     isDragging = false;
+    console.log('finalizarRecorte');
   }
 
   function redibujarConRecorte() {
