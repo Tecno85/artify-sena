@@ -52,7 +52,7 @@ header {
   padding: 15px 30px;
   background: var(--background-darker);
   border-bottom: 1px solid var(--border);
-  height: 70px;
+  height: 90px;
 }
 
 .header-left {
@@ -68,7 +68,7 @@ header {
 
 .header-left h1 {
   font-family: 'Paytone One', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: var(--text-light);
   letter-spacing: 1.5px;
 }
@@ -138,7 +138,7 @@ header {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 15px;
 }
 
 .tool-section {
@@ -149,13 +149,13 @@ header {
 
 .section-title {
   text-align: center;
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   color: var(--secondary);
   margin-bottom: 5px;
-  padding-bottom: 8px;
+  padding-bottom: 15px;
   border-bottom: 2px solid var(--border);
 }
 

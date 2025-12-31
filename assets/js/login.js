@@ -78,42 +78,59 @@ loginForm.addEventListener('submit', (e) => {
     btnLogin.disabled = true;
     btnLogin.textContent = 'Iniciando sesión...';
 
-    // Simular autenticación
+    // Autenticación real
     setTimeout(() => {
-      // Buscar usuario en LocalStorage (simulado)
-      const usuarioGuardado = localStorage.getItem('artifyUser');
+      // 1. Obtener TODOS los usuarios registrados
+      const usuariosRegistrados = JSON.parse(
+        localStorage.getItem('artifyUsuarios') || '[]'
+      );
 
-      if (usuarioGuardado) {
-        const usuario = JSON.parse(usuarioGuardado);
+      console.log('📋 Usuarios en localStorage:', usuariosRegistrados);
 
-        // Validar email (simulación básica)
-        if (usuario.email === emailInput.value) {
-          // Crear token de sesión
-          localStorage.setItem('artifyToken', 'token-simulado-' + Date.now());
-          usuario.sesionActiva = true;
-          localStorage.setItem('artifyUser', JSON.stringify(usuario));
+      // 2. Buscar el usuario por correo
+      const usuarioEncontrado = usuariosRegistrados.find(
+        (u) => u.correo === emailInput.value || u.email === emailInput.value
+      );
 
-          // Verificar "Recordar sesión"
-          const remember = document.getElementById('remember');
-          if (remember.checked) {
-            localStorage.setItem('artifyRememberSession', 'true');
-          }
-
-          // Redirigir al editor
-          window.location.href = './editor.html';
-        } else {
-          // Credenciales incorrectas
-          btnLogin.disabled = false;
-          btnLogin.textContent = 'Iniciar Sesión';
-          mostrarError('email', 'Usuario o contraseña incorrectos');
-          mostrarError('password', 'Usuario o contraseña incorrectos');
-        }
-      } else {
+      if (!usuarioEncontrado) {
         // Usuario no existe
+        console.log('❌ Usuario no encontrado');
         btnLogin.disabled = false;
         btnLogin.textContent = 'Iniciar Sesión';
         mostrarError('email', 'Usuario no encontrado. Regístrate primero');
+        return;
       }
+
+      // 3. Validar la contraseña
+      if (usuarioEncontrado.password !== passwordInput.value) {
+        console.log('❌ Contraseña incorrecta');
+        btnLogin.disabled = false;
+        btnLogin.textContent = 'Iniciar Sesión';
+        mostrarError('email', 'Usuario o contraseña incorrectos');
+        mostrarError('password', 'Usuario o contraseña incorrectos');
+        return;
+      }
+
+      // 4. Login exitoso
+      console.log('✅ Login exitoso:', usuarioEncontrado.nombres);
+
+      // Crear token de sesión
+      const token = 'token-' + Date.now() + '-' + Math.random();
+      sessionStorage.setItem('artifyToken', token);
+
+      // Guardar datos del usuario en sessionStorage
+      sessionStorage.setItem('artifyUser', JSON.stringify(usuarioEncontrado));
+
+      // Verificar "Recordar sesión"
+      const remember = document.getElementById('remember');
+      if (remember && remember.checked) {
+        localStorage.setItem('artifyRememberSession', 'true');
+        localStorage.setItem('artifyLastUser', emailInput.value);
+      }
+
+      // Redirigir al editor
+      console.log('🚀 Redirigiendo al editor...');
+      window.location.href = './editor.html';
     }, 1000);
   }
 });

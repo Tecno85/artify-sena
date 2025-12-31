@@ -4,7 +4,6 @@
 .Spotlight-V100
 .Trashes
 .fseventsd
-Icon?
 
 # VS Code
 .vscode/
@@ -14,3 +13,4 @@ Icon?
 *.tmp
 *.swp
 *.swo
+

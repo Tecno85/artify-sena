@@ -311,26 +311,43 @@ document.addEventListener('DOMContentLoaded', () => {
       btnRegistrarse.textContent = 'Registrando...';
 
       setTimeout(() => {
-        const usuario = {
+        const nuevoUsuario = {
           nombres: nombres.value,
           apellidos: apellidos.value,
           cedula: cedula.value,
           fechaNacimiento: fechaNacimiento.value,
-          email: email.value,
+          correo: email.value,
+          password: password.value, // ¡Importante! Asegúrate de guardar la contraseña para el login
           fechaRegistro: new Date().toISOString(),
-          sesionActiva: true,
         };
 
-        console.log('💾 Guardando usuario:', usuario);
+        // 1. Obtener la lista actual de usuarios o crear una vacía
+        const usuariosExistentes = JSON.parse(
+          localStorage.getItem('artifyUsuarios') || '[]'
+        );
 
-        localStorage.setItem('artifyUser', JSON.stringify(usuario));
-        localStorage.setItem('artifyToken', 'token-simulado-' + Date.now());
+        // 2. Verificar si el correo ya existe para evitar duplicados
+        if (usuariosExistentes.find((u) => u.correo === nuevoUsuario.correo)) {
+          mostrarError('email', 'Este correo ya está registrado');
+          btnRegistrarse.disabled = false;
+          btnRegistrarse.textContent = 'Registrarse';
+          return;
+        }
 
-        console.log('🚀 Redirigiendo al editor...');
+        // 3. Agregar el nuevo usuario a la lista y guardar
+        usuariosExistentes.push(nuevoUsuario);
+        localStorage.setItem(
+          'artifyUsuarios',
+          JSON.stringify(usuariosExistentes)
+        );
+
+        // 4. Iniciar sesión automática (opcional pero recomendado)
+        sessionStorage.setItem('artifyUser', JSON.stringify(nuevoUsuario));
+        sessionStorage.setItem('artifyToken', 'token-' + Date.now());
 
         mostrarNotificacionRegistro(
           'success',
-          '¡Registro exitoso! Redirigiendo al editor...'
+          '¡Registro exitoso! Redirigiendo...'
         );
 
         setTimeout(() => {
@@ -384,4 +401,4 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   console.log('✅ Sistema de registro cargado correctamente');
-}); // ⬅️ FIN del DOMContentLoaded
+});
