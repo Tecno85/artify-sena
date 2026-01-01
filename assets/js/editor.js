@@ -372,6 +372,16 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Event listener para actualizar el valor del slider de intensidad
+  const filterIntensitySlider = document.getElementById('filterIntensity');
+  const filterIntensityValue = document.getElementById('filterIntensityValue');
+
+  if (filterIntensitySlider && filterIntensityValue) {
+    filterIntensitySlider.addEventListener('input', (e) => {
+      filterIntensityValue.textContent = e.target.value + '%';
+    });
+  }
+
   function mostrarControlesFiltro(filter) {
     ocultarTodosLosControles();
     const filterControls = document.getElementById('filterControls');
