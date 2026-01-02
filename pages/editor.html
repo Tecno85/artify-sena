@@ -68,6 +68,11 @@
           <section class="tool-section">
             <h2 class="section-title">Herramientas</h2>
 
+            <button class="tool-btn" id="btnConvertir" disabled>
+              <img src="../assets/icons/convertir_img.svg" alt="Convertir" />
+              <span>Convertir</span>
+            </button>
+
             <button class="tool-btn" id="btnRecortar" disabled>
               <img src="../assets/icons/crop.svg" alt="Recortar" />
               <span>Recortar</span>
@@ -172,9 +177,7 @@
             id="imageInfo"
             style="display: none"
           >
-            <h3 class="prop-subtitle">
-              Información del Archivo
-            </h3>
+            <h3 class="prop-subtitle">Información del Archivo</h3>
 
             <div class="prop-item">
               <span class="prop-label">Nombre:</span>
@@ -286,6 +289,39 @@
               Aplicar Filtro
             </button>
           </div>
+
+          <!-- Controles de Convertir -->
+          <div id="convertControls" style="display: none">
+            <div class="control-group">
+              <label for="convertFormato">Formato destino:</label>
+              <select id="convertFormato" class="select-input">
+                <option value="png">PNG</option>
+                <option value="jpeg">JPEG</option>
+                <option value="webp">WebP</option>
+                <option value="avif">AVIF</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="convertCalidad">Calidad:</label>
+              <select id="convertCalidad" class="select-input">
+                <option value="alta">Alta (100%)</option>
+                <option value="media">Media (80%)</option>
+                <option value="baja">Baja (60%)</option>
+              </select>
+            </div>
+            <div class="convert-info">
+              <p style="font-size: 0.85rem; color: #a0a0a0; margin: 10px 0">
+                💡 <strong>Formatos:</strong><br />
+                • PNG: Sin pérdida, mayor tamaño<br />
+                • JPEG: Con pérdida, menor tamaño<br />
+                • WebP: Moderno, buen balance<br />
+                • AVIF: Mejor compresión
+              </p>
+            </div>
+            <button class="btn-apply" id="btnAplicarConversion">
+              Convertir y Descargar
+            </button>
+          </div>
         </aside>
       </main>
 
@@ -382,6 +418,8 @@
               <select id="configFormatoDefecto" class="config-select">
                 <option value="png">PNG</option>
                 <option value="jpeg">JPEG</option>
+                <option value="webp">WebP</option>
+                <option value="avif">AVIF</option>
               </select>
             </div>
 

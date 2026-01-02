@@ -247,9 +247,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // ========== FUNCIÓN CARGAR IMAGEN ==========
   function cargarImagen(file) {
-    const tiposValidos = ['image/jpeg', 'image/png'];
+    const tiposValidos = [
+      'image/jpeg',
+      'image/png',
+      'image/webp',
+      'image/avif',
+    ];
     if (!tiposValidos.includes(file.type)) {
-      mostrarNotificacion('error', 'Formato no válido. Solo JPG y PNG');
+      mostrarNotificacion(
+        'error',
+        'Formato no válido. Solo JPG, PNG, WebP y AVIF'
+      );
       return;
     }
 
@@ -304,19 +312,43 @@ window.addEventListener('DOMContentLoaded', () => {
     btnRedimensionar.disabled = false;
     btnRotar.disabled = false;
     btnFiltros.disabled = false;
+
+    // Habilitar botón Convertir
+    const btnConvertir = document.getElementById('btnConvertir');
+    if (btnConvertir) {
+      btnConvertir.disabled = false;
+    }
   }
 
   function actualizarPropiedades(file, img) {
-    document.getElementById('propNombre').textContent = file.name;
-    document.getElementById('propTamano').textContent = formatearTamano(
-      file.size
-    );
-    document.getElementById(
-      'propDimensiones'
-    ).textContent = `${img.width} x ${img.height} px`;
-    document.getElementById('propFormato').textContent = file.type
-      .split('/')[1]
-      .toUpperCase();
+    const nombreElement = document.getElementById('propNombre');
+    const tamanoElement = document.getElementById('propTamano');
+    const dimensionesElement = document.getElementById('propDimensiones');
+    const formatoElement = document.getElementById('propFormato');
+
+    // Configurar el nombre con truncamiento
+    if (nombreElement) {
+      nombreElement.textContent = file.name;
+      nombreElement.title = file.name; // Tooltip con nombre completo
+      nombreElement.style.overflow = 'hidden';
+      nombreElement.style.textOverflow = 'ellipsis';
+      nombreElement.style.whiteSpace = 'nowrap';
+      nombreElement.style.maxWidth = '100%';
+      nombreElement.style.display = 'block';
+    }
+
+    if (tamanoElement) {
+      tamanoElement.textContent = formatearTamano(file.size);
+    }
+
+    if (dimensionesElement) {
+      dimensionesElement.textContent = `${img.width} x ${img.height} px`;
+    }
+
+    if (formatoElement) {
+      formatoElement.textContent = file.type.split('/')[1].toUpperCase();
+    }
+
     actualizarDimensionesDisplay();
   }
 
@@ -340,19 +372,177 @@ window.addEventListener('DOMContentLoaded', () => {
     if (!currentImage) return;
     actualizarEstado('Generando descarga...', 'processing');
 
-    canvas.toBlob((blob) => {
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `artify-editado-${Date.now()}.png`;
-      a.click();
-      URL.revokeObjectURL(url);
+    // Obtener preferencias
+    const prefs = cargarPreferencias();
+    const formato = prefs.formatoDefecto || 'png';
+    const calidad = prefs.calidadExportacion || 'alta';
 
-      // Notificación removida
-      actualizarEstado('Listo', 'success');
-      guardarEstadoEnHistorial('Imagen descargada');
-    }, 'image/png');
+    // Mapear calidad a valor numérico
+    const calidadMap = {
+      alta: 1.0,
+      media: 0.8,
+      baja: 0.6,
+    };
+
+    const calidadNumero = calidadMap[calidad];
+
+    // Mapeo de formatos con soporte para WebP y AVIF
+    const mimeTypeMap = {
+      png: 'image/png',
+      jpeg: 'image/jpeg',
+      webp: 'image/webp',
+      avif: 'image/avif',
+    };
+
+    const mimeType = mimeTypeMap[formato] || 'image/png';
+    const extension = formato === 'jpeg' ? 'jpg' : formato;
+
+    canvas.toBlob(
+      (blob) => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `artify-editado-${Date.now()}.${extension}`;
+        a.click();
+        URL.revokeObjectURL(url);
+
+        actualizarEstado('Listo', 'success');
+        guardarEstadoEnHistorial('Imagen descargada');
+      },
+      mimeType,
+      calidadNumero
+    );
   });
+
+  // ========== CONVERTIR FORMATO ==========
+  const btnConvertir = document.getElementById('btnConvertir');
+
+  if (btnConvertir) {
+    btnConvertir.addEventListener('click', () => {
+      if (btnConvertir.disabled) return;
+
+      ocultarTodosLosControles();
+      const convertControls = document.getElementById('convertControls');
+      if (convertControls) {
+        convertControls.style.display = 'block';
+      }
+
+      marcarHerramientaActiva(btnConvertir);
+    });
+  }
+
+  // Event listener para el botón de aplicar conversión
+  const btnAplicarConversion = document.getElementById('btnAplicarConversion');
+  if (btnAplicarConversion) {
+    btnAplicarConversion.addEventListener('click', () => {
+      if (!currentImage) {
+        mostrarNotificacion('error', 'No hay imagen cargada');
+        return;
+      }
+
+      const formatoDestino = document.getElementById('convertFormato').value;
+      const calidadConversion = document.getElementById('convertCalidad').value;
+
+      console.log('🔄 Convirtiendo a:', formatoDestino);
+      actualizarEstado('Convirtiendo imagen...', 'processing');
+
+      // Mapear calidad a valor numérico
+      const calidadMap = {
+        alta: 1.0,
+        media: 0.8,
+        baja: 0.6,
+      };
+
+      const calidadNumero = calidadMap[calidadConversion];
+
+      // Mapeo de formatos
+      const mimeTypeMap = {
+        png: 'image/png',
+        jpeg: 'image/jpeg',
+        webp: 'image/webp',
+        avif: 'image/avif',
+      };
+
+      const mimeType = mimeTypeMap[formatoDestino] || 'image/png';
+      const extension = formatoDestino === 'jpeg' ? 'jpg' : formatoDestino;
+
+      // Convertir y descargar
+      canvas.toBlob(
+        (blob) => {
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `artify-convertido-${Date.now()}.${extension}`;
+          a.click();
+          URL.revokeObjectURL(url);
+
+          actualizarEstado('Listo', 'success');
+          mostrarNotificacion(
+            'success',
+            `Imagen convertida a ${formatoDestino.toUpperCase()}`
+          );
+          guardarEstadoEnHistorial(
+            `Conversión a ${formatoDestino.toUpperCase()}`
+          );
+        },
+        mimeType,
+        calidadNumero
+      );
+    });
+  }
+
+  function autoguardarImagen() {
+    const prefs = cargarPreferencias();
+
+    if (!prefs.autoguardado || !currentImage) {
+      return;
+    }
+
+    const formato = prefs.formatoDefecto || 'png';
+    const calidad = prefs.calidadExportacion || 'alta';
+
+    const calidadMap = {
+      alta: 1.0,
+      media: 0.8,
+      baja: 0.6,
+    };
+
+    const calidadNumero = calidadMap[calidad];
+
+    // Mapeo de formatos con soporte para WebP y AVIF
+    const mimeTypeMap = {
+      png: 'image/png',
+      jpeg: 'image/jpeg',
+      webp: 'image/webp',
+      avif: 'image/avif',
+    };
+
+    const mimeType = mimeTypeMap[formato] || 'image/png';
+
+    // ✅ NO descargar automáticamente, solo guardar en localStorage como backup
+    canvas.toBlob(
+      (blob) => {
+        // Guardar en memoria temporal como backup
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          try {
+            // Guardar solo la imagen más reciente (no acumular)
+            localStorage.setItem('artify_backup_image', reader.result);
+            localStorage.setItem(
+              'artify_backup_timestamp',
+              Date.now().toString()
+            );
+            console.log('💾 Backup automático guardado');
+          } catch (e) {
+            console.warn('⚠️ No se pudo guardar backup (imagen muy grande)');
+          }
+        };
+        reader.readAsDataURL(blob);
+      },
+      mimeType,
+      calidadNumero
+    );
+  }
 
   // ========== FILTROS ==========
   btnFiltros.addEventListener('click', () => {
@@ -1041,11 +1231,13 @@ window.addEventListener('DOMContentLoaded', () => {
     const resizeControls = document.getElementById('resizeControls');
     const rotateControls = document.getElementById('rotateControls');
     const filterControls = document.getElementById('filterControls');
+    const convertControls = document.getElementById('convertControls');
 
     if (cropControls) cropControls.style.display = 'none';
     if (resizeControls) resizeControls.style.display = 'none';
     if (rotateControls) rotateControls.style.display = 'none';
     if (filterControls) filterControls.style.display = 'none';
+    if (convertControls) convertControls.style.display = 'none';
   }
 
   function marcarHerramientaActiva(boton) {
@@ -1210,6 +1402,12 @@ function guardarPreferencias(prefs) {
 
 function aplicarPreferencias(prefs) {
   console.log('✅ Preferencias aplicadas:', prefs);
+  console.log('📊 Calidad de exportación:', prefs.calidadExportacion);
+  console.log('📄 Formato por defecto:', prefs.formatoDefecto);
+  console.log(
+    '💾 Autoguardado:',
+    prefs.autoguardado ? 'Activado' : 'Desactivado'
+  );
 }
 
 function abrirModalConfiguracion() {
@@ -1271,6 +1469,7 @@ function guardarConfiguracion() {
   if (guardarPreferencias(nuevas)) {
     aplicarPreferencias(nuevas);
     cerrarModalConfiguracion();
+    mostrarNotificacion('success', 'Configuración guardada correctamente');
   }
 }
 
@@ -1281,7 +1480,7 @@ function abrirModalPerfil() {
   const userData = sessionStorage.getItem('artifyUser');
   if (userData) {
     try {
-      const usuario = JSON.parse(usuario);
+      const usuario = JSON.parse(userData);
       const nombre = document.getElementById('perfilNombre');
       const email = document.getElementById('perfilEmail');
 
