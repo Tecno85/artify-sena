@@ -3,10 +3,12 @@ let currentImage = null;
 let canvas;
 let ctx;
 let operationsHistory = [];
-let historyIndex = -1; // Para controlar deshacer/rehacer
+let historyIndex = -1;
 let currentTool = null;
 let zoomLevel = 100;
 let currentFilter = null;
+let formatoActual = null; // Formato actual de la imagen después de conversión
+let calidadActual = null; // Calidad actual de la imagen después de conversión
 
 // ========== ELEMENTOS DEL DOM ==========
 let fileInput, btnSubir, btnDescargar, dropZone, canvasWrapper, imageInfo;
@@ -279,6 +281,10 @@ window.addEventListener('DOMContentLoaded', () => {
         ctx.drawImage(img, 0, 0);
         currentImage = img;
 
+        // Resetear formato y calidad al cargar nueva imagen
+        formatoActual = null;
+        calidadActual = null;
+
         mostrarCanvas();
         habilitarHerramientas();
         actualizarPropiedades(file, img);
@@ -374,8 +380,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Obtener preferencias
     const prefs = cargarPreferencias();
-    const formato = prefs.formatoDefecto || 'png';
-    const calidad = prefs.calidadExportacion || 'alta';
+
+    // Si hay un formato convertido, usar ese; si no, usar las preferencias
+    const formato = formatoActual || prefs.formatoDefecto || 'png';
+    const calidad = calidadActual || prefs.calidadExportacion || 'alta';
 
     // Mapear calidad a valor numérico
     const calidadMap = {
@@ -399,6 +407,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     canvas.toBlob(
       (blob) => {
+        const tamanoKB = (blob.size / 1024).toFixed(2);
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
@@ -407,6 +416,10 @@ window.addEventListener('DOMContentLoaded', () => {
         URL.revokeObjectURL(url);
 
         actualizarEstado('Listo', 'success');
+        mostrarNotificacion(
+          'success',
+          `Imagen descargada en ${formato.toUpperCase()} - Calidad: ${calidad} (${tamanoKB} KB)`
+        );
         guardarEstadoEnHistorial('Imagen descargada');
       },
       mimeType,
@@ -464,26 +477,79 @@ window.addEventListener('DOMContentLoaded', () => {
       };
 
       const mimeType = mimeTypeMap[formatoDestino] || 'image/png';
-      const extension = formatoDestino === 'jpeg' ? 'jpg' : formatoDestino;
 
-      // Convertir y descargar
+      // Verificar soporte del navegador para el formato
+      const testCanvas = document.createElement('canvas');
+      const soportado = testCanvas.toDataURL(mimeType).indexOf(mimeType) > -1;
+
+      if (
+        !soportado &&
+        (formatoDestino === 'webp' || formatoDestino === 'avif')
+      ) {
+        mostrarNotificacion(
+          'warning',
+          `Tu navegador no soporta completamente ${formatoDestino.toUpperCase()}. La conversión puede no funcionar correctamente.`
+        );
+      }
+
+      // Convertir el canvas al nuevo formato (SIN descargar)
       canvas.toBlob(
         (blob) => {
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = `artify-convertido-${Date.now()}.${extension}`;
-          a.click();
-          URL.revokeObjectURL(url);
+          if (!blob) {
+            mostrarNotificacion('error', 'Error al convertir la imagen');
+            actualizarEstado('Error', 'error');
+            return;
+          }
 
-          actualizarEstado('Listo', 'success');
-          mostrarNotificacion(
-            'success',
-            `Imagen convertida a ${formatoDestino.toUpperCase()}`
-          );
-          guardarEstadoEnHistorial(
-            `Conversión a ${formatoDestino.toUpperCase()}`
-          );
+          // Calcular tamaño del archivo convertido
+          const tamanoKB = (blob.size / 1024).toFixed(2);
+
+          // Crear nueva imagen desde el blob convertido
+          const url = URL.createObjectURL(blob);
+          const img = new Image();
+
+          img.onload = () => {
+            URL.revokeObjectURL(url);
+
+            // Actualizar currentImage con la versión convertida
+            currentImage = img;
+
+            // GUARDAR formato y calidad actuales para el botón Descargar
+            formatoActual = formatoDestino;
+            calidadActual = calidadConversion;
+
+            // Redibujar en el canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(currentImage, 0, 0);
+
+            // Actualizar información de propiedades
+            const formatoElement = document.getElementById('propFormato');
+            if (formatoElement) {
+              formatoElement.textContent = formatoDestino.toUpperCase();
+            }
+
+            const tamanoElement = document.getElementById('propTamano');
+            if (tamanoElement) {
+              tamanoElement.textContent = tamanoKB + ' KB';
+            }
+
+            actualizarEstado('Listo', 'success');
+            mostrarNotificacion(
+              'success',
+              `✓ Imagen convertida a ${formatoDestino.toUpperCase()} (${tamanoKB} KB) - Calidad: ${calidadConversion}. Al descargar se guardará en este formato.`
+            );
+            guardarEstadoEnHistorial(
+              `Conversión a ${formatoDestino.toUpperCase()}`
+            );
+          };
+
+          img.onerror = () => {
+            URL.revokeObjectURL(url);
+            mostrarNotificacion('error', 'Error al procesar la conversión');
+            actualizarEstado('Error', 'error');
+          };
+
+          img.src = url;
         },
         mimeType,
         calidadNumero
@@ -1332,8 +1398,8 @@ window.addEventListener('DOMContentLoaded', () => {
       tipo === 'error' || tipo === 'warning'
         ? 5000
         : tipo === 'info'
-        ? 2000
-        : 3000;
+        ? 3500
+        : 5000;
 
     setTimeout(() => {
       if (notificacion.parentElement) {

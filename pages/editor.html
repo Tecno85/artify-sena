@@ -293,7 +293,7 @@
           <!-- Controles de Convertir -->
           <div id="convertControls" style="display: none">
             <div class="control-group">
-              <label for="convertFormato">Formato destino:</label>
+              <label for="convertFormato">Convertir a formato:</label>
               <select id="convertFormato" class="select-input">
                 <option value="png">PNG</option>
                 <option value="jpeg">JPEG</option>
@@ -302,24 +302,15 @@
               </select>
             </div>
             <div class="control-group">
-              <label for="convertCalidad">Calidad:</label>
+              <label for="convertCalidad">Calidad de conversión:</label>
               <select id="convertCalidad" class="select-input">
                 <option value="alta">Alta (100%)</option>
                 <option value="media">Media (80%)</option>
                 <option value="baja">Baja (60%)</option>
               </select>
             </div>
-            <div class="convert-info">
-              <p style="font-size: 0.85rem; color: #a0a0a0; margin: 10px 0">
-                💡 <strong>Formatos:</strong><br />
-                • PNG: Sin pérdida, mayor tamaño<br />
-                • JPEG: Con pérdida, menor tamaño<br />
-                • WebP: Moderno, buen balance<br />
-                • AVIF: Mejor compresión
-              </p>
-            </div>
             <button class="btn-apply" id="btnAplicarConversion">
-              Convertir y Descargar
+              Aplicar Conversión
             </button>
           </div>
         </aside>
@@ -382,13 +373,19 @@
     <div id="modalConfiguracion" class="modal-config" style="display: none">
       <div class="modal-config-content">
         <div class="modal-config-header">
-          <h2 class="modal-config-title">⚙️ Configuración</h2>
+          <h2 class="modal-config-title">
+            <img
+              src="../assets/icons/configuration.svg"
+              alt="Icono de Configuración"
+            />
+            Configuración
+          </h2>
           <button
             class="modal-config-close"
             id="btnCerrarConfig"
             aria-label="Cerrar"
           >
-            ✕
+            <img src="../assets/icons/close.svg" alt="Icono Cerrar" />
           </button>
         </div>
 
@@ -396,7 +393,7 @@
           <!-- Sección: Preferencias de Editor -->
           <section class="config-section">
             <h3 class="config-section-title">
-              <img src="../assets/icons/picture.svg" alt="Editor" />
+              <img src="../assets/icons/editor.svg" alt="Editor" />
               Preferencias de Editor
             </h3>
 
@@ -438,17 +435,15 @@
           <!-- Sección: Información de Usuario -->
           <section class="config-section">
             <h3 class="config-section-title">
-              <img src="../assets/icons/user.svg" alt="Usuario" />
+              <img src="../assets/icons/user-plus.svg" alt="Usuario" />
               Información de Usuario
             </h3>
 
             <div class="config-user-info">
+              <p>Nombre: <span id="configUserNombre">-</span></p>
+              <p>Email: <span id="configUserEmail">-</span></p>
               <p>
-                <strong>Nombre:</strong> <span id="configUserNombre">-</span>
-              </p>
-              <p><strong>Email:</strong> <span id="configUserEmail">-</span></p>
-              <p>
-                <strong>Última sesión:</strong>
+                Última sesión:
                 <span id="configUserUltimaSesion">-</span>
               </p>
             </div>
@@ -470,13 +465,13 @@
     <div id="modalPerfil" class="modal-perfil" style="display: none">
       <div class="modal-perfil-content">
         <div class="modal-perfil-header">
-          <h2 class="modal-perfil-title">👤 Mi Perfil</h2>
+          <h2 class="modal-perfil-title">Mi Perfil</h2>
           <button
             class="modal-perfil-close"
             id="btnCerrarPerfil"
             aria-label="Cerrar"
           >
-            ✕
+            <img src="../assets/icons/close.svg" alt="Icono Cerrar" />
           </button>
         </div>
 
@@ -514,7 +509,7 @@
 
         <div class="modal-perfil-footer">
           <button class="btn-perfil-logout" id="btnCerrarSesion">
-            <img src="../assets/icons/logout.svg" alt="Salir" />
+            <!-- <img src="../assets/icons/logout.svg" alt="Salir" /> -->
             Cerrar Sesión
           </button>
         </div>
