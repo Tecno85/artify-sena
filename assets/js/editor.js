@@ -15,7 +15,7 @@ let fileInput, btnSubir, btnDescargar, dropZone, canvasWrapper, imageInfo;
 let btnRecortar, btnRedimensionar, btnRotar, btnFiltros, submenuFiltros;
 let btnDeshacer, btnRehacer;
 let btnZoomIn, btnZoomOut, zoomLevelDisplay;
-let operationsCount, statusIndicator;
+let operationsCount;
 
 // Variables para recorte
 let cropMode = false;
@@ -210,7 +210,6 @@ window.addEventListener('DOMContentLoaded', () => {
   zoomLevelDisplay = document.getElementById('zoomLevel');
 
   operationsCount = document.getElementById('operationsCount');
-  statusIndicator = document.getElementById('statusIndicator');
 
   // ========== SUBIR IMAGEN ==========
   btnSubir.addEventListener('click', () => {
@@ -394,12 +393,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const calidadNumero = calidadMap[calidad];
 
-    // Mapeo de formatos con soporte para WebP y AVIF
+    // Mapeo de formatos (PNG, JPEG, WebP solamente)
     const mimeTypeMap = {
       png: 'image/png',
       jpeg: 'image/jpeg',
       webp: 'image/webp',
-      avif: 'image/avif',
     };
 
     const mimeType = mimeTypeMap[formato] || 'image/png';
@@ -438,9 +436,35 @@ window.addEventListener('DOMContentLoaded', () => {
       const convertControls = document.getElementById('convertControls');
       if (convertControls) {
         convertControls.style.display = 'block';
+
+        // Verificar si el formato actual es PNG para ocultar calidad
+        actualizarVisibilidadCalidad();
       }
 
       marcarHerramientaActiva(btnConvertir);
+    });
+  }
+
+  // Función para actualizar visibilidad del selector de calidad
+  function actualizarVisibilidadCalidad() {
+    const convertFormato = document.getElementById('convertFormato');
+    const convertCalidadGroup = document.getElementById('convertCalidadGroup');
+
+    if (!convertFormato || !convertCalidadGroup) return;
+
+    if (convertFormato.value === 'png') {
+      convertCalidadGroup.classList.add('hidden');
+    } else {
+      convertCalidadGroup.classList.remove('hidden');
+    }
+  }
+
+  // Event listener para cambio de formato
+  const convertFormato = document.getElementById('convertFormato');
+
+  if (convertFormato) {
+    convertFormato.addEventListener('change', () => {
+      actualizarVisibilidadCalidad();
     });
   }
 
@@ -468,29 +492,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
       const calidadNumero = calidadMap[calidadConversion];
 
-      // Mapeo de formatos
+      // Mapeo de formatos (PNG, JPEG, WebP solamente)
       const mimeTypeMap = {
         png: 'image/png',
         jpeg: 'image/jpeg',
         webp: 'image/webp',
-        avif: 'image/avif',
       };
 
       const mimeType = mimeTypeMap[formatoDestino] || 'image/png';
-
-      // Verificar soporte del navegador para el formato
-      const testCanvas = document.createElement('canvas');
-      const soportado = testCanvas.toDataURL(mimeType).indexOf(mimeType) > -1;
-
-      if (
-        !soportado &&
-        (formatoDestino === 'webp' || formatoDestino === 'avif')
-      ) {
-        mostrarNotificacion(
-          'warning',
-          `Tu navegador no soporta completamente ${formatoDestino.toUpperCase()}. La conversión puede no funcionar correctamente.`
-        );
-      }
 
       // Convertir el canvas al nuevo formato (SIN descargar)
       canvas.toBlob(
@@ -580,7 +589,6 @@ window.addEventListener('DOMContentLoaded', () => {
       png: 'image/png',
       jpeg: 'image/jpeg',
       webp: 'image/webp',
-      avif: 'image/avif',
     };
 
     const mimeType = mimeTypeMap[formato] || 'image/png';
@@ -1314,8 +1322,13 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function actualizarEstado(texto, tipo = 'success') {
-    statusIndicator.textContent = texto;
-    statusIndicator.className = 'status-indicator ' + tipo;
+    // Solo registrar en consola para debugging
+    const iconos = {
+      processing: '⏳',
+      success: '✅',
+      error: '❌',
+    };
+    console.log(`${iconos[tipo] || '📌'} Estado: ${texto}`);
   }
 
   // ========== NOTIFICACIONES ==========
@@ -1334,11 +1347,9 @@ window.addEventListener('DOMContentLoaded', () => {
       container.style.justifyContent = 'center';
       container.style.maxWidth = '600px';
 
-      // Insertarlo en la barra de estado, entre operationsCount y statusIndicator
+      // Insertarlo en la barra de estado
       const statusBar = document.querySelector('.status-bar');
-      const statusIndicatorParent =
-        document.getElementById('statusIndicator').parentElement;
-      statusBar.insertBefore(container, statusIndicatorParent);
+      statusBar.appendChild(container);
     }
 
     // Limpiar notificaciones anteriores

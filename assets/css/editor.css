@@ -26,6 +26,12 @@
   --panel-bg: rgba(255, 255, 255, 0.05);
 }
 
+/* Utilidades Generales */
+
+.hidden {
+  display: none;
+}
+
 /* Reset */
 * {
   box-sizing: border-box;
@@ -464,7 +470,7 @@ header {
 .control-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
   margin-bottom: 15px;
 }
 

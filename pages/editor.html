@@ -298,10 +298,9 @@
                 <option value="png">PNG</option>
                 <option value="jpeg">JPEG</option>
                 <option value="webp">WebP</option>
-                <option value="avif">AVIF</option>
               </select>
             </div>
-            <div class="control-group">
+            <div class="control-group" id="convertCalidadGroup">
               <label for="convertCalidad">Calidad de conversión:</label>
               <select id="convertCalidad" class="select-input">
                 <option value="alta">Alta (100%)</option>
@@ -326,10 +325,6 @@
         <div class="status-item" id="transformInfo" style="display: none">
           <img src="../assets/icons/arrows.svg" alt="Transformación" />
           <span id="transformText">-</span>
-        </div>
-
-        <div class="status-item">
-          <span class="status-indicator" id="statusIndicator">Listo</span>
         </div>
       </footer>
     </div>
@@ -410,13 +405,12 @@
 
             <div class="config-item">
               <label for="configFormatoDefecto" class="config-label"
-                >Formato por defecto:</label
+                >Formato por defecto para descargas:</label
               >
               <select id="configFormatoDefecto" class="config-select">
                 <option value="png">PNG</option>
                 <option value="jpeg">JPEG</option>
                 <option value="webp">WebP</option>
-                <option value="avif">AVIF</option>
               </select>
             </div>
 
