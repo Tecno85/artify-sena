@@ -358,16 +358,16 @@ p b {
 @media (max-width: 1366px) {
   .container {
     padding: 20px;
-    gap: 10px;
+    gap: 5px;
   }
 
   header {
-    padding: 8px 70px;
+    padding: 2px 120px;
     margin-bottom: 20px;
   }
 
   .header-img img {
-    width: 26px;
+    width: 24px;
   }
 
   .header-img p {
@@ -380,12 +380,12 @@ p b {
   }
 
   main {
-    padding: 10px;
+    padding: 7px;
   }
 
   .login-card {
-    padding: 30px 30px;
-    max-width: 450px;
+    padding: 20px 30px;
+    max-width: 400px;
   }
 
   .logo-section {
@@ -393,13 +393,13 @@ p b {
   }
 
   .logo {
-    width: 60px;
-    margin-bottom: 15px;
+    width: 50px;
+    margin-bottom: 0px;
   }
 
   .login-card h1 {
     font-size: 2rem;
-    margin-bottom: 8px;
+    margin-bottom: 0px;
   }
 
   .subtitle {
@@ -458,13 +458,13 @@ p b {
   }
 
   .btn-primary {
-    padding: 14px;
+    padding: 12px;
     font-size: 1rem;
     margin-top: 8px;
   }
 
   .links-section {
-    margin-top: 16px;
+    margin-top: 6px;
     gap: 12px;
   }
 
@@ -477,8 +477,8 @@ p b {
   }
 
   footer {
-    margin-top: 20px;
-    padding-top: 20px;
+    margin-top: 10px;
+    padding-top: 10px;
   }
 
   footer p {
