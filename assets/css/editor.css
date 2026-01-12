@@ -1436,25 +1436,6 @@ header {
   transform: translateY(-2px);
 }
 
-/* Responsive para pantallas muy pequeñas */
-@media (max-width: 600px) {
-  .modal-resolucion-content {
-    padding: 25px;
-  }
-
-  .modal-resolucion-title {
-    font-size: 1.4rem;
-  }
-
-  .modal-resolucion-message {
-    font-size: 1rem;
-  }
-
-  .modal-resolucion-icon {
-    font-size: 3rem;
-  }
-}
-
 /* ======================================================
    MODO OPTIMIZADO – 1366 × 768
    ====================================================== */

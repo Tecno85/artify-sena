@@ -929,24 +929,43 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // ========== FUNCIONES DE RECORTE CORREGIDAS ==========
+
   function iniciarRecorte(e) {
     if (!cropMode) return;
     isDragging = true;
 
     const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
 
+    // Calcular escala considerando el zoom actual
+    const currentScale = zoomLevel / 100;
+    const scaleX = canvas.width / (rect.width / currentScale);
+    const scaleY = canvas.height / (rect.height / currentScale);
+
+    // Ajustar coordenadas del mouse
     startX = (e.clientX - rect.left) * scaleX;
     startY = (e.clientY - rect.top) * scaleY;
+
+    console.log('🎯 Inicio recorte:', {
+      startX,
+      startY,
+      scaleX,
+      scaleY,
+      zoom: zoomLevel,
+    });
   }
 
   function dibujarRecorte(e) {
     if (!isDragging || !cropMode) return;
 
     const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
+
+    // Calcular escala considerando el zoom actual
+    const currentScale = zoomLevel / 100;
+    const scaleX = canvas.width / (rect.width / currentScale);
+    const scaleY = canvas.height / (rect.height / currentScale);
+
+    // Calcular posición actual del mouse
     const currentX = (e.clientX - rect.left) * scaleX;
     const currentY = (e.clientY - rect.top) * scaleY;
 
@@ -979,19 +998,8 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     // Calcular posición (respetando la dirección del arrastre)
-    let x, y;
-
-    if (currentX < startX) {
-      x = currentX;
-    } else {
-      x = startX;
-    }
-
-    if (currentY < startY) {
-      y = currentY;
-    } else {
-      y = startY;
-    }
+    let x = currentX < startX ? currentX : startX;
+    let y = currentY < startY ? currentY : startY;
 
     // Verificar límites del canvas
     if (x + width > canvas.width) {
@@ -1026,6 +1034,10 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    // Prevenir valores negativos
+    if (x < 0) x = 0;
+    if (y < 0) y = 0;
+
     // Asignar valores finales a cropArea
     cropArea.x = x;
     cropArea.y = y;
@@ -1037,6 +1049,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function finalizarRecorte() {
     isDragging = false;
+    console.log('✅ Recorte finalizado:', cropArea);
   }
 
   function redibujarConRecorte() {
