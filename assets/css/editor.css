@@ -1597,4 +1597,67 @@ header {
   .status-item img {
     width: 20px;
   }
+
+  /* ================= MODAL DE RESOLUCIÓN ================= */
+  .modal-resolucion-content {
+    padding: 25px;
+    max-width: 500px;
+  }
+
+  .modal-resolucion-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+  }
+
+  .modal-resolucion-title {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+
+  .modal-resolucion-message {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+
+  .modal-resolucion-info {
+    padding: 15px;
+    margin-bottom: 18px;
+  }
+
+  .modal-resolucion-info p {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+
+  .modal-resolucion-suggestion {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  .modal-resolucion-list {
+    margin-bottom: 20px;
+  }
+
+  .modal-resolucion-list li {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 6px;
+    padding-left: 25px;
+  }
+
+  .modal-resolucion-list li:before {
+    font-size: 1rem;
+    left: 6px;
+  }
+
+  .modal-resolucion-actions {
+    gap: 10px;
+  }
+
+  .btn-modal-primary,
+  .btn-modal-secondary {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
 }
