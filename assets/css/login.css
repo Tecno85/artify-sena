@@ -385,7 +385,139 @@ p b {
   padding: 2px;
 }
 
-/* ========== MEDIA QUERIES ========== */
+/* ========== MEDIA QUERY PARA 1920x1080 ========== */
+/* Agregar ANTES del media query de 1366px, después del footer */
+
+@media (max-width: 1920px) {
+  .container {
+    padding: 35px;
+  }
+
+  header {
+    padding: 18px 35px;
+    margin-bottom: 35px;
+  }
+
+  .header-img img {
+    width: 28px;
+  }
+
+  .header-img p {
+    font-size: 1.05rem;
+  }
+
+  .btn-volver {
+    padding: 9px 18px;
+    font-size: 1rem;
+  }
+
+  main {
+    padding: 18px;
+  }
+
+  .login-card {
+    max-width: 450px;
+    padding: 45px 38px;
+  }
+
+  .logo-section {
+    margin-bottom: 35px;
+  }
+
+  .logo {
+    width: 70px;
+    margin-bottom: 18px;
+  }
+
+  .login-card h1 {
+    font-size: 2.3rem;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 0.98rem;
+  }
+
+  form {
+    gap: 22px;
+  }
+
+  .form-group {
+    gap: 9px;
+  }
+
+  .form-group label {
+    font-size: 0.98rem;
+  }
+
+  .form-group label img {
+    width: 19px;
+  }
+
+  .form-group input {
+    padding: 13px 15px;
+    font-size: 0.98rem;
+  }
+
+  .password-wrapper input {
+    padding-right: 48px;
+  }
+
+  .toggle-password {
+    right: 11px;
+    padding: 7px;
+  }
+
+  .toggle-password svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .error-message {
+    font-size: 0.83rem;
+  }
+
+  .form-options {
+    margin-top: -8px;
+  }
+
+  .checkbox-label input[type='checkbox'] {
+    width: 19px;
+    height: 19px;
+  }
+
+  .checkbox-label span {
+    font-size: 0.92rem;
+  }
+
+  .btn-primary {
+    padding: 14px;
+    font-size: 1.05rem;
+    margin-top: 8px;
+  }
+
+  .links-section {
+    margin-top: 18px;
+    gap: 13px;
+  }
+
+  .link-secondary {
+    font-size: 0.92rem;
+  }
+
+  .register-link {
+    font-size: 0.92rem;
+  }
+
+  footer {
+    margin-top: 30px;
+    padding-top: 25px;
+  }
+
+  footer p {
+    font-size: 0.95rem;
+  }
+}
 
 /* RESOLUCIÓN 1366 × 768 (Laptops estándar) - OPTIMIZADO SIN SCROLL */
 @media (max-width: 1366px) {
@@ -469,8 +601,9 @@ p b {
     padding: 6px;
   }
 
-  .toggle-password img {
+  .toggle-password svg {
     width: 20px;
+    height: 20px;
   }
 
   .error-message {

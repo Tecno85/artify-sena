@@ -213,6 +213,86 @@ p b {
   padding: 2px;
 }
 
+/* ========== MEDIA QUERY PARA 1920x1080 ========== */
+/* Agregar ANTES del media query de 1366px */
+
+@media (max-width: 1920px) {
+  .container {
+    padding: 35px 40px;
+    gap: 40px;
+  }
+
+  header {
+    padding: 10px 35px;
+  }
+
+  .header-img img {
+    max-width: 28px;
+  }
+
+  .header-img p {
+    font-size: 1.05rem;
+  }
+
+  .enlaces {
+    font-size: 1.05rem;
+  }
+
+  main {
+    gap: 70px;
+    margin-bottom: 50px;
+  }
+
+  .bienvenida img {
+    width: 120px;
+  }
+
+  .bienvenida h1 {
+    font-size: 3rem;
+  }
+
+  .bienvenida p {
+    font-size: 1.1rem;
+  }
+
+  .cards {
+    gap: 50px;
+  }
+
+  .card {
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .card h3 {
+    font-size: 1.05rem;
+  }
+
+  .card p {
+    font-size: 1rem;
+  }
+
+  .card-1 img {
+    width: 75px;
+  }
+
+  .card-2 img {
+    width: 70px;
+  }
+
+  .card-3 img {
+    width: 80px;
+  }
+
+  footer {
+    margin-top: 35px;
+  }
+
+  footer p {
+    font-size: 0.95rem;
+  }
+}
+
 /* ========== MEDIA QUERIES ========== */
 
 /* RESOLUCIÓN 1366 × 768 (Laptops estándar) - OPTIMIZADO SIN SCROLL */

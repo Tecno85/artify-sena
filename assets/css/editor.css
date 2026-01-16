@@ -1436,6 +1436,551 @@ header {
   transform: translateY(-2px);
 }
 
+/* ========== MEDIA QUERY PARA 1920x1080 ========== */
+
+@media (max-width: 1920px) {
+  /* ================= HEADER ================= */
+  header {
+    height: 82px;
+    padding: 13px 28px;
+  }
+
+  .header-left .logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .header-left h1 {
+    font-size: 1.65rem;
+    letter-spacing: 1.3px;
+  }
+
+  .user-info {
+    padding: 7px 14px;
+    font-size: 0.92rem;
+  }
+
+  .user-info img {
+    width: 26px;
+  }
+
+  .btn-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .btn-icon img {
+    width: 21px;
+  }
+
+  /* ================= LAYOUT ================= */
+  .editor-layout {
+    grid-template-columns: 225px 1fr 290px;
+  }
+
+  /* ================= PANELES ================= */
+  .panel-left,
+  .panel-right {
+    padding: 18px;
+    gap: 13px;
+  }
+
+  /* ================= PANEL IZQUIERDO ================= */
+  .section-title {
+    font-size: 0.98rem;
+    letter-spacing: 1.3px;
+    padding-bottom: 13px;
+  }
+
+  .tool-section {
+    gap: 9px;
+  }
+
+  .tool-btn {
+    padding: 11px 14px;
+    font-size: 0.93rem;
+    gap: 11px;
+  }
+
+  .tool-btn img {
+    width: 23px;
+  }
+
+  .tool-btn kbd {
+    font-size: 0.73rem;
+    padding: 2px 5px;
+  }
+
+  .tool-btn .expand-icon {
+    width: 15px;
+  }
+
+  .submenu {
+    padding-left: 18px;
+    margin-top: 4px;
+    gap: 4px;
+  }
+
+  .submenu-btn {
+    padding: 9px 11px;
+    font-size: 0.88rem;
+  }
+
+  .submenu-btn .bullet {
+    font-size: 1.15rem;
+  }
+
+  /* ================= CANVAS CENTRAL ================= */
+  .canvas-container {
+    padding: 18px;
+  }
+
+  .drop-zone {
+    max-width: 580px;
+    height: 380px;
+  }
+
+  .drop-icon {
+    width: 85px;
+    height: 85px;
+    margin-bottom: 18px;
+  }
+
+  .drop-text {
+    font-size: 1.25rem;
+    margin-bottom: 7px;
+  }
+
+  .drop-subtext {
+    font-size: 0.98rem;
+    margin-bottom: 13px;
+  }
+
+  .drop-info {
+    font-size: 0.83rem;
+    padding: 5px 11px;
+  }
+
+  .canvas-wrapper {
+    gap: 18px;
+  }
+
+  #mainCanvas {
+    max-height: calc(100vh - 230px);
+  }
+
+  .zoom-controls {
+    gap: 13px;
+    padding: 9px 18px;
+  }
+
+  .zoom-btn {
+    width: 30px;
+    height: 30px;
+  }
+
+  .zoom-btn img {
+    width: 15px;
+  }
+
+  .zoom-level {
+    font-size: 0.98rem;
+    min-width: 58px;
+  }
+
+  .image-dimensions {
+    padding: 7px 14px;
+    font-size: 0.88rem;
+  }
+
+  /* ================= PANEL DERECHO ================= */
+  .panel-title {
+    font-size: 1.2rem;
+    padding-bottom: 13px;
+    letter-spacing: 1.2px;
+  }
+
+  .properties-section {
+    padding: 18px;
+  }
+
+  .prop-subtitle {
+    font-size: 1.08rem;
+    margin-bottom: 9px;
+  }
+
+  .prop-subtitle p {
+    width: 190px;
+  }
+
+  .prop-item {
+    padding: 9px 0;
+  }
+
+  .prop-label {
+    font-size: 0.93rem;
+  }
+
+  .prop-value {
+    font-size: 0.88rem;
+  }
+
+  .no-tool-selected {
+    font-size: 0.88rem;
+    padding: 13px 0 0;
+  }
+
+  .control-group {
+    gap: 11px;
+    margin-bottom: 13px;
+  }
+
+  .control-group label {
+    font-size: 0.88rem;
+  }
+
+  .select-input,
+  .number-input {
+    padding: 9px 11px;
+    font-size: 0.93rem;
+  }
+
+  .checkbox-control {
+    font-size: 0.88rem;
+    margin-bottom: 13px;
+  }
+
+  .checkbox-control input[type='checkbox'] {
+    width: 17px;
+    height: 17px;
+  }
+
+  .btn-apply {
+    padding: 11px;
+    font-size: 0.98rem;
+  }
+
+  .rotate-buttons {
+    gap: 9px;
+  }
+
+  .btn-rotate {
+    padding: 9px;
+    font-size: 0.88rem;
+  }
+
+  .slider-input {
+    height: 7px;
+  }
+
+  .slider-input::-webkit-slider-thumb,
+  .slider-input::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+  }
+
+  .slider-value {
+    margin-left: 9px;
+  }
+
+  /* ================= STATUS BAR ================= */
+  .status-bar {
+    height: 47px;
+    padding: 15px 28px;
+    font-size: 0.88rem;
+  }
+
+  .status-item {
+    gap: 7px;
+  }
+
+  .status-item img {
+    width: 22px;
+  }
+
+  .status-indicator {
+    padding: 5px 11px;
+  }
+
+  /* ================= NOTIFICACIONES ================= */
+  .notifications-container {
+    top: 85px;
+    right: 28px;
+    gap: 13px;
+    max-width: 380px;
+  }
+
+  .notification {
+    gap: 13px;
+    padding: 18px;
+  }
+
+  .notification-icon {
+    font-size: 1.7rem;
+  }
+
+  .notification-title {
+    font-size: 1.08rem;
+    margin-bottom: 4px;
+  }
+
+  .notification-message {
+    font-size: 0.93rem;
+  }
+
+  .notification-details {
+    margin-top: 9px;
+    padding-left: 18px;
+    font-size: 0.83rem;
+  }
+
+  .notification-close {
+    font-size: 1.25rem;
+    width: 22px;
+    height: 22px;
+  }
+
+  /* ================= MODAL DE RESOLUCIÓN ================= */
+  .modal-resolucion-content {
+    padding: 36px;
+    max-width: 570px;
+  }
+
+  .modal-resolucion-icon {
+    font-size: 3.7rem;
+    margin-bottom: 18px;
+  }
+
+  .modal-resolucion-title {
+    font-size: 1.7rem;
+    margin-bottom: 18px;
+  }
+
+  .modal-resolucion-message {
+    font-size: 1.08rem;
+    line-height: 1.55;
+    margin-bottom: 23px;
+  }
+
+  .modal-resolucion-info {
+    padding: 18px;
+    margin-bottom: 23px;
+  }
+
+  .modal-resolucion-info p {
+    font-size: 0.93rem;
+    margin-bottom: 9px;
+  }
+
+  .modal-resolucion-suggestion {
+    font-size: 0.93rem;
+    margin-bottom: 11px;
+  }
+
+  .modal-resolucion-list {
+    margin-bottom: 28px;
+  }
+
+  .modal-resolucion-list li {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    padding-left: 28px;
+    margin-bottom: 7px;
+  }
+
+  .modal-resolucion-list li:before {
+    font-size: 1.08rem;
+    left: 7px;
+  }
+
+  .modal-resolucion-actions {
+    gap: 11px;
+  }
+
+  .btn-modal-primary,
+  .btn-modal-secondary {
+    padding: 13px 22px;
+    font-size: 0.98rem;
+  }
+
+  /* ================= MODALES (Config, Perfil, Confirm) ================= */
+  .modal-config-content,
+  .modal-perfil-content,
+  .modal-confirm-content {
+    max-width: 480px;
+  }
+
+  .modal-config-header,
+  .modal-perfil-header {
+    padding: 13px 28px;
+  }
+
+  .modal-config-title,
+  .modal-perfil-title {
+    font-size: 1.4rem;
+    gap: 13px;
+  }
+
+  .modal-config-close,
+  .modal-perfil-close {
+    font-size: 1.4rem;
+    width: 30px;
+    height: 30px;
+  }
+
+  .modal-config-body,
+  .modal-perfil-body {
+    padding: 28px 28px 11px;
+  }
+
+  .config-section {
+    margin-bottom: 18px;
+    padding: 18px;
+  }
+
+  .config-section-title {
+    font-size: 1.12rem;
+    gap: 9px;
+    margin-bottom: 18px;
+    padding-bottom: 9px;
+  }
+
+  .config-section-title img {
+    width: 21px;
+  }
+
+  .config-item {
+    margin-bottom: 13px;
+  }
+
+  .config-label {
+    gap: 9px;
+    font-size: 0.98rem;
+    margin-bottom: 7px;
+  }
+
+  .config-select {
+    padding: 9px 11px;
+    font-size: 0.93rem;
+  }
+
+  .config-checkbox {
+    width: 17px;
+    height: 17px;
+  }
+
+  .config-user-info {
+    gap: 9px;
+  }
+
+  .config-user-info p {
+    font-size: 0.98rem;
+  }
+
+  .modal-config-footer {
+    gap: 11px;
+    padding: 18px 28px;
+  }
+
+  .btn-config-primary,
+  .btn-config-secondary {
+    padding: 11px 22px;
+    font-size: 0.98rem;
+  }
+
+  /* Perfil */
+  .perfil-avatar {
+    margin-bottom: 18px;
+  }
+
+  .perfil-avatar-img {
+    width: 92px;
+    height: 92px;
+    padding: 13px;
+  }
+
+  .perfil-info {
+    margin-bottom: 28px;
+  }
+
+  .perfil-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+  }
+
+  .perfil-info p {
+    font-size: 0.98rem;
+  }
+
+  .perfil-stats {
+    gap: 13px;
+    margin-bottom: 28px;
+  }
+
+  .perfil-stat {
+    padding: 13px;
+  }
+
+  .perfil-stat-value {
+    font-size: 1.7rem;
+    margin-bottom: 4px;
+  }
+
+  .perfil-stat-label {
+    font-size: 0.93rem;
+  }
+
+  .btn-perfil-config {
+    gap: 9px;
+    padding: 11px 22px;
+    font-size: 0.98rem;
+  }
+
+  .btn-perfil-config img {
+    width: 19px;
+  }
+
+  .modal-perfil-footer {
+    padding: 18px 28px;
+  }
+
+  .btn-perfil-logout {
+    gap: 9px;
+    padding: 13px 22px;
+    font-size: 0.98rem;
+  }
+
+  .btn-perfil-logout img {
+    width: 19px;
+  }
+
+  /* Confirm */
+  .modal-confirm-content {
+    max-width: 430px;
+    padding: 32px;
+  }
+
+  .modal-confirm-title {
+    gap: 9px;
+    font-size: 1.7rem;
+  }
+
+  .modal-confirm-message {
+    font-size: 0.98rem;
+    margin: 28px 5px;
+  }
+
+  .modal-confirm-actions {
+    gap: 11px;
+  }
+
+  .btn-confirm-cancel,
+  .btn-confirm-primary {
+    padding: 13px 22px;
+    font-size: 0.98rem;
+  }
+}
+
 /* ======================================================
    MODO OPTIMIZADO – 1366 × 768
    ====================================================== */
