@@ -2095,6 +2095,10 @@ header {
     font-size: 1.05rem;
   }
 
+  #toolControls {
+    display: none;
+  }
+
   /* ================= CANVAS ================= */
   #mainCanvas {
     max-height: calc(100vh - 200px);
