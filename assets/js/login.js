@@ -92,60 +92,40 @@ loginForm.addEventListener('submit', (e) => {
     btnLogin.disabled = true;
     btnLogin.textContent = 'Iniciando sesión...';
 
-    // Autenticación real
-    setTimeout(() => {
-      // 1. Obtener TODOS los usuarios registrados
-      const usuariosRegistrados = JSON.parse(
-        localStorage.getItem('artifyUsuarios') || '[]'
-      );
-
-      console.log('📋 Usuarios en localStorage:', usuariosRegistrados);
-
-      // 2. Buscar el usuario por correo
-      const usuarioEncontrado = usuariosRegistrados.find(
-        (u) => u.correo === emailInput.value || u.email === emailInput.value
-      );
-
-      if (!usuarioEncontrado) {
-        // Usuario no existe
-        console.log('❌ Usuario no encontrado');
+    // Autenticación con backend
+    fetch('http://localhost:3000/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        correo: emailInput.value,
+        password: passwordInput.value,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
         btnLogin.disabled = false;
         btnLogin.textContent = 'Iniciar Sesión';
-        mostrarError('email', 'Usuario no encontrado. Regístrate primero');
-        return;
-      }
 
-      // 3. Validar la contraseña
-      if (usuarioEncontrado.password !== passwordInput.value) {
-        console.log('❌ Contraseña incorrecta');
+        if (data.mensaje === 'Login exitoso') {
+          // Guardar datos del usuario en sessionStorage
+          sessionStorage.setItem('artifyUser', JSON.stringify(data.usuario));
+          sessionStorage.setItem('artifyToken', 'token-' + Date.now());
+
+          // Redirigir al editor
+          console.log('🚀 Redirigiendo al editor...');
+          window.location.href = './editor.html';
+        } else {
+          mostrarError('email', data.mensaje);
+        }
+      })
+      .catch((err) => {
+        console.error('❌ Error al conectar con el servidor:', err);
         btnLogin.disabled = false;
         btnLogin.textContent = 'Iniciar Sesión';
-        mostrarError('email', 'Usuario o contraseña incorrectos');
-        mostrarError('password', 'Usuario o contraseña incorrectos');
-        return;
-      }
-
-      // 4. Login exitoso
-      console.log('✅ Login exitoso:', usuarioEncontrado.nombres);
-
-      // Crear token de sesión
-      const token = 'token-' + Date.now() + '-' + Math.random();
-      sessionStorage.setItem('artifyToken', token);
-
-      // Guardar datos del usuario en sessionStorage
-      sessionStorage.setItem('artifyUser', JSON.stringify(usuarioEncontrado));
-
-      // Verificar "Recordar sesión"
-      const remember = document.getElementById('remember');
-      if (remember && remember.checked) {
-        localStorage.setItem('artifyRememberSession', 'true');
-        localStorage.setItem('artifyLastUser', emailInput.value);
-      }
-
-      // Redirigir al editor
-      console.log('🚀 Redirigiendo al editor...');
-      window.location.href = './editor.html';
-    }, 1000);
+        mostrarError('email', 'Error al conectar con el servidor');
+      });
   }
 });
 
