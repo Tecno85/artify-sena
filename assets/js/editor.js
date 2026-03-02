@@ -167,11 +167,11 @@ window.noVolverAMostrar = function () {
 };
 
 // ========== INICIALIZACIÓN ==========
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
   console.log('🚀 Inicializando Artify Editor...');
   verificarResolucion();
 
-  // Cargar usuario
+  // Cargar usuario e iniciar sesión de edición
   const usuarioData = sessionStorage.getItem('artifyUser');
   if (usuarioData) {
     try {
@@ -180,11 +180,23 @@ window.addEventListener('DOMContentLoaded', () => {
       if (userNameElement) {
         userNameElement.textContent = `${usuario.nombres} ${usuario.apellidos}`;
       }
+
+      // Iniciar sesión de edición en el backend
+      const res = await fetch('http://localhost:3000/api/sesion/iniciar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idUsuario: usuario.id }),
+      });
+
+      const data = await res.json();
+      if (data.mensaje === 'Sesión iniciada') {
+        sessionStorage.setItem('artifyIdSesion', data.idSesion);
+        console.log('✅ Sesión de edición iniciada. ID:', data.idSesion);
+      }
     } catch (error) {
       console.warn('⚠️ Error al parsear datos del usuario');
     }
   }
-
   // Inicializar elementos del DOM
   canvas = document.getElementById('mainCanvas');
   if (canvas) ctx = canvas.getContext('2d', { willReadFrequently: true });
@@ -1601,7 +1613,7 @@ async function guardarConfiguracion() {
   }
 }
 
-function abrirModalPerfil() {
+async function abrirModalPerfil() {
   const modal = document.getElementById('modalPerfil');
   if (!modal) return;
 
@@ -1615,6 +1627,26 @@ function abrirModalPerfil() {
       if (nombre)
         nombre.textContent = `${usuario.nombres} ${usuario.apellidos}`;
       if (email) email.textContent = usuario.correo;
+
+      // Cargar estadísticas desde el backend
+      const res = await fetch(
+        `http://localhost:3000/api/estadisticas/${usuario.id}`
+      );
+      const data = await res.json();
+
+      if (data.mensaje === 'ok') {
+        const sesiones = document.getElementById('perfilSesiones');
+        const operaciones = document.getElementById('perfilOperaciones');
+        const imagenesEditadas = document.getElementById(
+          'perfilImagenesEditadas'
+        );
+
+        if (sesiones) sesiones.textContent = data.estadisticas.sesiones;
+        if (operaciones)
+          operaciones.textContent = data.estadisticas.operaciones;
+        if (imagenesEditadas)
+          imagenesEditadas.textContent = data.estadisticas.imagenesEditadas;
+      }
     } catch {}
   }
 
@@ -1636,7 +1668,22 @@ function cerrarConfirmacionLogout() {
   if (modal) modal.style.display = 'none';
 }
 
-function cerrarSesionSegura() {
+async function cerrarSesionSegura() {
+  const idSesion = sessionStorage.getItem('artifyIdSesion');
+
+  if (idSesion) {
+    try {
+      await fetch('http://localhost:3000/api/sesion/cerrar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idSesion: parseInt(idSesion) }),
+      });
+      console.log('✅ Sesión de edición cerrada correctamente');
+    } catch (err) {
+      console.warn('⚠️ No se pudo cerrar la sesión en el servidor');
+    }
+  }
+
   sessionStorage.clear();
   setTimeout(() => (window.location.href = '../index.html'), 1000);
 }

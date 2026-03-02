@@ -259,6 +259,88 @@ app.post('/api/configuracion', (req, res) => {
   });
 });
 
+// ========== ENDPOINT INICIAR SESIÓN DE EDICIÓN ==========
+app.post('/api/sesion/iniciar', (req, res) => {
+  const { idUsuario } = req.body;
+
+  console.log('📨 Iniciando sesión de edición para usuario ID:', idUsuario);
+
+  const query = `
+    INSERT INTO SESION_EDICION 
+      (ses_usr_id_usuario, ses_fecha_inicio, ses_estado)
+    VALUES (?, NOW(), 'activa')
+  `;
+
+  db.query(query, [idUsuario], (err, result) => {
+    if (err) {
+      console.error('❌ Error al iniciar sesión:', err.message);
+      return res.status(500).json({ mensaje: 'Error en el servidor' });
+    }
+
+    console.log('✅ Sesión de edición iniciada. ID:', result.insertId);
+    res.json({
+      mensaje: 'Sesión iniciada',
+      idSesion: result.insertId,
+    });
+  });
+});
+
+// ========== ENDPOINT CERRAR SESIÓN DE EDICIÓN ==========
+app.post('/api/sesion/cerrar', (req, res) => {
+  const { idSesion } = req.body;
+
+  console.log('📨 Cerrando sesión de edición ID:', idSesion);
+
+  const query = `
+    UPDATE SESION_EDICION 
+    SET ses_fecha_fin = NOW(),
+        ses_estado = 'cerrada'
+    WHERE ses_id_sesion = ?
+  `;
+
+  db.query(query, [idSesion], (err) => {
+    if (err) {
+      console.error('❌ Error al cerrar sesión:', err.message);
+      return res.status(500).json({ mensaje: 'Error en el servidor' });
+    }
+
+    console.log('✅ Sesión de edición cerrada correctamente');
+    res.json({ mensaje: 'Sesión cerrada' });
+  });
+});
+
+// ========== ENDPOINT OBTENER ESTADÍSTICAS DEL USUARIO ==========
+app.get('/api/estadisticas/:id', (req, res) => {
+  const { id } = req.params;
+
+  console.log('📨 Cargando estadísticas del usuario ID:', id);
+
+  const querySesiones = `
+    SELECT COUNT(*) as total 
+    FROM SESION_EDICION 
+    WHERE ses_usr_id_usuario = ?
+  `;
+
+  db.query(querySesiones, [id], (err, results) => {
+    if (err) {
+      console.error('❌ Error al obtener estadísticas:', err.message);
+      return res.status(500).json({ mensaje: 'Error en el servidor' });
+    }
+
+    const totalSesiones = results[0].total;
+
+    console.log('✅ Estadísticas cargadas. Sesiones:', totalSesiones);
+    res.json({
+      mensaje: 'ok',
+      estadisticas: {
+        sesiones: totalSesiones,
+        operaciones: 0,
+        imagenesEditadas: 0,
+      },
+    });
+  });
+});
+
 // ========== INICIAR SERVIDOR ==========
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
