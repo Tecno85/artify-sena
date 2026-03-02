@@ -287,12 +287,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   // ========== FUNCIÓN CARGAR IMAGEN ==========
   function cargarImagen(file) {
-    const tiposValidos = [
-      'image/jpeg',
-      'image/png',
-      'image/webp',
-      'image/avif',
-    ];
+    const tiposValidos = ['image/jpeg', 'image/png', 'image/webp'];
     if (!tiposValidos.includes(file.type)) {
       mostrarNotificacion(
         'error',
@@ -308,6 +303,26 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
 
     actualizarEstado('Cargando imagen...', 'processing');
+
+    // Registrar imagen editada en MySQL
+    const userData = sessionStorage.getItem('artifyUser');
+    const idSesion = sessionStorage.getItem('artifyIdSesion');
+    if (userData && idSesion) {
+      const usuario = JSON.parse(userData);
+      const formatoOriginal = file.type.replace('image/', '');
+      fetch('http://localhost:3000/api/imagen', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          idUsuario: usuario.id,
+          idSesion: parseInt(idSesion),
+          nombreOriginal: file.name,
+          formatoOriginal: formatoOriginal,
+          formatoFinal: formatoOriginal,
+          tamanoOriginal: file.size,
+        }),
+      }).then(() => console.log('✅ Imagen registrada en MySQL:', file.name));
+    }
 
     const reader = new FileReader();
     reader.onload = (e) => {

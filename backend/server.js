@@ -344,19 +344,37 @@ app.get('/api/estadisticas/:id', (req, res) => {
 
       const totalOperaciones = resOpe[0].total;
 
-      console.log(
-        '✅ Estadísticas cargadas. Sesiones:',
-        totalSesiones,
-        'Operaciones:',
-        totalOperaciones
-      );
-      res.json({
-        mensaje: 'ok',
-        estadisticas: {
-          sesiones: totalSesiones,
-          operaciones: totalOperaciones,
-          imagenesEditadas: 0,
-        },
+      // Contar imágenes editadas del usuario
+      const queryImagenes = `
+        SELECT COUNT(*) as total 
+        FROM IMAGEN_OPERACION 
+        WHERE img_usr_id_usuario = ?
+      `;
+
+      db.query(queryImagenes, [id], (err, resImg) => {
+        if (err) {
+          console.error('❌ Error al obtener imágenes:', err.message);
+          return res.status(500).json({ mensaje: 'Error en el servidor' });
+        }
+
+        const totalImagenes = resImg[0].total;
+
+        console.log(
+          '✅ Estadísticas cargadas. Sesiones:',
+          totalSesiones,
+          'Operaciones:',
+          totalOperaciones,
+          'Imágenes:',
+          totalImagenes
+        );
+        res.json({
+          mensaje: 'ok',
+          estadisticas: {
+            sesiones: totalSesiones,
+            operaciones: totalOperaciones,
+            imagenesEditadas: totalImagenes,
+          },
+        });
       });
     });
   });
@@ -409,6 +427,51 @@ app.get('/api/operacion/total/:id', (req, res) => {
       total: results[0].total,
     });
   });
+});
+
+// ========== ENDPOINT REGISTRAR IMAGEN EDITADA ==========
+app.post('/api/imagen', (req, res) => {
+  const {
+    idUsuario,
+    idSesion,
+    nombreOriginal,
+    formatoOriginal,
+    formatoFinal,
+    tamanoOriginal,
+  } = req.body;
+
+  console.log('📨 Registrando imagen editada para usuario ID:', idUsuario);
+
+  const query = `
+    INSERT INTO IMAGEN_OPERACION 
+      (img_usr_id_usuario, img_ses_id_sesion, img_nombre_original, 
+       img_formato_original, img_formato_final, img_tamano_original, img_fecha_edicion)
+    VALUES (?, ?, ?, ?, ?, ?, NOW())
+  `;
+
+  db.query(
+    query,
+    [
+      idUsuario,
+      idSesion,
+      nombreOriginal,
+      formatoOriginal,
+      formatoFinal,
+      tamanoOriginal,
+    ],
+    (err, result) => {
+      if (err) {
+        console.error('❌ Error al registrar imagen:', err.message);
+        return res.status(500).json({ mensaje: 'Error en el servidor' });
+      }
+
+      console.log('✅ Imagen registrada. ID:', result.insertId);
+      res.json({
+        mensaje: 'Imagen registrada',
+        idImagen: result.insertId,
+      });
+    }
+  );
 });
 
 // ========== INICIAR SERVIDOR ==========
