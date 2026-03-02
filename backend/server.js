@@ -69,6 +69,7 @@ app.post('/api/login', (req, res) => {
     res.json({
       mensaje: 'Login exitoso',
       usuario: {
+        id: usuario.usr_id_usuario,
         nombres: usuario.usr_nombres,
         apellidos: usuario.usr_apellidos,
         correo: usuario.usr_correo,
@@ -140,6 +141,121 @@ app.post('/api/registro', (req, res) => {
         });
       }
     );
+  });
+});
+
+// ========== ENDPOINT CARGAR CONFIGURACIÓN ==========
+app.get('/api/configuracion/:id', (req, res) => {
+  const { id } = req.params;
+
+  console.log('📨 Cargando configuración del usuario ID:', id);
+
+  const query = 'SELECT * FROM CONFIGURACION WHERE cfg_usr_id_usuario = ?';
+
+  db.query(query, [id], (err, results) => {
+    if (err) {
+      console.error('❌ Error al cargar configuración:', err.message);
+      return res.status(500).json({ mensaje: 'Error en el servidor' });
+    }
+
+    if (results.length === 0) {
+      console.log('ℹ️ No hay configuración guardada para este usuario');
+      return res.json({ mensaje: 'sin_configuracion' });
+    }
+
+    const config = results[0];
+    const avanzada = config.cfg_configuracion_avanzada || {};
+
+    console.log('✅ Configuración cargada correctamente');
+    res.json({
+      mensaje: 'ok',
+      configuracion: {
+        calidadExportacion: config.cfg_calidad_exportacion,
+        notificaciones: avanzada.notificaciones ?? true,
+        formatoDefecto: avanzada.formatoDefecto ?? 'png',
+        autoguardado: avanzada.autoguardado ?? false,
+      },
+    });
+  });
+});
+
+// ========== ENDPOINT GUARDAR CONFIGURACIÓN ==========
+app.post('/api/configuracion', (req, res) => {
+  const {
+    idUsuario,
+    calidadExportacion,
+    notificaciones,
+    formatoDefecto,
+    autoguardado,
+  } = req.body;
+
+  console.log('📨 Guardando configuración del usuario ID:', idUsuario);
+
+  const avanzada = JSON.stringify({
+    notificaciones,
+    formatoDefecto,
+    autoguardado,
+  });
+
+  // Verificar si ya tiene configuración guardada
+  const queryBuscar =
+    'SELECT * FROM CONFIGURACION WHERE cfg_usr_id_usuario = ?';
+
+  db.query(queryBuscar, [idUsuario], (err, results) => {
+    if (err) {
+      console.error('❌ Error al buscar configuración:', err.message);
+      return res.status(500).json({ mensaje: 'Error en el servidor' });
+    }
+
+    if (results.length === 0) {
+      // Insertar nueva configuración
+      const queryInsertar = `
+        INSERT INTO CONFIGURACION 
+          (cfg_usr_id_usuario, cfg_calidad_exportacion, cfg_configuracion_avanzada, cfg_fecha_actualizacion)
+        VALUES (?, ?, ?, NOW())
+      `;
+
+      db.query(
+        queryInsertar,
+        [idUsuario, calidadExportacion, avanzada],
+        (err) => {
+          if (err) {
+            console.error('❌ Error al insertar configuración:', err.message);
+            return res
+              .status(500)
+              .json({ mensaje: 'Error al guardar configuración' });
+          }
+
+          console.log('✅ Configuración guardada correctamente');
+          res.json({ mensaje: 'Configuración guardada correctamente' });
+        }
+      );
+    } else {
+      // Actualizar configuración existente
+      const queryActualizar = `
+        UPDATE CONFIGURACION 
+        SET cfg_calidad_exportacion = ?,
+            cfg_configuracion_avanzada = ?,
+            cfg_fecha_actualizacion = NOW()
+        WHERE cfg_usr_id_usuario = ?
+      `;
+
+      db.query(
+        queryActualizar,
+        [calidadExportacion, avanzada, idUsuario],
+        (err) => {
+          if (err) {
+            console.error('❌ Error al actualizar configuración:', err.message);
+            return res
+              .status(500)
+              .json({ mensaje: 'Error al actualizar configuración' });
+          }
+
+          console.log('✅ Configuración actualizada correctamente');
+          res.json({ mensaje: 'Configuración guardada correctamente' });
+        }
+      );
+    }
   });
 });
 
