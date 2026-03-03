@@ -10,6 +10,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.text({ type: 'text/plain' }));
 
 // ========== CONEXIÓN A MYSQL ==========
 const db = mysql2.createConnection({
@@ -312,7 +313,21 @@ app.post('/api/sesion/iniciar', (req, res) => {
 
 // ========== ENDPOINT CERRAR SESIÓN DE EDICIÓN ==========
 app.post('/api/sesion/cerrar', (req, res) => {
-  const { idSesion } = req.body;
+  let idSesion;
+
+  // sendBeacon envía los datos como text/plain o application/json
+  if (req.body && req.body.idSesion) {
+    idSesion = req.body.idSesion;
+  } else {
+    // Intentar parsear el body manualmente si viene como texto
+    try {
+      const data =
+        typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+      idSesion = data.idSesion;
+    } catch {
+      idSesion = null;
+    }
+  }
 
   console.log('📨 Cerrando sesión de edición ID:', idSesion);
 
@@ -424,9 +439,31 @@ app.post('/api/operacion', (req, res) => {
     }
 
     console.log('✅ Operación registrada. ID:', result.insertId);
-    res.json({
-      mensaje: 'Operación registrada',
-      idOperacion: result.insertId,
+
+    // Actualizar última actividad de la sesión
+    const queryActividad = `
+      UPDATE SESION_EDICION 
+      SET ses_ultima_actividad = NOW()
+      WHERE ses_id_sesion = ?
+    `;
+
+    db.query(queryActividad, [idSesion], (errActividad) => {
+      if (errActividad) {
+        console.warn(
+          '⚠️ No se pudo actualizar última actividad:',
+          errActividad.message
+        );
+      } else {
+        console.log(
+          '✅ Última actividad actualizada para sesión ID:',
+          idSesion
+        );
+      }
+
+      res.json({
+        mensaje: 'Operación registrada',
+        idOperacion: result.insertId,
+      });
     });
   });
 });
@@ -498,6 +535,42 @@ app.post('/api/imagen', (req, res) => {
     }
   );
 });
+
+// ========== LIMPIEZA AUTOMÁTICA DE SESIONES INACTIVAS ==========
+// Se ejecuta cada 30 minutos y cierra sesiones que llevan
+// más de 8 horas sin actividad
+setInterval(
+  () => {
+    const query = `
+    UPDATE SESION_EDICION 
+    SET ses_fecha_fin = NOW(),
+        ses_estado = 'cerrada'
+    WHERE ses_estado = 'activa' 
+    AND (
+      -- Si tiene actividad registrada, verificar desde la última actividad
+      (ses_ultima_actividad IS NOT NULL 
+       AND ses_ultima_actividad < DATE_SUB(NOW(), INTERVAL 8 HOUR))
+      OR
+      -- Si nunca tuvo actividad, verificar desde el inicio de sesión
+      (ses_ultima_actividad IS NULL 
+       AND ses_fecha_inicio < DATE_SUB(NOW(), INTERVAL 8 HOUR))
+    )
+  `;
+
+    db.query(query, (err, result) => {
+      if (err) {
+        console.error('❌ Error en limpieza de sesiones:', err.message);
+        return;
+      }
+      if (result.affectedRows > 0) {
+        console.log(
+          `🧹 Limpieza automática: ${result.affectedRows} sesión(es) cerrada(s) por inactividad`
+        );
+      }
+    });
+  },
+  30 * 60 * 1000
+); // cada 30 minutos
 
 // ========== INICIAR SERVIDOR ==========
 const PORT = process.env.PORT || 3000;
