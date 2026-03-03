@@ -746,6 +746,17 @@ window.addEventListener('DOMContentLoaded', async () => {
       // Notificación removida
       actualizarEstado('Listo', 'success');
       guardarEstadoEnHistorial(`Filtro: ${currentFilter}`);
+      // Registrar filtro en MySQL
+      const filtrosNombres = {
+        grayscale: 'Blanco y Negro',
+        sepia: 'Sepia',
+        brightness: 'Brillo',
+        contrast: 'Contraste',
+      };
+      registrarOperacion(
+        'filtro',
+        `Filtro aplicado: ${filtrosNombres[currentFilter] || currentFilter}`
+      );
       // Resetear la selección del filtro para poder aplicar múltiples veces
       currentFilter = null;
       document
