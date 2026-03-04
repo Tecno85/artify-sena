@@ -102,10 +102,9 @@ document.getElementById('toggleAdminPass').addEventListener('click', () => {
 // ========== CERRAR SESIÓN ==========
 document.getElementById('btnLogout').addEventListener('click', () => {
   sessionStorage.removeItem('artifyAdmin');
-  document.getElementById('adminPanel').style.display = 'none';
-  document.getElementById('loginOverlay').style.display = 'flex';
-  document.getElementById('adminEmail').value = '';
-  document.getElementById('adminPassword').value = '';
+  sessionStorage.removeItem('artifyUser');
+  sessionStorage.removeItem('artifyToken');
+  window.location.href = '../index.html';
 });
 
 // ========== SELECT — CARGAR USUARIOS ==========
