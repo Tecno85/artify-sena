@@ -68,6 +68,24 @@ app.post('/api/login', (req, res) => {
 
     console.log('🎉 Login exitoso para:', usuario.usr_nombres);
     console.log('👤 Rol:', usuario.usr_rol);
+    // Actualizar último acceso y sesión activa
+    const queryAcceso = `
+      UPDATE USUARIO 
+      SET usr_ultimo_acceso = NOW(),
+          usr_sesion_activa = 1
+      WHERE usr_id_usuario = ?
+    `;
+
+    db.query(queryAcceso, [usuario.usr_id_usuario], (errAcceso) => {
+      if (errAcceso) {
+        console.warn(
+          '⚠️ No se pudo actualizar último acceso:',
+          errAcceso.message
+        );
+      } else {
+        console.log('✅ Último acceso actualizado');
+      }
+    });
     res.json({
       mensaje: 'Login exitoso',
       usuario: {
@@ -295,7 +313,7 @@ app.post('/api/sesion/iniciar', (req, res) => {
 
   const query = `
     INSERT INTO SESION_EDICION 
-      (ses_usr_id_usuario, ses_fecha_inicio, ses_estado)
+      (ses_usr_id_usuario, ses_fecha_inicio, ses_estado_sesion)
     VALUES (?, NOW(), 'activa')
   `;
 
@@ -336,7 +354,7 @@ app.post('/api/sesion/cerrar', (req, res) => {
   const query = `
     UPDATE SESION_EDICION 
     SET ses_fecha_fin = NOW(),
-        ses_estado = 'cerrada'
+        ses_estado_sesion = 'finalizada'
     WHERE ses_id_sesion = ?
   `;
 
@@ -346,8 +364,27 @@ app.post('/api/sesion/cerrar', (req, res) => {
       return res.status(500).json({ mensaje: 'Error en el servidor' });
     }
 
-    console.log('✅ Sesión de edición cerrada correctamente');
-    res.json({ mensaje: 'Sesión cerrada' });
+    // Marcar sesión como inactiva
+    const queryInactiva = `
+      UPDATE USUARIO u
+      INNER JOIN SESION_EDICION s ON u.usr_id_usuario = s.ses_usr_id_usuario
+      SET u.usr_sesion_activa = 0
+      WHERE s.ses_id_sesion = ?
+    `;
+
+    db.query(queryInactiva, [idSesion], (errInactiva) => {
+      if (errInactiva) {
+        console.warn(
+          '⚠️ No se pudo actualizar sesión activa:',
+          errInactiva.message
+        );
+      } else {
+        console.log('✅ Sesión activa actualizada a inactiva');
+      }
+
+      console.log('✅ Sesión de edición cerrada correctamente');
+      res.json({ mensaje: 'Sesión cerrada' });
+    });
   });
 });
 
@@ -716,7 +753,7 @@ setInterval(
     UPDATE SESION_EDICION 
     SET ses_fecha_fin = NOW(),
         ses_estado = 'cerrada'
-    WHERE ses_estado = 'activa' 
+    WHERE ses_estado_sesion = 'activa'
     AND (
       -- Si tiene actividad registrada, verificar desde la última actividad
       (ses_ultima_actividad IS NOT NULL 

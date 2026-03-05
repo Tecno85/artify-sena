@@ -100,10 +100,26 @@ document.getElementById('toggleAdminPass').addEventListener('click', () => {
 });
 
 // ========== CERRAR SESIÓN ==========
-document.getElementById('btnLogout').addEventListener('click', () => {
+document.getElementById('btnLogout').addEventListener('click', async () => {
+  const idSesion = sessionStorage.getItem('artifyIdSesion');
+
+  if (idSesion) {
+    try {
+      await fetch('http://localhost:3000/api/sesion/cerrar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idSesion: parseInt(idSesion) }),
+      });
+      console.log('✅ Sesión cerrada correctamente');
+    } catch (err) {
+      console.warn('⚠️ No se pudo cerrar la sesión en el servidor');
+    }
+  }
+
   sessionStorage.removeItem('artifyAdmin');
   sessionStorage.removeItem('artifyUser');
   sessionStorage.removeItem('artifyToken');
+  sessionStorage.removeItem('artifyIdSesion');
   window.location.href = '../index.html';
 });
 
@@ -444,6 +460,24 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('adminPanel').style.display = 'block';
       document.getElementById('adminName').textContent =
         usuario.nombres + ' ' + usuario.apellidos;
+
+      // Iniciar sesión de edición para el admin
+      fetch('http://localhost:3000/api/sesion/iniciar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idUsuario: usuario.id }),
+      })
+        .then((r) => r.json())
+        .then((data) => {
+          if (data.mensaje === 'Sesión iniciada') {
+            sessionStorage.setItem('artifyIdSesion', data.idSesion);
+            console.log(
+              '✅ Sesión de edición iniciada para admin. ID:',
+              data.idSesion
+            );
+          }
+        });
+
       cargarUsuarios();
       return;
     }
