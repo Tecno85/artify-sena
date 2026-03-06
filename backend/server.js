@@ -412,7 +412,7 @@ app.get('/api/estadisticas/:id', (req, res) => {
     const queryOperaciones = `
       SELECT COUNT(*) as total 
       FROM OPERACION 
-      WHERE ope_usr_id_usuario = ?
+      WHERE opr_usr_id_usuario = ?
     `;
 
     db.query(queryOperaciones, [id], (err, resOpe) => {
@@ -426,7 +426,7 @@ app.get('/api/estadisticas/:id', (req, res) => {
       // Contar imágenes editadas del usuario
       const queryImagenes = `
         SELECT COUNT(*) as total 
-        FROM IMAGEN_OPERACION 
+        FROM IMAGEN 
         WHERE img_usr_id_usuario = ?
       `;
 
@@ -467,44 +467,54 @@ app.post('/api/operacion', (req, res) => {
 
   const query = `
     INSERT INTO OPERACION 
-      (ope_usr_id_usuario, ope_ses_id_sesion, ope_tipo, ope_descripcion, ope_fecha)
-    VALUES (?, ?, ?, ?, NOW())
+      (opr_usr_id_usuario, opr_ses_id_sesion, opr_tipo_operacion, 
+       opr_parametros, opr_fecha_hora, opr_orden_secuencial, opr_estado_operacion)
+    VALUES (?, ?, ?, ?, NOW(), 1, 'completada')
   `;
 
-  db.query(query, [idUsuario, idSesion, tipo, descripcion], (err, result) => {
-    if (err) {
-      console.error('❌ Error al registrar operación:', err.message);
-      return res.status(500).json({ mensaje: 'Error en el servidor' });
-    }
+  db.query(
+    query,
+    [
+      idUsuario,
+      idSesion,
+      tipo,
+      JSON.stringify({ descripcion: descripcion || '' }),
+    ],
+    (err, result) => {
+      if (err) {
+        console.error('❌ Error al registrar operación:', err.message);
+        return res.status(500).json({ mensaje: 'Error en el servidor' });
+      }
 
-    console.log('✅ Operación registrada. ID:', result.insertId);
+      console.log('✅ Operación registrada. ID:', result.insertId);
 
-    // Actualizar última actividad de la sesión
-    const queryActividad = `
+      // Actualizar última actividad de la sesión
+      const queryActividad = `
       UPDATE SESION_EDICION 
-      SET ses_ultima_actividad = NOW()
+      SET ses_numero_operaciones = ses_numero_operaciones + 1
       WHERE ses_id_sesion = ?
     `;
 
-    db.query(queryActividad, [idSesion], (errActividad) => {
-      if (errActividad) {
-        console.warn(
-          '⚠️ No se pudo actualizar última actividad:',
-          errActividad.message
-        );
-      } else {
-        console.log(
-          '✅ Última actividad actualizada para sesión ID:',
-          idSesion
-        );
-      }
+      db.query(queryActividad, [idSesion], (errActividad) => {
+        if (errActividad) {
+          console.warn(
+            '⚠️ No se pudo actualizar última actividad:',
+            errActividad.message
+          );
+        } else {
+          console.log(
+            '✅ Última actividad actualizada para sesión ID:',
+            idSesion
+          );
+        }
 
-      res.json({
-        mensaje: 'Operación registrada',
-        idOperacion: result.insertId,
+        res.json({
+          mensaje: 'Operación registrada',
+          idOperacion: result.insertId,
+        });
       });
-    });
-  });
+    }
+  );
 });
 
 // ========== ENDPOINT OBTENER TOTAL OPERACIONES ==========
@@ -514,7 +524,7 @@ app.get('/api/operacion/total/:id', (req, res) => {
   const query = `
     SELECT COUNT(*) as total 
     FROM OPERACION 
-    WHERE ope_usr_id_usuario = ?
+    WHERE opr_usr_id_usuario = ?
   `;
 
   db.query(query, [id], (err, results) => {
@@ -544,20 +554,20 @@ app.post('/api/imagen', (req, res) => {
   console.log('📨 Registrando imagen editada para usuario ID:', idUsuario);
 
   const query = `
-    INSERT INTO IMAGEN_OPERACION 
-      (img_usr_id_usuario, img_ses_id_sesion, img_nombre_original, 
-       img_formato_original, img_formato_final, img_tamano_original, img_fecha_edicion)
-    VALUES (?, ?, ?, ?, ?, ?, NOW())
+    INSERT INTO IMAGEN 
+      (img_usr_id_usuario, img_nombre_original, img_nombre_archivo,
+       img_formato, img_ancho_original, img_alto_original,
+       img_tamano_bytes, img_fecha_subida, img_estado_imagen)
+    VALUES (?, ?, ?, ?, 0, 0, ?, NOW(), 'activa')
   `;
 
   db.query(
     query,
     [
       idUsuario,
-      idSesion,
+      nombreOriginal,
       nombreOriginal,
       formatoOriginal,
-      formatoFinal,
       tamanoOriginal,
     ],
     (err, result) => {
@@ -719,8 +729,8 @@ app.delete('/api/admin/usuario/:id', (req, res) => {
 
   // Eliminar registros relacionados primero
   const queries = [
-    'DELETE FROM IMAGEN_OPERACION WHERE img_usr_id_usuario = ?',
-    'DELETE FROM OPERACION WHERE ope_usr_id_usuario = ?',
+    'DELETE FROM IMAGEN WHERE img_usr_id_usuario = ?',
+    'DELETE FROM OPERACION WHERE opr_usr_id_usuario = ?',
     'DELETE FROM SESION_EDICION WHERE ses_usr_id_usuario = ?',
     'DELETE FROM CONFIGURACION WHERE cfg_usr_id_usuario = ?',
     'DELETE FROM USUARIO WHERE usr_id_usuario = ?',

@@ -872,7 +872,7 @@ window.addEventListener('DOMContentLoaded', async () => {
       actualizarEstado('Redimensionando...', 'processing');
       registrarOperacion(
         'redimensionar',
-        `Redimensionado a ${nuevoAncho}x${nuevoAlto}px`
+        `Redimensionado a ${newWidth}x${newHeight}px`
       );
 
       const tempCanvas = document.createElement('canvas');
