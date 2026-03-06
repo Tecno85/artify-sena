@@ -762,17 +762,9 @@ setInterval(
     const query = `
     UPDATE SESION_EDICION 
     SET ses_fecha_fin = NOW(),
-        ses_estado = 'cerrada'
+        ses_estado_sesion = 'finalizada'
     WHERE ses_estado_sesion = 'activa'
-    AND (
-      -- Si tiene actividad registrada, verificar desde la última actividad
-      (ses_ultima_actividad IS NOT NULL 
-       AND ses_ultima_actividad < DATE_SUB(NOW(), INTERVAL 8 HOUR))
-      OR
-      -- Si nunca tuvo actividad, verificar desde el inicio de sesión
-      (ses_ultima_actividad IS NULL 
-       AND ses_fecha_inicio < DATE_SUB(NOW(), INTERVAL 8 HOUR))
-    )
+    AND ses_fecha_inicio < DATE_SUB(NOW(), INTERVAL 8 HOUR)
   `;
 
     db.query(query, (err, result) => {
