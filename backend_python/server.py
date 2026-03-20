@@ -1,12 +1,16 @@
 # ========== DEPENDENCIAS ==========
+# Módulos Nativos
 import json
-import bcrypt
-import mysql.connector
-from http.server import BaseHTTPRequestHandler, HTTPServer
-from urllib.parse import urlparse
-from dotenv import load_dotenv
 import os
 import re
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from urllib.parse import urlparse
+
+# Módulos Externos instalados con pip
+import bcrypt
+import mysql.connector
+from dotenv import load_dotenv
+
 
 # ========== CONFIGURACIÓN ==========
 load_dotenv()

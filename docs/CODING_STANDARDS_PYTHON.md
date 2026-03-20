@@ -204,26 +204,29 @@ def get_connection():
 
 Siguiendo la guía de estilo oficial de Python **PEP 8**, los imports se organizan en tres grupos separados por una línea en blanco:
 
-1. Módulos nativos de Python
-2. Módulos externos instalados con pip
-3. Módulos propios del proyecto
+1. Módulos Nativos — incluidos en Python, no requieren instalación
+2. Módulos Externos — instalados con pip
+3. Módulos Propios — archivos del mismo proyecto (no aplica en 
+   este proyecto ya que toda la lógica está en server.py)
 
-```python
-# ✅ Correcto — tomado de server.py
+## ✅ Correcto — tomado de server.py
 
-# Grupo 1 — Módulos nativos de Python
+### Módulos Nativos
 import json
 import os
 import re
-
-# Grupo 2 — Módulos externos instalados con pip
-import bcrypt
-import mysql.connector
-from dotenv import load_dotenv
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import urlparse
 
-# ❌ Incorrecto — imports mezclados sin organización
+### Módulos Externos instalados con pip
+import bcrypt
+import mysql.connector
+from dotenv import load_dotenv
+
+### Módulos Propios del proyecto
+No aplica en este proyecto ya que toda la lógica está centralizada en server.py
+
+### ❌ Incorrecto — imports mezclados sin organización
 import bcrypt
 import json
 from dotenv import load_dotenv
