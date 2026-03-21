@@ -28,14 +28,22 @@
 ### Estructura del backend Python
 
 ```
-Artify/
-├── backend_python/
-│   ├── server.py     → Servidor HTTP principal sin framework
-│   └── .env          → Variables de entorno (no se sube a GitHub)
-├── docs/
-│   ├── CODING_STANDARDS.md         → Estándares Node.js
-│   └── CODING_STANDARDS_PYTHON.md  → Estándares Python (este archivo)
-└── .gitignore        → Incluye .env y __pycache__
+📁 Artify/
+│
+├── 📁 backend_python/
+│   ├─ 🐍 server.py                   → Servidor HTTP sin framework
+│   ├─ 📖 README.md                   → Documentación e instalación
+│   ├─ ⚙️ .env.example                → Ejemplo de variables de entorno
+│   └─ 🔒 .env                        → Credenciales (no se sube a GitHub)
+│
+├── 📁 database/
+│   └─ 🗄️ artify_db.sql               → Script SQL de la base de datos
+│
+├── 📁 docs/
+│   ├─ 📄 CODING_STANDARDS.md         → Estándares Node.js
+│   └─ 📄 CODING_STANDARDS_PYTHON.md  → Estándares Python
+│
+└── 🚫 .gitignore                     → Incluye .env y __pycache__
 ```
 
 ### Reglas de organización
