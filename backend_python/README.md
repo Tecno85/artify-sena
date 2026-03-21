@@ -40,6 +40,7 @@ Antes de instalar asegúrate de tener:
 
 - [Python](https://www.python.org/) 3.13 o superior
 - [MySQL](https://dev.mysql.com/downloads/) 8.0 o superior
+- [Git](https://git-scm.com/) para clonar el repositorio
 - La base de datos `artify_db` creada con todas sus tablas
 
 Verifica tu versión de Python:
@@ -84,6 +85,8 @@ DB_USER=tu_usuario_mysql
 DB_PASSWORD=tu_contraseña_mysql
 DB_NAME=artify_db
 ```
+> ⚠️ **Importante:** El archivo `.env` nunca se sube a GitHub. Está incluido en el `.gitignore` del proyecto.
+
 ### 3. Crear la base de datos
 
 Importa el script SQL incluido en la carpeta `database/`:
@@ -101,7 +104,6 @@ Clic en: Start Import
 > ⚠️ **Importante:** El script crea automáticamente la base de datos
 > `artify_db` con todas sus tablas.
 
-> ⚠️ **Importante:** El archivo `.env` nunca se sube a GitHub. Está incluido en el `.gitignore` del proyecto.
 
 ---
 
