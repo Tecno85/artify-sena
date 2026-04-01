@@ -162,6 +162,16 @@ body {
   padding-right: 48px;
 }
 
+/* Calendario en modo oscuro */
+input[type='date'] {
+  color-scheme: dark;
+}
+
+/* Ícono del ojo en modo oscuro */
+input[type='password'] {
+  color-scheme: dark;
+}
+
 .toggle-password {
   position: absolute;
   right: 12px;
