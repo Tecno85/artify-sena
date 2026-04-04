@@ -1,16 +1,15 @@
-# ========== DEPENDENCIES ==========
-# Native modules
+# ========== DEPENDENCIAS ==========
+# Módulo Nativo
 import os
-import re
 
-# External modules installed with pip
+# Módulos Externos instalados con pip
 import bcrypt
 import mysql.connector
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-# ========== CONFIGURATION ==========
+# ========== CONFIGURACIÓN ==========´
 load_dotenv()
 
 app = Flask(__name__)
@@ -18,11 +17,11 @@ CORS(app)
 
 PORT = 3002
 
-# ========== DATABASE CONNECTION ==========
+# ========== CONEXXIÓN A LA BASE DE DATOS ==========
 
 
 def get_connection():
-    """Create and return a new MySQL database connection."""
+    """Crear y devolver una nueva conexión a la base de datos MySQL."""
     return mysql.connector.connect(
         host=os.getenv('DB_HOST'),
         user=os.getenv('DB_USER'),
@@ -30,12 +29,12 @@ def get_connection():
         database=os.getenv('DB_NAME')
     )
 
-# ========== LOGIN ENDPOINT ==========
+# ========== ENDPOINT DE LOGIN ==========
 
 
 @app.route('/api/login', methods=['POST'])
 def login():
-    """Validate user credentials against the database using bcrypt."""
+    """Valida las credenciales del usuario contra la base de datos usando bcrypt."""
     data = request.get_json()
     correo = data.get('correo', '').strip()
     password = data.get('password', '')
@@ -57,7 +56,7 @@ def login():
             print('❌ User not found')
             return jsonify({'mensaje': 'Usuario no encontrado'}), 401
 
-        # Validate password with bcrypt
+        # Validar contraseña con bcrypt
         password_valida = bcrypt.checkpw(
             password.encode('utf-8'),
             usuario['usr_contrasena'].encode('utf-8')
@@ -92,12 +91,12 @@ def login():
         except Exception:
             pass
 
-# ========== REGISTRO ENDPOINT ==========
+# ========== ENDPOINT DE REGISTRO ==========
 
 
 @app.route('/api/registro', methods=['POST'])
 def registro():
-    """Register a new user with bcrypt password encryption."""
+    """Registra un nuevo usuario con encriptación bcrypt."""
     data = request.get_json()
     nombres = data.get('nombres', '').strip()
     apellidos = data.get('apellidos', '').strip()
@@ -115,7 +114,7 @@ def registro():
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        # Check if email or cedula already exists
+        # Verificar si el correo o cédula ya existe
         cursor.execute(
             'SELECT usr_id_usuario FROM USUARIO WHERE usr_correo = %s OR usr_cedula = %s',
             (correo, cedula)
@@ -126,11 +125,11 @@ def registro():
             print('❌ Email or cedula already registered')
             return jsonify({'mensaje': 'El correo o cédula ya está registrado'}), 400
 
-        # Encrypt password with bcrypt
+        # Encriptar contraseña con bcrypt
         hashed = bcrypt.hashpw(password.encode(
             'utf-8'), bcrypt.gensalt()).decode('utf-8')
 
-        # Insert new user
+        # Insertar nuevo usuario
         cursor.execute('''
             INSERT INTO USUARIO (
                 usr_nombres, usr_apellidos, usr_cedula,
@@ -165,12 +164,12 @@ def registro():
         except Exception:
             pass
 
-# ========== GET ALL USERS ENDPOINT ==========
+# ========== ENDPOINT OBTENER USUARIOS ==========
 
 
 @app.route('/api/admin/usuarios', methods=['GET'])
 def get_usuarios():
-    """Retrieve all users ordered by registration date descending."""
+    """Obtiene todos los usuarios ordenados por fecha de registro descendente."""
     print('📋 Loading user list')
 
     try:
@@ -186,7 +185,7 @@ def get_usuarios():
         ''')
         usuarios = cursor.fetchall()
 
-        # Convert dates to string for JSON serialization
+        # Convertir fechas a string para serialización JSON
         for u in usuarios:
             for key, value in u.items():
                 if hasattr(value, 'isoformat'):
@@ -206,12 +205,12 @@ def get_usuarios():
         except Exception:
             pass
 
-# ========== ADD USER ENDPOINT ==========
+# ========== ENDPOINT AGREGAR USUARIO ==========
 
 
 @app.route('/api/admin/usuario', methods=['POST'])
 def agregar_usuario():
-    """Add a new user from the admin panel with bcrypt encryption."""
+    """Agrega un nuevo usuario desde el panel de administración."""
     data = request.get_json()
     nombres = data.get('nombres', '').strip()
     apellidos = data.get('apellidos', '').strip()
@@ -264,12 +263,12 @@ def agregar_usuario():
         except Exception:
             pass
 
-# ========== EDIT USER ENDPOINT ==========
+# ========== ENDPOINT EDITAR USUARIO ==========
 
 
 @app.route('/api/admin/usuario/<int:usuario_id>', methods=['PUT'])
 def editar_usuario(usuario_id):
-    """Update an existing user's data by ID."""
+    """Actualiza los datos de un usuario existente por ID."""
     data = request.get_json()
     nombres = data.get('nombres', '').strip()
     apellidos = data.get('apellidos', '').strip()
@@ -310,19 +309,19 @@ def editar_usuario(usuario_id):
         except Exception:
             pass
 
-# ========== DELETE USER ENDPOINT ==========
+# ========== ENDPOINT ELIMINAR USUARIO ==========
 
 
 @app.route('/api/admin/usuario/<int:usuario_id>', methods=['DELETE'])
 def eliminar_usuario(usuario_id):
-    """Delete a user and all related records (cascading delete)."""
+    """Elimina un usuario y todos sus registros relacionados (eliminación en cascada)."""
     print(f'📨 Delete user — ID: {usuario_id}')
 
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        # Delete related records first (cascading)
+        # Eliminar registros relacionados primero (cascada)
         cursor.execute(
             'DELETE FROM IMAGEN          WHERE img_usr_id_usuario = %s', (usuario_id,))
         cursor.execute(
@@ -350,7 +349,7 @@ def eliminar_usuario(usuario_id):
             pass
 
 
-# ========== START SERVER ==========
+# ========== INICIAR SERVIDOR ==========
 if __name__ == '__main__':
     print(f'✅ Flask server running on http://localhost:{PORT}')
     print('🚀 Available endpoints:')
