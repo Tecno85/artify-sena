@@ -1,4 +1,4 @@
-#  ![Logo del Proyecto](./assets/icons/modx.svg) Artify — Editor de Imágenes Web
+#  ![Logo del Proyecto](./frontend/assets/icons/modx.svg) Artify — Editor de Imágenes Web
 
 <div align="center">
 
@@ -120,36 +120,37 @@
 
 ```
 Artify/
-├── index.html                  # Página principal
 ├── README.md                   # Documentación del proyecto
 ├── .gitignore                  # Archivos ignorados por Git
 │
-├── pages/                      # Páginas HTML
-│   ├── editor.html             # Editor de imágenes
-│   ├── login.html              # Inicio de sesión
-│   ├── registro.html           # Registro de usuario
-│   └── admin.html              # Panel de administración
-│
-├── assets/                     # Recursos del proyecto
-│   ├── css/                    # Hojas de estilo
-│   │   ├── admin.css
-│   │   ├── editor.css
-│   │   ├── index.css
-│   │   ├── login.css
-│   │   └── registro.css
+├── frontend/                   # Aplicación frontend organizada
+│   ├── index.html              # Página principal
+│   ├── pages/                  # Páginas HTML
+│   │   ├── editor.html         # Editor de imágenes
+│   │   ├── login.html          # Inicio de sesión
+│   │   ├── registro.html       # Registro de usuario
+│   │   └── admin.html          # Panel de administración
 │   │
-│   ├── js/                     # Scripts JavaScript
-│   │   ├── admin.js            # Lógica del panel de administración
-│   │   ├── editor.js           # Lógica del editor
-│   │   ├── login.js            # Lógica del login
-│   │   └── registro.js         # Lógica del registro
-│   │
-│   ├── fonts/                  # Fuentes tipográficas
-│   │   ├── Inconsolata/
-│   │   └── Paytone_One/
-│   │
-│   ├── icons/                  # Iconos SVG
-│   └── images/                 # Imágenes del proyecto
+│   └── assets/                 # Recursos del proyecto
+│       ├── css/                # Hojas de estilo
+│       │   ├── admin.css
+│       │   ├── editor.css
+│       │   ├── index.css
+│       │   ├── login.css
+│       │   └── registro.css
+│       │
+│       ├── js/                 # Scripts JavaScript
+│       │   ├── admin.js        # Lógica del panel de administración
+│       │   ├── editor.js       # Lógica del editor
+│       │   ├── login.js        # Lógica del login
+│       │   └── registro.js     # Lógica del registro
+│       │
+│       ├── fonts/              # Fuentes tipográficas
+│       │   ├── Inconsolata/
+│       │   └── Paytone_One/
+│       │
+│       ├── icons/              # Iconos SVG
+│       └── images/             # Imágenes del proyecto
 │
 ├── backend/                    # Servidor Node.js
 │   ├── server.js               # Servidor Express con todos los endpoints
@@ -218,6 +219,13 @@ Luego ejecuta el script SQL del proyecto para crear todas las tablas.
 node server.js
 ```
 
+### 6. Abrir el frontend
+
+El frontend quedó organizado completamente dentro de `frontend/`.
+
+- Si lo abres en navegador manualmente, usa `frontend/index.html`.
+- Si usas un servidor estático, apunta la raíz del sitio a la carpeta `frontend/`.
+
 Debes ver:
 ```
 ✅ Conectado a MySQL correctamente
@@ -243,8 +251,9 @@ http://127.0.0.1:8080
 ## 🎯 Uso
 
 ### Usuario normal
-1. Regístrate en `pages/registro.html`
-2. Inicia sesión en `pages/login.html`
+1. Abre `frontend/index.html`
+2. Regístrate en `frontend/pages/registro.html`
+3. Inicia sesión en `frontend/pages/login.html`
 3. El sistema te redirige automáticamente al editor
 4. Edita tus imágenes y descárgalas
 

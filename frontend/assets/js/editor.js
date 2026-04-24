@@ -89,7 +89,7 @@ async function registrarOperacion(tipo, descripcion) {
 
     const usuario = JSON.parse(userData);
 
-    await fetch('http://localhost:3000/api/operacion', {
+    await fetchAuth(`${API}/api/operacion`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -209,7 +209,7 @@ window.addEventListener('DOMContentLoaded', async () => {
       }
 
       // Iniciar sesión de edición en el backend
-      const res = await fetch('http://localhost:3000/api/sesion/iniciar', {
+      const res = await fetchAuth(`${API}/api/sesion/iniciar`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ idUsuario: usuario.id }),
@@ -310,7 +310,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (userData && idSesion) {
       const usuario = JSON.parse(userData);
       const formatoOriginal = file.type.replace('image/', '');
-      fetch('http://localhost:3000/api/imagen', {
+      fetchAuth(`${API}/api/imagen`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1536,11 +1536,12 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (idSesion) {
       // Usar sendBeacon para garantizar que la petición se envíe
       // incluso cuando el navegador se está cerrando
-      const data = JSON.stringify({ idSesion: parseInt(idSesion) });
-      navigator.sendBeacon(
-        'http://localhost:3000/api/sesion/cerrar',
-        new Blob([data], { type: 'application/json' })
-      );
+      fetch(`${API}/api/sesion/cerrar`, {
+        method: 'POST',
+        headers: construirHeadersAuth({ 'Content-Type': 'application/json' }),
+        body: JSON.stringify({ idSesion: parseInt(idSesion) }),
+        keepalive: true,
+      });
       console.log('✅ Sesión cerrada al salir del navegador');
     }
   });
@@ -1568,9 +1569,7 @@ async function cargarPreferencias() {
     if (!userData) return { ...PREFERENCIAS_DEFAULT };
 
     const usuario = JSON.parse(userData);
-    const res = await fetch(
-      `http://localhost:3000/api/configuracion/${usuario.id}`
-    );
+    const res = await fetchAuth(`${API}/api/configuracion/${usuario.id}`);
     const data = await res.json();
 
     if (data.mensaje === 'ok') {
@@ -1593,7 +1592,7 @@ async function guardarPreferencias(prefs) {
 
     const usuario = JSON.parse(userData);
 
-    const res = await fetch('http://localhost:3000/api/configuracion', {
+    const res = await fetchAuth(`${API}/api/configuracion`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -1706,9 +1705,7 @@ async function abrirModalPerfil() {
       if (email) email.textContent = usuario.correo;
 
       // Cargar estadísticas desde el backend
-      const res = await fetch(
-        `http://localhost:3000/api/estadisticas/${usuario.id}`
-      );
+      const res = await fetchAuth(`${API}/api/estadisticas/${usuario.id}`);
       const data = await res.json();
 
       if (data.mensaje === 'ok') {
@@ -1750,7 +1747,7 @@ async function cerrarSesionSegura() {
 
   if (idSesion) {
     try {
-      await fetch('http://localhost:3000/api/sesion/cerrar', {
+      await fetchAuth(`${API}/api/sesion/cerrar`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ idSesion: parseInt(idSesion) }),
@@ -1761,7 +1758,7 @@ async function cerrarSesionSegura() {
     }
   }
 
-  sessionStorage.clear();
+  limpiarSesionAuth();
   setTimeout(() => (window.location.href = '../index.html'), 1000);
 }
 

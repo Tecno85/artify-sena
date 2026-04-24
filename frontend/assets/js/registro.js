@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btnRegistrarse.textContent = 'Registrando...';
 
       // Registro con backend
-      fetch('http://localhost:3000/api/registro', {
+      fetch(`${API}/api/registro`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (data.mensaje === 'Registro exitoso') {
             // Guardar datos en sessionStorage
             sessionStorage.setItem('artifyUser', JSON.stringify(data.usuario));
-            sessionStorage.setItem('artifyToken', 'token-' + Date.now());
+            guardarTokenAuth(data.token);
 
             mostrarNotificacionRegistro(
               'success',

@@ -1,5 +1,4 @@
 // ========== CONFIGURACIÓN ==========
-const API = 'http://localhost:3000';
 let usuarioIdEliminar = null;
 let modoEdicion = false;
 let todosLosUsuarios = [];
@@ -73,6 +72,7 @@ document.getElementById('btnAdminLogin').addEventListener('click', async () => {
 
     if (data.mensaje === 'Acceso concedido') {
       sessionStorage.setItem('artifyAdmin', JSON.stringify(data.admin));
+      guardarTokenAuth(data.token);
       document.getElementById('loginOverlay').style.display = 'none';
       document.getElementById('adminPanel').style.display = 'block';
       document.getElementById('adminName').textContent = data.admin.correo;
@@ -105,7 +105,7 @@ document.getElementById('btnLogout').addEventListener('click', async () => {
 
   if (idSesion) {
     try {
-      await fetch('http://localhost:3000/api/sesion/cerrar', {
+      await fetchAuth(`${API}/api/sesion/cerrar`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ idSesion: parseInt(idSesion) }),
@@ -116,23 +116,23 @@ document.getElementById('btnLogout').addEventListener('click', async () => {
     }
   }
 
-  sessionStorage.removeItem('artifyAdmin');
-  sessionStorage.removeItem('artifyUser');
-  sessionStorage.removeItem('artifyToken');
-  sessionStorage.removeItem('artifyIdSesion');
+  limpiarSesionAuth();
   window.location.href = '../index.html';
 });
 
 // ========== SELECT — CARGAR USUARIOS ==========
 async function cargarUsuarios() {
   try {
-    const res = await fetch(`${API}/api/admin/usuarios`);
+    const res = await fetchAuth(`${API}/api/admin/usuarios`);
     const data = await res.json();
 
     if (data.mensaje === 'ok') {
       todosLosUsuarios = data.usuarios;
       renderizarTabla(todosLosUsuarios);
       actualizarEstadisticas(todosLosUsuarios);
+    } else if (res.status === 401 || res.status === 403) {
+      document.getElementById('loginOverlay').style.display = 'flex';
+      document.getElementById('adminPanel').style.display = 'none';
     }
   } catch (err) {
     console.error('❌ Error al cargar usuarios:', err);
@@ -312,7 +312,7 @@ document
       if (modoEdicion) {
         // UPDATE
         const id = document.getElementById('usuarioId').value;
-        res = await fetch(`${API}/api/admin/usuario/${id}`, {
+        res = await fetchAuth(`${API}/api/admin/usuario/${id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -327,7 +327,7 @@ document
         data = await res.json();
       } else {
         // INSERT
-        res = await fetch(`${API}/api/admin/usuario`, {
+        res = await fetchAuth(`${API}/api/admin/usuario`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -374,7 +374,7 @@ document
     btn.disabled = true;
 
     try {
-      const res = await fetch(`${API}/api/admin/usuario/${usuarioIdEliminar}`, {
+      const res = await fetchAuth(`${API}/api/admin/usuario/${usuarioIdEliminar}`, {
         method: 'DELETE',
       });
       const data = await res.json();
@@ -462,7 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
         usuario.nombres + ' ' + usuario.apellidos;
 
       // Iniciar sesión de edición para el admin
-      fetch('http://localhost:3000/api/sesion/iniciar', {
+      fetchAuth(`${API}/api/sesion/iniciar`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ idUsuario: usuario.id }),
@@ -491,7 +491,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('adminPanel').style.display = 'block';
     document.getElementById('adminName').textContent = data.correo;
     cargarUsuarios();
+    return;
   }
+
+  document.getElementById('loginOverlay').style.display = 'flex';
+  document.getElementById('adminPanel').style.display = 'none';
 
   console.log('✅ Panel de administración cargado correctamente');
 });

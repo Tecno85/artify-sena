@@ -29,16 +29,17 @@
 
 ```
 Artify/
-├── assets/
-│   ├── css/
-│   ├── fonts/
-│   ├── icons/
-│   ├── images/
-│   └── js/
+├── frontend/
+│   ├── assets/
+│   │   ├── css/
+│   │   ├── fonts/
+│   │   ├── icons/
+│   │   ├── images/
+│   │   └── js/
+│   └── pages/
 ├── backend/
 │   └── server.js     → Servidor Node.js con Express
 ├── docs/             → Documentación del proyecto
-├── pages/            → Páginas HTML
 ├── .env              → Variables de entorno (no se sube a GitHub)
 ├── .gitignore        → Archivos ignorados por Git
 └── README.md         → Descripción del proyecto
@@ -48,7 +49,7 @@ Artify/
 
 - Cada archivo tiene una responsabilidad única y clara.
 - Los archivos CSS y JS se organizan por página o componente: `admin.css`, `admin.js`, `editor.js`.
-- Las imágenes y recursos estáticos siempre van en `assets/images/`.
+- Las imágenes y recursos estáticos siempre van en `frontend/assets/images/`.
 - Los archivos de configuración sensibles como `.env` nunca se suben al repositorio.
 
 ---

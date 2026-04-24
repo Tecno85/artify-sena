@@ -71,7 +71,7 @@ Artify/
 └── README.md               # Documentación principal
 ```
 
-> **Transición:** El frontend actual (`pages/`, `assets/js/`) se mantiene hasta migrar completamente a React.
+> **Transición:** El frontend actual (`frontend/pages/`, `frontend/assets/js/`) se mantiene hasta migrar completamente a React.
 
 ---
 
