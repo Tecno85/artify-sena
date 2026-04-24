@@ -40,7 +40,6 @@ Permite a los usuarios editar imágenes directamente en el navegador con autenti
 
 ```
 Artify/
-├── index.html
 ├── README.md
 ├── LICENSE
 ├── CONTEXT.md              # Este archivo
@@ -48,15 +47,16 @@ Artify/
 ├── .env.example            # Plantilla de variables de entorno
 ├── package.json            # Scripts globales del proyecto
 │
-├── pages/
-│   ├── editor.html         # Editor de imágenes
-│   ├── login.html          # Inicio de sesión
-│   ├── registro.html       # Registro de usuario
-│   └── admin.html          # Panel de administración CRUD
-│
-├── assets/
-│   ├── css/                # admin.css, editor.css, login.css, registro.css, index.css
-│   └── js/                 # admin.js, editor.js, login.js, registro.js
+├── frontend/
+│   ├── index.html
+│   ├── pages/
+│   │   ├── editor.html     # Editor de imágenes
+│   │   ├── login.html      # Inicio de sesión
+│   │   ├── registro.html   # Registro de usuario
+│   │   └── admin.html      # Panel de administración CRUD
+│   └── assets/
+│       ├── css/            # admin.css, editor.css, login.css, registro.css, index.css
+│       └── js/             # admin.js, editor.js, login.js, registro.js
 │
 ├── backend/                # Node.js + Express (puerto 3000)
 │   ├── server.js
@@ -199,11 +199,11 @@ v_usuarios_activos → resumen de USUARIO + IMAGEN + SESION_EDICION
 La lógica funcional del proyecto es la **redirección por rol después del login**:
 
 ```javascript
-// assets/js/login.js
+// frontend/assets/js/login.js
 if (data.usuario.rol === 'admin') {
-  window.location.href = './admin.html';  // Va al panel admin
+  window.location.href = './admin.html';  // Va a frontend/pages/admin.html
 } else {
-  window.location.href = './editor.html'; // Va al editor
+  window.location.href = './editor.html'; // Va a frontend/pages/editor.html
 }
 ```
 

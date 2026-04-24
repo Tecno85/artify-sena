@@ -93,7 +93,7 @@ loginForm.addEventListener('submit', (e) => {
     btnLogin.textContent = 'Iniciando sesión...';
 
     // Autenticación con backend
-    fetch('http://localhost:3000/api/login', {
+    fetch(`${API}/api/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -111,7 +111,7 @@ loginForm.addEventListener('submit', (e) => {
         if (data.mensaje === 'Login exitoso') {
           // Guardar datos del usuario en sessionStorage
           sessionStorage.setItem('artifyUser', JSON.stringify(data.usuario));
-          sessionStorage.setItem('artifyToken', 'token-' + Date.now());
+          guardarTokenAuth(data.token);
 
           // Redirigir según el rol del usuario
           if (data.usuario.rol === 'admin') {

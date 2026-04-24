@@ -1,7 +1,6 @@
 # 📊 API REST Analytics - Artify
 
-> Documentación de endpoints que exponen datos de comportamiento de usuarios
-> para que aplicaciones externas (e-commerce, agencias) consuman insights
+Este módulo expone endpoints que ofrecen información sobre el comportamiento de los usuarios.
 
 ---
 
