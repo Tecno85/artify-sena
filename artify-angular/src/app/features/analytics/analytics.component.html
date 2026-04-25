@@ -1,4 +1,5 @@
 <section class="content analytics">
+  <!-- Encabezado de la vista con accion para refrescar datos desde la API real. -->
   <div class="section-heading">
     <div>
       <p class="eyebrow">API REST real</p>
@@ -13,15 +14,19 @@
     </button>
   </div>
 
+  <!-- Estado temporal mientras Angular espera las respuestas del backend. -->
   <div class="card state-card" *ngIf="isLoading">
     Consultando informacion de analytics...
   </div>
 
+  <!-- Estado de error cuando la API o la base de datos no estan disponibles. -->
   <div class="card state-card status-error" *ngIf="errorMessage">
     {{ errorMessage }}
   </div>
 
+  <!-- Contenido principal visible solo cuando todas las consultas finalizan correctamente. -->
   <ng-container *ngIf="data && !isLoading">
+    <!-- Indicadores resumidos para lectura rapida de los resultados. -->
     <section class="metric-grid">
       <article class="card metric-card">
         <span>Filtros registrados</span>
@@ -48,6 +53,7 @@
       </article>
     </section>
 
+    <!-- Tablas detalladas con la informacion entregada por cada endpoint de analytics. -->
     <section class="tables-grid">
       <article class="card table-card">
         <h2>Filtros populares</h2>

@@ -1,9 +1,11 @@
 .dashboard {
+  /* Organiza la vista protegida en encabezado y resumen de estado. */
   display: grid;
   gap: 28px;
 }
 
 .hero {
+  /* Bloque introductorio con llamada directa hacia la vista de analytics. */
   align-items: center;
   display: flex;
   gap: 24px;
@@ -28,12 +30,14 @@ h1 {
 }
 
 .summary-grid {
+  /* Distribuye las tarjetas academicas de sesion, API y rutas protegidas. */
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .summary-card {
+  /* Tarjeta informativa reutilizada para cada dato clave del dashboard. */
   display: grid;
   gap: 10px;
   min-height: 150px;
@@ -49,6 +53,7 @@ h1 {
   font-size: 1.35rem;
 }
 
+/* Ajuste responsivo para lectura comoda en pantallas pequenas. */
 @media (max-width: 820px) {
   .hero {
     align-items: flex-start;

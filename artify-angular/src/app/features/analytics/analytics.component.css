@@ -1,14 +1,16 @@
 .analytics {
+  /* Contenedor general de la vista de consumo de API REST. */
   display: grid;
   gap: 22px;
 }
 
 .section-heading {
+  /* Encabezado con descripcion de la API y boton de actualizacion. */
   align-items: center;
   display: flex;
   gap: 24px;
   justify-content: space-between;
-  padding-top: 24px;
+  padding-top: 44px;
 }
 
 h1 {
@@ -34,16 +36,19 @@ button:disabled {
 }
 
 .state-card {
+  /* Tarjeta usada para estados de carga y error. */
   padding: 18px;
 }
 
 .metric-grid {
+  /* Rejilla de indicadores resumidos obtenidos desde analytics. */
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .metric-card {
+  /* Tarjetas de metricas principales para lectura rapida. */
   display: grid;
   gap: 8px;
   min-height: 140px;
@@ -60,12 +65,14 @@ button:disabled {
 }
 
 .tables-grid {
+  /* Rejilla de tablas con el detalle de cada endpoint consultado. */
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .table-card {
+  /* Contenedor de tabla que mantiene el contenido dentro de la tarjeta. */
   overflow: hidden;
   padding: 20px;
 }
@@ -76,6 +83,7 @@ h2 {
 }
 
 table {
+  /* Tablas simples para comparar resultados numericos de analytics. */
   border-collapse: collapse;
   width: 100%;
 }
@@ -94,6 +102,7 @@ th {
 }
 
 dl {
+  /* Lista descriptiva para resumir la conversion de sesiones. */
   display: grid;
   gap: 12px;
   margin: 0;
@@ -117,6 +126,7 @@ dd {
   margin: 0;
 }
 
+/* En pantallas medianas o pequenas, metricas y tablas pasan a una sola columna. */
 @media (max-width: 920px) {
   .metric-grid,
   .tables-grid {

@@ -13,6 +13,12 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
+/**
+ * Pantalla publica de autenticacion de la evidencia Angular.
+ *
+ * Usa Reactive Forms para validar datos basicos y envia las credenciales al
+ * endpoint real `POST /api/login` del backend de Artify.
+ */
 export class LoginComponent {
   private readonly authService = inject(AuthService);
   private readonly formBuilder = inject(FormBuilder);
@@ -26,10 +32,15 @@ export class LoginComponent {
   isSubmitting = false;
   errorMessage = '';
 
+  /**
+   * Valida el formulario, ejecuta el login real y redirige al dashboard cuando
+   * el backend entrega un token valido.
+   */
   submit(): void {
     this.errorMessage = '';
 
     if (this.loginForm.invalid) {
+      // Marca los controles para que la plantilla muestre errores de validacion.
       this.loginForm.markAllAsTouched();
       return;
     }
@@ -42,6 +53,7 @@ export class LoginComponent {
         void this.router.navigate(['/dashboard']);
       },
       error: (error: HttpErrorResponse) => {
+        // El backend de Artify responde `mensaje`; si no llega, se informa un fallo de conexion.
         this.errorMessage = error.error?.mensaje ?? 'No se pudo iniciar sesion. Verifica el backend.';
         this.isSubmitting = false;
       },

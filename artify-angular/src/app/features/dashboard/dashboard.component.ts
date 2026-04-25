@@ -11,6 +11,12 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
+/**
+ * Vista protegida inicial despues del login.
+ *
+ * Presenta un resumen academico de la sesion activa, el backend conectado y la
+ * proteccion de rutas implementada con AuthGuard.
+ */
 export class DashboardComponent {
   private readonly authService = inject(AuthService);
 

@@ -1,4 +1,5 @@
 <section class="content dashboard">
+  <!-- Encabezado de bienvenida para la primera vista protegida de la evidencia. -->
   <div class="hero">
     <div>
       <p class="eyebrow">Panel protegido</p>
@@ -11,6 +12,7 @@
     <a routerLink="/analytics">Ver analytics</a>
   </div>
 
+  <!-- Tarjetas resumen que evidencian sesion, API usada y proteccion de rutas. -->
   <section class="summary-grid">
     <article class="card summary-card" *ngIf="user$ | async as user">
       <span>Usuario autenticado</span>

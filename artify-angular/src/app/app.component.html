@@ -1,5 +1,7 @@
 <div class="page-shell">
+  <!-- Barra superior visible solo para usuarios autenticados en la app Angular. -->
   <header class="topbar" *ngIf="isLoggedIn$ | async">
+    <!-- Identidad visual y enlace de retorno al dashboard protegido. -->
     <a class="brand" routerLink="/dashboard" aria-label="Ir al dashboard">
       <span class="brand-mark">A</span>
       <span>
@@ -8,6 +10,7 @@
       </span>
     </a>
 
+    <!-- Navegacion principal posterior al login: vistas protegidas y cierre de sesion. -->
     <nav class="nav" aria-label="Navegacion principal">
       <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
       <a routerLink="/analytics" routerLinkActive="active">Analytics</a>
@@ -15,6 +18,7 @@
     </nav>
   </header>
 
+  <!-- Contenedor donde Angular carga el componente correspondiente a la ruta activa. -->
   <main>
     <router-outlet></router-outlet>
   </main>

@@ -1,4 +1,5 @@
 <section class="login-screen">
+  <!-- Tarjeta central del login independiente de Angular. -->
   <div class="login-card card">
     <p class="eyebrow">Evidencia Angular</p>
     <h1>Acceso a Artify Analytics</h1>
@@ -6,7 +7,9 @@
       Inicia sesion con el endpoint real de Artify para consultar el dashboard protegido.
     </p>
 
+    <!-- Formulario reactivo que valida datos basicos antes de llamar al backend real. -->
     <form [formGroup]="loginForm" (ngSubmit)="submit()" novalidate>
+      <!-- Campo de correo usado por el endpoint POST /api/login. -->
       <label>
         Correo
         <input
@@ -20,6 +23,7 @@
         Ingresa un correo valido.
       </small>
 
+      <!-- Campo de contrasena requerido para autenticar al usuario en Artify. -->
       <label>
         Contrasena
         <input
@@ -33,6 +37,7 @@
         La contrasena es obligatoria.
       </small>
 
+      <!-- Mensaje de error proveniente del backend o de un fallo de conexion. -->
       <p class="status-error" *ngIf="errorMessage">{{ errorMessage }}</p>
 
       <button type="submit" [disabled]="isSubmitting">
