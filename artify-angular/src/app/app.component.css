@@ -1,16 +1,16 @@
 .topbar {
   /* Layout principal de la navegacion autenticada. */
   align-items: center;
-  background: rgba(16, 19, 25, 0.88);
+  background: var(--panel);
   border-bottom: 1px solid var(--line);
   display: flex;
   justify-content: space-between;
-  min-height: 72px;
-  padding: 0 32px;
+  min-height: 80px;
+  padding: 10px 30px;
   position: sticky;
   top: 0;
   z-index: 10;
-  backdrop-filter: blur(18px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.26);
 }
 
 .brand {
@@ -23,14 +23,16 @@
 
 .brand-mark {
   align-items: center;
-  background: var(--cyan);
-  border-radius: 8px;
-  color: #101319;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--mint);
   display: inline-flex;
+  font-family: var(--font-head);
   font-weight: 800;
-  height: 40px;
+  height: 42px;
   justify-content: center;
-  width: 40px;
+  width: 42px;
 }
 
 .brand strong,
@@ -40,7 +42,7 @@
 
 .brand small {
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.85rem;
 }
 
 .nav {
@@ -54,18 +56,22 @@
 .nav button {
   background: transparent;
   border: 1px solid transparent;
-  border-radius: 8px;
+  border-radius: var(--radius);
   color: var(--muted);
   cursor: pointer;
+  font-family: var(--font-body);
   padding: 10px 14px;
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 .nav a.active,
 .nav a:hover,
 .nav button:hover {
-  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--orange);
   color: var(--text);
+  transform: translateY(-2px);
 }
 
 /* Adaptacion movil para que marca y navegacion no se sobrepongan. */

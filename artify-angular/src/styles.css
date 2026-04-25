@@ -1,16 +1,22 @@
 :root {
   /* Variables globales que definen la identidad visual de la evidencia Angular. */
-  --bg: #101319;
-  --panel: #171c25;
-  --panel-strong: #202735;
-  --text: #f5f7fb;
-  --muted: #a9b2c4;
-  --line: #31394a;
+  --bg: #0a0a0a;
+  --panel: #161616;
+  --panel-strong: #1e1e1e;
+  --text: #f5f5f5;
+  --muted: rgba(255, 255, 255, 0.68);
+  --line: rgba(255, 255, 255, 0.1);
+  --primary: #007bff;
+  --primary-dark: #0378f4;
   --cyan: #4ae3f4;
   --mint: #28ffce;
+  --orange: #e34800;
   --danger: #ff6b86;
   --warning: #ffd166;
-  --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+  --radius: 8px;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --font-head: 'Paytone One', sans-serif;
+  --font-body: 'Inconsolata', monospace;
 }
 
 /* Normalizacion minima para mantener calculos de caja predecibles. */
@@ -26,11 +32,9 @@ body {
 
 body {
   /* Fondo general de la app, independiente de los estilos del frontend original. */
-  background:
-    radial-gradient(circle at 15% 12%, rgba(74, 227, 244, 0.12), transparent 28%),
-    linear-gradient(135deg, #101319 0%, #151922 54%, #101319 100%);
+  background: var(--bg);
   color: var(--text);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
 }
 
 button,
@@ -50,23 +54,24 @@ a {
 .content {
   width: min(1120px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 32px 0 48px;
+  padding: 40px 0 56px;
 }
 
 .card {
   /* Superficie visual reutilizable para formularios, metricas y tablas. */
-  background: rgba(23, 28, 37, 0.92);
+  background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 16px;
   box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
 }
 
 /* Clases de texto y estado usadas para mensajes academicos y errores de API. */
 .eyebrow {
-  color: var(--mint);
-  font-size: 0.78rem;
+  color: var(--cyan);
+  font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
 }
 

@@ -1,7 +1,7 @@
 .analytics {
   /* Contenedor general de la vista de consumo de API REST. */
   display: grid;
-  gap: 22px;
+  gap: 26px;
 }
 
 .section-heading {
@@ -10,24 +10,34 @@
   display: flex;
   gap: 24px;
   justify-content: space-between;
-  padding-top: 44px;
+  padding-top: 36px;
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-family: var(--font-head);
+  font-size: clamp(2.4rem, 5vw, 4rem);
   line-height: 1;
   margin: 8px 0 14px;
 }
 
 button {
-  background: var(--mint);
+  background: var(--primary);
   border: 0;
-  border-radius: 8px;
-  color: #101319;
+  border-radius: var(--radius);
+  color: white;
   cursor: pointer;
+  font-family: var(--font-head);
   font-weight: 800;
   min-height: 44px;
   padding: 0 16px;
+  transition:
+    background 0.2s,
+    transform 0.1s;
+}
+
+button:hover:not(:disabled) {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
 }
 
 button:disabled {
@@ -53,6 +63,13 @@ button:disabled {
   gap: 8px;
   min-height: 140px;
   padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.metric-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--orange);
+  transform: translateY(-6px);
 }
 
 .metric-card span,
@@ -61,6 +78,8 @@ button:disabled {
 }
 
 .metric-card strong {
+  color: var(--cyan);
+  font-family: var(--font-head);
   font-size: 2rem;
 }
 
@@ -78,6 +97,8 @@ button:disabled {
 }
 
 h2 {
+  color: var(--mint);
+  font-family: var(--font-head);
   font-size: 1.1rem;
   margin: 0 0 16px;
 }
@@ -99,6 +120,12 @@ th {
   color: var(--muted);
   font-size: 0.85rem;
   font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+tr:hover td {
+  background: rgba(255, 255, 255, 0.04);
 }
 
 dl {

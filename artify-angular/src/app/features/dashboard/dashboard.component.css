@@ -1,7 +1,7 @@
 .dashboard {
   /* Organiza la vista protegida en encabezado y resumen de estado. */
   display: grid;
-  gap: 28px;
+  gap: 34px;
 }
 
 .hero {
@@ -10,23 +10,33 @@
   display: flex;
   gap: 24px;
   justify-content: space-between;
-  padding-top: 24px;
+  padding: 26px 0 4px;
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-family: var(--font-head);
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
   line-height: 1;
   margin: 8px 0 14px;
 }
 
 .hero a {
-  background: var(--cyan);
-  border-radius: 8px;
-  color: #101319;
+  background: var(--primary);
+  border-radius: var(--radius);
+  color: white;
   flex: 0 0 auto;
+  font-family: var(--font-head);
   font-weight: 800;
   padding: 14px 18px;
   text-decoration: none;
+  transition:
+    background 0.2s,
+    transform 0.1s;
+}
+
+.hero a:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
 }
 
 .summary-grid {
@@ -42,6 +52,13 @@ h1 {
   gap: 10px;
   min-height: 150px;
   padding: 22px;
+  transition: all 0.3s ease;
+}
+
+.summary-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--orange);
+  transform: translateY(-6px);
 }
 
 .summary-card span,
@@ -50,6 +67,8 @@ h1 {
 }
 
 .summary-card strong {
+  color: var(--cyan);
+  font-family: var(--font-head);
   font-size: 1.35rem;
 }
 

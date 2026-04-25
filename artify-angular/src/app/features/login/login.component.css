@@ -1,20 +1,26 @@
 .login-screen {
   /* Centra el formulario para presentar el login como primer punto de acceso. */
   align-items: center;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(0, 123, 255, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(40, 255, 206, 0.06) 0%, transparent 50%),
+    var(--bg);
   display: flex;
   justify-content: center;
   min-height: 100vh;
-  padding: 32px;
+  padding: 40px;
 }
 
 .login-card {
   /* Contenedor visual del formulario de autenticacion. */
-  padding: 32px;
-  width: min(440px, 100%);
+  padding: 50px 40px;
+  width: min(480px, 100%);
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: var(--text);
+  font-family: var(--font-head);
+  font-size: clamp(2.25rem, 5vw, 3.2rem);
   line-height: 1;
   margin: 8px 0 12px;
 }
@@ -22,41 +28,58 @@ h1 {
 form {
   /* Organiza los campos del formulario reactivo con separacion uniforme. */
   display: grid;
-  gap: 14px;
-  margin-top: 28px;
+  gap: 18px;
+  margin-top: 32px;
 }
 
 label {
-  color: var(--muted);
+  color: var(--text);
   display: grid;
-  gap: 8px;
-  font-size: 0.95rem;
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 input {
   /* Campos de entrada con estilo consistente con la identidad de Artify. */
-  background: var(--panel-strong);
+  background: rgba(255, 255, 255, 0.08);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--radius);
   color: var(--text);
-  min-height: 46px;
-  padding: 0 14px;
+  min-height: 50px;
+  padding: 0 16px;
+  transition: all 0.3s ease;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 input:focus {
-  border-color: var(--cyan);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--mint);
+  box-shadow: 0 0 0 3px rgba(40, 255, 206, 0.1);
   outline: none;
 }
 
 button {
   /* Accion principal para enviar credenciales al backend real. */
-  background: var(--mint);
+  background: var(--primary);
   border: 0;
-  border-radius: 8px;
-  color: #101319;
+  border-radius: var(--radius);
+  color: white;
   cursor: pointer;
+  font-family: var(--font-head);
   font-weight: 800;
-  min-height: 48px;
+  min-height: 50px;
+  transition:
+    background 0.2s,
+    transform 0.1s;
+}
+
+button:hover:not(:disabled) {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
 }
 
 button:disabled {
