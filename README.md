@@ -277,7 +277,7 @@ Si prefieres abrir archivos manualmente, usa `frontend/index.html`, pero para pr
 ### Cargar Imagen
 - **Drag & Drop** — Arrastra una imagen al área punteada
 - **Selector de archivos** — Haz clic en "Subir Imagen"
-- **Formatos soportados** — JPG, PNG, WebP, AVIF
+- **Formatos soportados** — JPG, PNG, WebP
 - **Tamaño máximo** — 10 MB
 
 ### Herramientas de Edición
@@ -425,7 +425,7 @@ Las contribuciones son bienvenidas. Por favor:
 - [ ] Herramienta de texto sobre imágenes
 - [ ] Exportación a PDF
 - [ ] Procesamiento por lotes
-- [ ] Despliegue en producción (Railway + PlanetScale)
+- [ ] Despliegue en producción (Railway)
 - [ ] Integración con servicios en la nube
 
 ---
