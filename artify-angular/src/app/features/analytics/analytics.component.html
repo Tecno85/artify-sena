@@ -1,0 +1,131 @@
+<section class="content analytics">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">API REST real</p>
+      <h1>Analytics de Artify</h1>
+      <p class="muted">
+        Datos consultados directamente desde los endpoints documentados del backend Express.
+      </p>
+    </div>
+
+    <button type="button" (click)="loadAnalytics()" [disabled]="isLoading">
+      {{ isLoading ? 'Cargando...' : 'Actualizar' }}
+    </button>
+  </div>
+
+  <div class="card state-card" *ngIf="isLoading">
+    Consultando informacion de analytics...
+  </div>
+
+  <div class="card state-card status-error" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <ng-container *ngIf="data && !isLoading">
+    <section class="metric-grid">
+      <article class="card metric-card">
+        <span>Filtros registrados</span>
+        <strong>{{ data.filtros.data.filtros.length }}</strong>
+        <small>{{ data.filtros.mensaje }}</small>
+      </article>
+
+      <article class="card metric-card">
+        <span>Horarios activos</span>
+        <strong>{{ data.horarios.data.horarios.length }}</strong>
+        <small>{{ data.horarios.mensaje }}</small>
+      </article>
+
+      <article class="card metric-card">
+        <span>Formatos preferidos</span>
+        <strong>{{ data.formatos.data.formatos.length }}</strong>
+        <small>{{ data.formatos.mensaje }}</small>
+      </article>
+
+      <article class="card metric-card">
+        <span>Tasa de conversion</span>
+        <strong>{{ data.conversion.data.conversionData.tasa_conversion_porcentaje }}%</strong>
+        <small>{{ data.conversion.data.conversionData.sesiones_exitosas }} sesiones exitosas</small>
+      </article>
+    </section>
+
+    <section class="tables-grid">
+      <article class="card table-card">
+        <h2>Filtros populares</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Filtro</th>
+              <th>Usos</th>
+              <th>%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data.filtros.data.filtros">
+              <td>{{ item.filtro }}</td>
+              <td>{{ item.usos }}</td>
+              <td>{{ item.porcentaje }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="card table-card">
+        <h2>Horarios de edicion</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Hora</th>
+              <th>Ediciones</th>
+              <th>%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data.horarios.data.horarios">
+              <td>{{ item.hora }}:00</td>
+              <td>{{ item.cantidad_ediciones }}</td>
+              <td>{{ item.porcentaje }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="card table-card">
+        <h2>Formatos preferidos</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Formato</th>
+              <th>Descargas</th>
+              <th>%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data.formatos.data.formatos">
+              <td>{{ item.formato }}</td>
+              <td>{{ item.descargas }}</td>
+              <td>{{ item.porcentaje }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="card table-card conversion">
+        <h2>Conversion de sesiones</h2>
+        <dl>
+          <div>
+            <dt>Total de sesiones</dt>
+            <dd>{{ data.conversion.data.conversionData.total_sesiones }}</dd>
+          </div>
+          <div>
+            <dt>Sesiones exitosas</dt>
+            <dd>{{ data.conversion.data.conversionData.sesiones_exitosas }}</dd>
+          </div>
+          <div>
+            <dt>Tasa</dt>
+            <dd>{{ data.conversion.data.conversionData.tasa_conversion_porcentaje }}%</dd>
+          </div>
+        </dl>
+      </article>
+    </section>
+  </ng-container>
+</section>

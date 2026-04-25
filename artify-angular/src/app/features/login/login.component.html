@@ -1,0 +1,43 @@
+<section class="login-screen">
+  <div class="login-card card">
+    <p class="eyebrow">Evidencia Angular</p>
+    <h1>Acceso a Artify Analytics</h1>
+    <p class="muted">
+      Inicia sesion con el endpoint real de Artify para consultar el dashboard protegido.
+    </p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submit()" novalidate>
+      <label>
+        Correo
+        <input
+          type="email"
+          formControlName="correo"
+          autocomplete="email"
+          placeholder="usuario@artify.com"
+        >
+      </label>
+      <small class="status-error" *ngIf="loginForm.controls.correo.touched && loginForm.controls.correo.invalid">
+        Ingresa un correo valido.
+      </small>
+
+      <label>
+        Contrasena
+        <input
+          type="password"
+          formControlName="password"
+          autocomplete="current-password"
+          placeholder="Tu contrasena"
+        >
+      </label>
+      <small class="status-error" *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+        La contrasena es obligatoria.
+      </small>
+
+      <p class="status-error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <button type="submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Validando...' : 'Iniciar sesion' }}
+      </button>
+    </form>
+  </div>
+</section>

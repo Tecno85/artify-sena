@@ -1,0 +1,60 @@
+.login-screen {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 32px;
+}
+
+.login-card {
+  padding: 32px;
+  width: min(440px, 100%);
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1;
+  margin: 8px 0 12px;
+}
+
+form {
+  display: grid;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+label {
+  color: var(--muted);
+  display: grid;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+input {
+  background: var(--panel-strong);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  min-height: 46px;
+  padding: 0 14px;
+}
+
+input:focus {
+  border-color: var(--cyan);
+  outline: none;
+}
+
+button {
+  background: var(--mint);
+  border: 0;
+  border-radius: 8px;
+  color: #101319;
+  cursor: pointer;
+  font-weight: 800;
+  min-height: 48px;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}

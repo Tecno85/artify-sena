@@ -1,0 +1,33 @@
+<section class="content dashboard">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Panel protegido</p>
+      <h1>Dashboard Angular de Artify</h1>
+      <p class="muted">
+        Esta vista pertenece solo a la evidencia Angular y se desbloquea con el token guardado en sessionStorage.
+      </p>
+    </div>
+
+    <a routerLink="/analytics">Ver analytics</a>
+  </div>
+
+  <section class="summary-grid">
+    <article class="card summary-card" *ngIf="user$ | async as user">
+      <span>Usuario autenticado</span>
+      <strong>{{ user.nombres }} {{ user.apellidos }}</strong>
+      <small>{{ user.correo }} · {{ user.rol }}</small>
+    </article>
+
+    <article class="card summary-card">
+      <span>API conectada</span>
+      <strong>localhost:3000</strong>
+      <small>Backend Express oficial de Artify</small>
+    </article>
+
+    <article class="card summary-card">
+      <span>Rutas protegidas</span>
+      <strong>AuthGuard</strong>
+      <small>Dashboard y Analytics requieren token</small>
+    </article>
+  </section>
+</section>

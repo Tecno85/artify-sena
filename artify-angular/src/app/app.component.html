@@ -1,0 +1,21 @@
+<div class="page-shell">
+  <header class="topbar" *ngIf="isLoggedIn$ | async">
+    <a class="brand" routerLink="/dashboard" aria-label="Ir al dashboard">
+      <span class="brand-mark">A</span>
+      <span>
+        <strong>Artify</strong>
+        <small>Angular Evidence</small>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Navegacion principal">
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/analytics" routerLinkActive="active">Analytics</a>
+      <button type="button" (click)="logout()">Logout</button>
+    </nav>
+  </header>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>
