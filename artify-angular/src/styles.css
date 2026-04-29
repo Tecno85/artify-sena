@@ -7,7 +7,7 @@
   --muted: rgba(255, 255, 255, 0.68);
   --line: rgba(255, 255, 255, 0.1);
   --primary: #007bff;
-  --primary-dark: #0378f4;
+  --primary-dark: #0570e3;
   --cyan: #4ae3f4;
   --mint: #28ffce;
   --orange: #e34800;
@@ -17,6 +17,7 @@
   --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   --font-head: 'Paytone One', sans-serif;
   --font-body: 'Inconsolata', monospace;
+  color-scheme: dark;
 }
 
 /* Normalizacion minima para mantener calculos de caja predecibles. */
@@ -69,18 +70,23 @@ a {
 /* Clases de texto y estado usadas para mensajes academicos y errores de API. */
 .eyebrow {
   color: var(--cyan);
-  font-size: 0.82rem;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 600;
   letter-spacing: 1.2px;
   text-transform: uppercase;
 }
 
 .muted {
+  text-align: justify;
+  line-height: 1.5;
+  letter-spacing: 0.02rem;
   color: var(--muted);
+  font-size: 1.02em;
 }
 
 .status-error {
   color: var(--danger);
+  font-size: 0.88rem;
 }
 
 .status-ok {

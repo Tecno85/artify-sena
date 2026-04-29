@@ -8,35 +8,38 @@
   /* Bloque introductorio con llamada directa hacia la vista de analytics. */
   align-items: center;
   display: flex;
-  gap: 24px;
+  gap: 100px;
   justify-content: space-between;
   padding: 26px 0 4px;
 }
 
 h1 {
-  font-family: var(--font-head);
-  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  font-family: var(--font-body);
+  font-size: clamp(2.4rem, 5vw, 3.1rem);
   line-height: 1;
-  margin: 8px 0 14px;
+  margin: 30px 0 22px;
+  word-spacing: -0.1em;
 }
 
 .hero a {
+  align-self: start;
   background: var(--primary);
   border-radius: var(--radius);
   color: white;
   flex: 0 0 auto;
   font-family: var(--font-head);
   font-weight: 800;
-  padding: 14px 18px;
+  letter-spacing: 0.03rem;
+  padding: 11px 14px;
   text-decoration: none;
   transition:
-    background 0.2s,
-    transform 0.1s;
+    background 0.5s,
+    transform 0.3s;
 }
 
 .hero a:hover {
   background: var(--primary-dark);
-  transform: translateY(-1px);
+  transform: translateY(-3px);
 }
 
 .summary-grid {
@@ -70,6 +73,10 @@ h1 {
   color: var(--cyan);
   font-family: var(--font-head);
   font-size: 1.35rem;
+}
+
+.summary-card small {
+  font-size: 0.87em;
 }
 
 /* Ajuste responsivo para lectura comoda en pantallas pequenas. */

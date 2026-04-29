@@ -16,33 +16,27 @@
 .brand {
   /* Agrupa marca, inicial y nombre de la evidencia. */
   align-items: center;
-  display: inline-flex;
-  gap: 12px;
+  display: flex;
+  gap: 14px;
   text-decoration: none;
 }
 
-.brand-mark {
-  align-items: center;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  color: var(--mint);
-  display: inline-flex;
-  font-family: var(--font-head);
-  font-weight: 800;
-  height: 42px;
-  justify-content: center;
-  width: 42px;
+.brand img {
+  width: 2.3rem;
 }
 
-.brand strong,
-.brand small {
+.brand strong {
   display: block;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1;
+  padding-bottom: 0.2rem;
 }
 
 .brand small {
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
 }
 
 .nav {
