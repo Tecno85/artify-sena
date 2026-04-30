@@ -106,20 +106,24 @@ function registrarOperacion(req, res) {
       (errInsertar, result) => {
         if (errInsertar) {
           console.error('❌ Error al registrar operación:', errInsertar.message);
-        return res.status(500).json({ mensaje: 'Error en el servidor' });
-      }
+          return res.status(500).json({ mensaje: 'Error en el servidor' });
+        }
 
-      // Incrementar el contador de operaciones para la sesión actual
-      const queryActividad = `
+        // Incrementar operaciones y marcar conversión cuando la acción fue descargar
+        const queryActividad = `
           UPDATE SESION_EDICION
-          SET ses_numero_operaciones = ses_numero_operaciones + 1
+          SET ses_numero_operaciones = ses_numero_operaciones + 1,
+              ses_cambios_guardados = CASE
+                WHEN ? = 'descargar' THEN 1
+                ELSE ses_cambios_guardados
+              END
           WHERE ses_id_sesion = ?
         `;
 
-        db.query(queryActividad, [idSesion], (errActividad) => {
+        db.query(queryActividad, [tipo, idSesion], (errActividad) => {
           if (errActividad) {
             console.warn(
-              '⚠️ No se pudo actualizar última actividad:',
+              '⚠️ No se pudo actualizar actividad de la sesión:',
               errActividad.message
             );
           }
