@@ -3,13 +3,13 @@
   align-items: center;
   background:
     radial-gradient(
-      ellipse at 20% 50%,
-      rgba(34, 135, 244, 0.316) 0%,
+      ellipse at 20% 60%,
+      rgba(0, 123, 255, 0.395) 0%,
       transparent 60%
     ),
     radial-gradient(
       ellipse at 80% 20%,
-      rgba(40, 255, 205, 0.158) 0%,
+      rgba(0, 123, 255, 0.319) 0%,
       transparent 50%
     ),
     var(--bg);
