@@ -22,7 +22,6 @@ h1 {
 }
 
 button {
-  /* align-self: start; */
   background: var(--primary);
   border: 0;
   border-radius: var(--radius);
