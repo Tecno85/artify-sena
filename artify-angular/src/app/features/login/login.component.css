@@ -4,12 +4,12 @@
   background:
     radial-gradient(
       ellipse at 20% 50%,
-      rgba(0, 123, 255, 0.08) 0%,
+      rgba(34, 135, 244, 0.316) 0%,
       transparent 60%
     ),
     radial-gradient(
       ellipse at 80% 20%,
-      rgba(40, 255, 206, 0.06) 0%,
+      rgba(40, 255, 205, 0.158) 0%,
       transparent 50%
     ),
     var(--bg);
