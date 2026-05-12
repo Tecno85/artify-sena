@@ -1,0 +1,267 @@
+const assert = require('node:assert/strict');
+const { after, before, test } = require('node:test');
+const { spawn } = require('node:child_process');
+
+const dotenv = require('dotenv');
+const mysql = require('mysql2/promise');
+
+dotenv.config({ quiet: true });
+
+const PORT = process.env.TEST_PORT || '3100';
+const API = `http://127.0.0.1:${PORT}`;
+const stamp = Date.now().toString().slice(-10);
+const usuarioPrueba = {
+  nombres: 'Usuario',
+  apellidos: 'Prueba Artify',
+  cedula: stamp,
+  fechaNacimiento: '1995-05-12',
+  correo: `test.${stamp}@artify.local`,
+  password: 'PruebaArtify123!',
+};
+
+let serverProcess;
+let idUsuario;
+let tokenUsuario;
+let idSesion;
+
+function crearConexionDb() {
+  return mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+  });
+}
+
+async function esperarBackend() {
+  const inicio = Date.now();
+  let ultimoError;
+
+  while (Date.now() - inicio < 8000) {
+    try {
+      const response = await fetch(`${API}/api/v1/analytics/filtros-populares`);
+      if (response.ok) {
+        return;
+      }
+    } catch (error) {
+      ultimoError = error;
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 250));
+  }
+
+  throw ultimoError || new Error('El backend de prueba no respondió a tiempo');
+}
+
+async function request(path, options = {}) {
+  const response = await fetch(`${API}${path}`, options);
+  let body;
+
+  try {
+    body = await response.json();
+  } catch {
+    body = null;
+  }
+
+  return { response, body };
+}
+
+async function limpiarUsuarioTemporal() {
+  if (!idUsuario) {
+    return;
+  }
+
+  const db = await crearConexionDb();
+
+  try {
+    await db.beginTransaction();
+    await db.query('DELETE FROM OPERACION WHERE opr_usr_id_usuario = ?', [
+      idUsuario,
+    ]);
+    await db.query('DELETE FROM SESION_EDICION WHERE ses_usr_id_usuario = ?', [
+      idUsuario,
+    ]);
+    await db.query('DELETE FROM IMAGEN WHERE img_usr_id_usuario = ?', [
+      idUsuario,
+    ]);
+    await db.query('DELETE FROM CONFIGURACION WHERE cfg_usr_id_usuario = ?', [
+      idUsuario,
+    ]);
+    await db.query('DELETE FROM USUARIO WHERE usr_id_usuario = ?', [idUsuario]);
+    await db.commit();
+  } catch (error) {
+    await db.rollback();
+    throw error;
+  } finally {
+    await db.end();
+  }
+}
+
+before(async () => {
+  serverProcess = spawn(process.execPath, ['server.js'], {
+    cwd: __dirname + '/..',
+    env: {
+      ...process.env,
+      PORT,
+      NODE_ENV: 'test',
+    },
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+
+  serverProcess.stdout.on('data', (data) => {
+    if (process.env.DEBUG_TEST_SERVER) {
+      process.stdout.write(data);
+    }
+  });
+
+  serverProcess.stderr.on('data', (data) => {
+    if (process.env.DEBUG_TEST_SERVER) {
+      process.stderr.write(data);
+    }
+  });
+
+  await esperarBackend();
+});
+
+after(async () => {
+  await limpiarUsuarioTemporal();
+
+  if (serverProcess && !serverProcess.killed) {
+    serverProcess.kill('SIGTERM');
+  }
+});
+
+test('analytics público responde correctamente', async () => {
+  const { response, body } = await request(
+    '/api/v1/analytics/filtros-populares'
+  );
+
+  assert.equal(response.status, 200);
+  assert.equal(body.ok, true);
+  assert.equal(body.mensaje, 'Top filtros utilizados');
+});
+
+test('login rechaza correo inválido antes de consultar credenciales', async () => {
+  const { response, body } = await request('/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ correo: 'correo-invalido', password: '12345678' }),
+  });
+
+  assert.equal(response.status, 400);
+  assert.equal(body.mensaje, 'Ingresa un correo válido');
+});
+
+test('registro, login y flujo básico de usuario funcionan', async () => {
+  const registro = await request('/api/registro', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(usuarioPrueba),
+  });
+
+  assert.equal(registro.response.status, 200);
+  assert.equal(registro.body.mensaje, 'Registro exitoso');
+  assert.ok(registro.body.usuario.id);
+  idUsuario = registro.body.usuario.id;
+
+  const login = await request('/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      correo: usuarioPrueba.correo,
+      password: usuarioPrueba.password,
+    }),
+  });
+
+  assert.equal(login.response.status, 200);
+  assert.equal(login.body.mensaje, 'Login exitoso');
+  assert.ok(login.body.token);
+  tokenUsuario = login.body.token;
+
+  const authHeaders = {
+    Authorization: `Bearer ${tokenUsuario}`,
+    'Content-Type': 'application/json',
+  };
+
+  const sesion = await request('/api/sesion/iniciar', {
+    method: 'POST',
+    headers: authHeaders,
+    body: JSON.stringify({ idUsuario }),
+  });
+
+  assert.equal(sesion.response.status, 200);
+  assert.equal(sesion.body.mensaje, 'Sesión iniciada');
+  assert.ok(sesion.body.idSesion);
+  idSesion = sesion.body.idSesion;
+
+  const configuracion = await request(`/api/configuracion/${idUsuario}`, {
+    headers: { Authorization: `Bearer ${tokenUsuario}` },
+  });
+
+  assert.equal(configuracion.response.status, 200);
+  assert.equal(configuracion.body.mensaje, 'ok');
+
+  const operacion = await request('/api/operacion', {
+    method: 'POST',
+    headers: authHeaders,
+    body: JSON.stringify({
+      idUsuario,
+      idSesion,
+      tipo: 'prueba_automatizada',
+      descripcion: 'Prueba básica automatizada',
+    }),
+  });
+
+  assert.equal(operacion.response.status, 200);
+  assert.equal(operacion.body.mensaje, 'Operación registrada');
+
+  const estadisticas = await request(`/api/estadisticas/${idUsuario}`, {
+    headers: { Authorization: `Bearer ${tokenUsuario}` },
+  });
+
+  assert.equal(estadisticas.response.status, 200);
+  assert.equal(estadisticas.body.mensaje, 'ok');
+  assert.ok(estadisticas.body.estadisticas.operaciones >= 1);
+
+  const cierre = await request('/api/sesion/cerrar', {
+    method: 'POST',
+    headers: authHeaders,
+    body: JSON.stringify({ idSesion }),
+  });
+
+  assert.equal(cierre.response.status, 200);
+  assert.equal(cierre.body.mensaje, 'Sesión cerrada');
+});
+
+test('rutas protegidas rechazan solicitudes sin token', async () => {
+  const { response, body } = await request('/api/estadisticas/1');
+
+  assert.equal(response.status, 401);
+  assert.equal(body.mensaje, 'Token ausente, inválido o expirado');
+});
+
+test('admin puede autenticarse y listar usuarios', async () => {
+  assert.ok(process.env.ADMIN_USER);
+  assert.ok(process.env.ADMIN_PASSWORD);
+
+  const login = await request('/api/admin/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      correo: process.env.ADMIN_USER,
+      password: process.env.ADMIN_PASSWORD,
+    }),
+  });
+
+  assert.equal(login.response.status, 200);
+  assert.equal(login.body.mensaje, 'Acceso concedido');
+  assert.ok(login.body.token);
+
+  const usuarios = await request('/api/admin/usuarios', {
+    headers: { Authorization: `Bearer ${login.body.token}` },
+  });
+
+  assert.equal(usuarios.response.status, 200);
+  assert.equal(usuarios.body.mensaje, 'ok');
+  assert.ok(Array.isArray(usuarios.body.usuarios));
+});
