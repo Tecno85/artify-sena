@@ -84,6 +84,23 @@ async function obtenerUsuarioTemporal() {
   }
 }
 
+async function esperarActualizacionAcceso() {
+  const inicio = Date.now();
+  let usuario;
+
+  while (Date.now() - inicio < 3000) {
+    usuario = await obtenerUsuarioTemporal();
+
+    if (usuario?.usr_ultimo_acceso && usuario.usr_sesion_activa === 1) {
+      return usuario;
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+
+  return usuario;
+}
+
 async function limpiarUsuarioTemporal() {
   if (!idUsuario) {
     return;
@@ -215,7 +232,7 @@ test('registro, login y flujo básico de usuario funcionan', async () => {
   assert.ok(login.body.token);
   tokenUsuario = login.body.token;
 
-  const usuarioAutenticado = await obtenerUsuarioTemporal();
+  const usuarioAutenticado = await esperarActualizacionAcceso();
   assert.ok(usuarioAutenticado.usr_ultimo_acceso);
   assert.equal(usuarioAutenticado.usr_sesion_activa, 1);
 
