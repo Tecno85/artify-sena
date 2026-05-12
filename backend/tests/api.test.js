@@ -66,6 +66,24 @@ async function request(path, options = {}) {
   return { response, body };
 }
 
+async function obtenerUsuarioTemporal() {
+  const db = await crearConexionDb();
+
+  try {
+    const [rows] = await db.query(
+      `SELECT usr_id_usuario, usr_correo, usr_contrasena,
+              usr_ultimo_acceso, usr_sesion_activa
+       FROM USUARIO
+       WHERE usr_id_usuario = ?`,
+      [idUsuario]
+    );
+
+    return rows[0];
+  } finally {
+    await db.end();
+  }
+}
+
 async function limpiarUsuarioTemporal() {
   if (!idUsuario) {
     return;
@@ -152,6 +170,20 @@ test('login rechaza correo inválido antes de consultar credenciales', async () 
   assert.equal(body.mensaje, 'Ingresa un correo válido');
 });
 
+test('login rechaza correo no registrado', async () => {
+  const { response, body } = await request('/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      correo: `no.existe.${stamp}@artify.local`,
+      password: usuarioPrueba.password,
+    }),
+  });
+
+  assert.equal(response.status, 401);
+  assert.equal(body.mensaje, 'Usuario no encontrado');
+});
+
 test('registro, login y flujo básico de usuario funcionan', async () => {
   const registro = await request('/api/registro', {
     method: 'POST',
@@ -163,6 +195,11 @@ test('registro, login y flujo básico de usuario funcionan', async () => {
   assert.equal(registro.body.mensaje, 'Registro exitoso');
   assert.ok(registro.body.usuario.id);
   idUsuario = registro.body.usuario.id;
+
+  const usuarioRegistrado = await obtenerUsuarioTemporal();
+  assert.equal(usuarioRegistrado.usr_correo, usuarioPrueba.correo);
+  assert.notEqual(usuarioRegistrado.usr_contrasena, usuarioPrueba.password);
+  assert.match(usuarioRegistrado.usr_contrasena, /^\$2[ab]\$10\$/);
 
   const login = await request('/api/login', {
     method: 'POST',
@@ -177,6 +214,10 @@ test('registro, login y flujo básico de usuario funcionan', async () => {
   assert.equal(login.body.mensaje, 'Login exitoso');
   assert.ok(login.body.token);
   tokenUsuario = login.body.token;
+
+  const usuarioAutenticado = await obtenerUsuarioTemporal();
+  assert.ok(usuarioAutenticado.usr_ultimo_acceso);
+  assert.equal(usuarioAutenticado.usr_sesion_activa, 1);
 
   const authHeaders = {
     Authorization: `Bearer ${tokenUsuario}`,
@@ -233,8 +274,41 @@ test('registro, login y flujo básico de usuario funcionan', async () => {
   assert.equal(cierre.body.mensaje, 'Sesión cerrada');
 });
 
+test('login rechaza contraseña incorrecta', async () => {
+  assert.ok(idUsuario);
+
+  const usuarioAntes = await obtenerUsuarioTemporal();
+
+  const { response, body } = await request('/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      correo: usuarioPrueba.correo,
+      password: 'PasswordIncorrecto123!',
+    }),
+  });
+
+  const usuarioDespues = await obtenerUsuarioTemporal();
+
+  assert.equal(response.status, 401);
+  assert.equal(body.mensaje, 'Contraseña incorrecta');
+  assert.deepEqual(
+    usuarioDespues.usr_ultimo_acceso,
+    usuarioAntes.usr_ultimo_acceso
+  );
+});
+
 test('rutas protegidas rechazan solicitudes sin token', async () => {
   const { response, body } = await request('/api/estadisticas/1');
+
+  assert.equal(response.status, 401);
+  assert.equal(body.mensaje, 'Token ausente, inválido o expirado');
+});
+
+test('rutas protegidas rechazan token inválido', async () => {
+  const { response, body } = await request('/api/estadisticas/1', {
+    headers: { Authorization: 'Bearer token.invalido.manipulado' },
+  });
 
   assert.equal(response.status, 401);
   assert.equal(body.mensaje, 'Token ausente, inválido o expirado');
