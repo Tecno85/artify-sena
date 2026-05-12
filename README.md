@@ -30,6 +30,7 @@
 - [Base de Datos](#-base-de-datos)
 - [Atajos de Teclado](#️-atajos-de-teclado)
 - [Navegadores Soportados](#-navegadores-soportados)
+- [Documentación](#-documentación)
 - [Estándares de Codificación](#-estándares-de-codificación)
 - [Notas Importantes](#-notas-importantes)
 - [Autor](#-autor)
@@ -171,6 +172,7 @@ Artify/
 └── docs/                       # Documentación técnica
     ├── API_ANALYTICS.md
     ├── CODING_STANDARDS.md     # Estándares de codificación
+    ├── PLAN_PRUEBAS_AUTENTICACION.md
     └── SKILL_ARTIFY.md         # Buenas prácticas del proyecto
 ```
 
@@ -360,6 +362,16 @@ SELECT * FROM v_usuarios_activos;
 | Opera | 76+ |
 
 > Requiere soporte para Canvas API y FileReader API.
+
+---
+
+## 📚 Documentación
+
+La documentación técnica del proyecto se encuentra en la carpeta [`docs/`](./docs/).
+
+- [Plan de pruebas de autenticación](./docs/PLAN_PRUEBAS_AUTENTICACION.md)
+- [Estándares de codificación](./docs/CODING_STANDARDS.md)
+- [API de analíticas](./docs/API_ANALYTICS.md)
 
 ---
 
