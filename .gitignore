@@ -3,6 +3,7 @@
 # ----------------------------------------
 node_modules/
 package-lock.json        # (Opcional: Descomenta si no quieres lock en el repo)
+artify-angular/
 
 # Python
 __pycache__/

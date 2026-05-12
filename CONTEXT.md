@@ -216,6 +216,7 @@ DB_PASSWORD=contraseña
 DB_NAME=artify_db
 ADMIN_USER=admin@artify.com
 ADMIN_PASSWORD=contraseña_admin
+TOKEN_SECRET=secreto_largo_y_aleatorio
 PORT=3000
 NODE_ENV=development
 ```

@@ -2,6 +2,10 @@
 const bcrypt = require('bcryptjs');
 
 const db = require('../config/db');
+const {
+  validarUsuario,
+  validarEdicionUsuario,
+} = require('../utils/validacion');
 
 // ========== CONSULTAS DEL PANEL ADMIN ==========
 function listarUsuarios(req, res) {
@@ -27,6 +31,18 @@ function listarUsuarios(req, res) {
 function crearUsuario(req, res) {
   const { nombres, apellidos, cedula, fechaNacimiento, correo, password } =
     req.body;
+  const errorValidacion = validarUsuario({
+    nombres,
+    apellidos,
+    cedula,
+    fechaNacimiento,
+    correo,
+    password,
+  });
+
+  if (errorValidacion) {
+    return res.status(400).json({ mensaje: errorValidacion });
+  }
 
   const queryBuscar =
     'SELECT * FROM USUARIO WHERE usr_correo = ? OR usr_cedula = ?';
@@ -93,6 +109,18 @@ function editarUsuario(req, res) {
   const { id } = req.params;
   const { nombres, apellidos, cedula, fechaNacimiento, correo, estado } =
     req.body;
+  const errorValidacion = validarEdicionUsuario({
+    nombres,
+    apellidos,
+    cedula,
+    fechaNacimiento,
+    correo,
+    estado,
+  });
+
+  if (errorValidacion) {
+    return res.status(400).json({ mensaje: errorValidacion });
+  }
 
   const query = `
     UPDATE USUARIO

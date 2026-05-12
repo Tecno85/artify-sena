@@ -3,10 +3,27 @@ const crypto = require('crypto');
 
 // ========== CONFIGURACIÓN ==========
 const TOKEN_EXPIRACION_SEGUNDOS = 8 * 60 * 60;
+const TOKEN_SECRET_DESARROLLO = crypto.randomBytes(32).toString('hex');
+let secretoTemporalAvisado = false;
 
 // ========== UTILIDADES BASE64 ==========
 function obtenerSecreto() {
-  return process.env.TOKEN_SECRET || 'artify-token-secret-dev';
+  if (process.env.TOKEN_SECRET) {
+    return process.env.TOKEN_SECRET;
+  }
+
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error('TOKEN_SECRET no está configurado');
+  }
+
+  if (!secretoTemporalAvisado) {
+    console.warn(
+      '⚠️ TOKEN_SECRET no está configurado. Usando secreto temporal de desarrollo.'
+    );
+    secretoTemporalAvisado = true;
+  }
+
+  return TOKEN_SECRET_DESARROLLO;
 }
 
 function base64UrlEncode(valor) {

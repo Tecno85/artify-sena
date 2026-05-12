@@ -1,5 +1,9 @@
 // ========== CONFIGURACIÓN ==========
-const API = 'http://localhost:3000';
+const API =
+  window.ARTIFY_API_URL ||
+  (window.location.hostname
+    ? `${window.location.protocol}//${window.location.hostname}:3000`
+    : 'http://localhost:3000');
 
 // ========== TOKEN Y SESIÓN ==========
 function obtenerTokenAuth() {

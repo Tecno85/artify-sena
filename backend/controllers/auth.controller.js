@@ -3,15 +3,22 @@ const bcrypt = require('bcryptjs');
 
 const db = require('../config/db');
 const { crearToken } = require('../utils/token');
+const {
+  validarCredenciales,
+  validarCredencialesAdmin,
+  validarUsuario,
+} = require('../utils/validacion');
 
 // ========== LOGIN DE USUARIO ==========
 function login(req, res) {
   const { correo, password } = req.body;
+  const errorValidacion = validarCredenciales({ correo, password });
 
-  console.log('🔍 req.body completo:', req.body);
-  console.log('📨 Datos recibidos desde el formulario:');
-  console.log('   Correo:', correo);
-  console.log('   Contraseña:', password);
+  if (errorValidacion) {
+    return res.status(400).json({ mensaje: errorValidacion });
+  }
+
+  console.log('📨 Intento de login:', correo);
 
   // Buscar el usuario por correo para validar sus credenciales
   const query = 'SELECT * FROM USUARIO WHERE usr_correo = ?';
@@ -82,6 +89,18 @@ function login(req, res) {
 function registro(req, res) {
   const { nombres, apellidos, cedula, fechaNacimiento, correo, password } =
     req.body;
+  const errorValidacion = validarUsuario({
+    nombres,
+    apellidos,
+    cedula,
+    fechaNacimiento,
+    correo,
+    password,
+  });
+
+  if (errorValidacion) {
+    return res.status(400).json({ mensaje: errorValidacion });
+  }
 
   console.log('📨 Datos de registro recibidos:');
   console.log('   Nombres:', nombres);
@@ -174,8 +193,13 @@ function registro(req, res) {
 // ========== LOGIN DE ADMINISTRADOR ==========
 function loginAdmin(req, res) {
   const { correo, password } = req.body;
+  const errorValidacion = validarCredencialesAdmin({ correo, password });
 
   console.log('📨 Intento de acceso al panel de administración:', correo);
+
+  if (errorValidacion) {
+    return res.status(400).json({ mensaje: errorValidacion });
+  }
 
   if (
     correo !== process.env.ADMIN_USER ||

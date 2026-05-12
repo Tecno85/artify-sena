@@ -214,6 +214,9 @@ DB_PASSWORD=tu_contraseña_mysql
 DB_NAME=artify_db
 ADMIN_USER=admin@artify.com
 ADMIN_PASSWORD=tu_contraseña_admin
+TOKEN_SECRET=un_secreto_largo_y_aleatorio
+PORT=3000
+NODE_ENV=development
 ```
 
 ### 4. Crear la base de datos en MySQL
@@ -229,7 +232,7 @@ Luego ejecuta el script SQL del proyecto para crear todas las tablas.
 
 ```bash
 cd backend
-node server.js
+npm start
 ```
 
 Debes ver:
