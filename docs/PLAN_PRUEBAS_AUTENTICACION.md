@@ -255,6 +255,21 @@ WHERE usr_correo = 'correo_prueba@artify.local';
 
 ---
 
+### CP-008 - Acceso a ruta protegida con token invalido
+
+| Campo | Detalle |
+| --- | --- |
+| Objetivo | Verificar que el backend rechace tokens manipulados o invalidos. |
+| Precondicion | Debe existir una ruta protegida por autenticacion. |
+| Datos de entrada | Encabezado `Authorization` con un token invalido. |
+| Pasos | Enviar solicitud a una ruta protegida usando un token incorrecto. |
+| Resultado esperado | El sistema rechaza la solicitud y no permite acceder al recurso protegido. |
+| Codigo esperado | HTTP 401. |
+| Validacion adicional | La respuesta debe indicar que el token esta ausente, invalido o expirado. |
+| Estado | Aprobado. |
+
+---
+
 ## 7. Validaciones Directas en Base de Datos
 
 ### 7.1 Consultar usuario registrado
@@ -305,14 +320,20 @@ Como apoyo al plan de pruebas manual, tambien agregue una prueba automatizada de
 backend/tests/api.test.js
 ```
 
-Esta prueba automatizada valida:
+Actualmente ejecuto 8 pruebas automatizadas que cubren las siguientes validaciones:
 
+- Respuesta del endpoint publico de analiticas.
 - Rechazo de login con correo invalido.
+- Rechazo de login con correo no registrado.
 - Registro de usuario temporal.
+- Verificacion en MySQL de que la contrasena se guarda como hash bcrypt.
 - Login exitoso.
 - Generacion de token.
+- Actualizacion de `usr_ultimo_acceso` y `usr_sesion_activa` despues del login.
 - Acceso a rutas protegidas con token.
+- Rechazo de login con contrasena incorrecta.
 - Rechazo de rutas protegidas sin token.
+- Rechazo de rutas protegidas con token invalido.
 - Autenticacion de administrador.
 - Limpieza del usuario temporal en la base de datos.
 
@@ -326,10 +347,12 @@ npm test
 Resultado obtenido:
 
 ```text
-5 pruebas ejecutadas
-5 pruebas aprobadas
+8 pruebas ejecutadas
+8 pruebas aprobadas
 0 pruebas fallidas
 ```
+
+Con esta evidencia automatizada complemento las pruebas manuales y confirmo que el proyecto valida tanto los flujos correctos como varios escenarios de error comunes en autenticacion.
 
 ---
 
@@ -344,6 +367,8 @@ Considero aprobado el modulo de autenticacion si cumple con los siguientes crite
 - El login exitoso actualiza `usr_ultimo_acceso` y `usr_sesion_activa`.
 - El backend genera un token para el usuario autenticado.
 - Las rutas protegidas rechazan solicitudes sin token.
+- Las rutas protegidas rechazan solicitudes con token invalido.
+- Las pruebas automatizadas de integracion se ejecutan correctamente.
 
 ---
 
@@ -352,5 +377,7 @@ Considero aprobado el modulo de autenticacion si cumple con los siguientes crite
 Despues de realizar este plan de pruebas, concluyo que el modulo de autenticacion de Artify cumple con los criterios basicos de seguridad esperados para el proyecto. La contrasena del usuario se encripta antes de almacenarse en la base de datos mediante `bcrypt`, y durante el login se compara la contrasena ingresada contra el hash almacenado.
 
 Las pruebas realizadas me permitieron confirmar que el sistema diferencia correctamente entre credenciales validas, usuarios inexistentes, contrasenas incorrectas y formatos de correo invalidos. Ademas, verifique que un login exitoso genera un token de autenticacion y actualiza informacion de acceso en la tabla `USUARIO`.
+
+Tambien confirme mediante pruebas automatizadas que el hash almacenado no coincide con la contrasena original y que las rutas protegidas rechazan solicitudes sin token o con un token invalido. Esto fortalece la evidencia del comportamiento esperado del modulo de autenticacion.
 
 Como mejora futura, considero importante mantener las pruebas automatizadas y ampliarlas progresivamente para cubrir recuperacion de contrasena, bloqueo por multiples intentos fallidos y expiracion de tokens.
