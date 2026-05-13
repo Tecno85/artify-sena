@@ -7,6 +7,7 @@ Esta carpeta centraliza la documentacion del proyecto Artify y la separa en dos 
 En esta seccion se ubicaran los documentos que describen el proposito, alcance, requerimientos, evidencias academicas y validaciones funcionales del proyecto.
 
 - [Descripcion del proyecto](./proyecto/descripcion-proyecto.md)
+- [Requerimientos funcionales](./proyecto/requerimientos-funcionales.md)
 
 ## Documentacion tecnica
 
