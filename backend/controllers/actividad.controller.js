@@ -1,5 +1,6 @@
 // ========== DEPENDENCIAS ==========
 const db = require('../config/db');
+const { normalizarIdEntero } = require('../utils/validacion');
 
 // ========== ESTADÍSTICAS DEL USUARIO ==========
 function obtenerEstadisticas(req, res) {
@@ -63,6 +64,12 @@ function obtenerEstadisticas(req, res) {
 // ========== REGISTRO DE OPERACIONES ==========
 function registrarOperacion(req, res) {
   const { idUsuario, idSesion, tipo, descripcion } = req.body;
+  const idUsuarioNormalizado = normalizarIdEntero(idUsuario);
+  const idSesionNormalizado = normalizarIdEntero(idSesion);
+
+  if (idUsuarioNormalizado === null || idSesionNormalizado === null) {
+    return res.status(400).json({ mensaje: 'Datos de operación inválidos' });
+  }
 
   // Verificar que la sesión usada para registrar la operación pertenezca al usuario
   const querySesion = `
@@ -71,7 +78,7 @@ function registrarOperacion(req, res) {
     WHERE ses_id_sesion = ?
   `;
 
-  db.query(querySesion, [idSesion], (errSesion, results) => {
+  db.query(querySesion, [idSesionNormalizado], (errSesion, results) => {
     if (errSesion) {
       console.error('❌ Error al validar sesión:', errSesion.message);
       return res.status(500).json({ mensaje: 'Error en el servidor' });
@@ -82,7 +89,7 @@ function registrarOperacion(req, res) {
     }
 
     const sesion = results[0];
-    if (sesion.ses_usr_id_usuario !== parseInt(idUsuario, 10)) {
+    if (sesion.ses_usr_id_usuario !== idUsuarioNormalizado) {
       return res
         .status(403)
         .json({ mensaje: 'La sesión no pertenece al usuario indicado' });
@@ -98,8 +105,8 @@ function registrarOperacion(req, res) {
     db.query(
       query,
       [
-        idUsuario,
-        idSesion,
+        idUsuarioNormalizado,
+        idSesionNormalizado,
         tipo,
         JSON.stringify({ descripcion: descripcion || '' }),
       ],
@@ -116,7 +123,7 @@ function registrarOperacion(req, res) {
           WHERE ses_id_sesion = ?
         `;
 
-        db.query(queryActividad, [idSesion], (errActividad) => {
+        db.query(queryActividad, [idSesionNormalizado], (errActividad) => {
           if (errActividad) {
             console.warn(
               '⚠️ No se pudo actualizar última actividad:',
@@ -166,6 +173,11 @@ function registrarImagen(req, res) {
     formatoFinal,
     tamanoOriginal,
   } = req.body;
+  const idUsuarioNormalizado = normalizarIdEntero(idUsuario);
+
+  if (idUsuarioNormalizado === null) {
+    return res.status(400).json({ mensaje: 'Datos de imagen inválidos' });
+  }
 
   console.log('📨 Registrando imagen editada');
 
@@ -181,7 +193,7 @@ function registrarImagen(req, res) {
   db.query(
     query,
     [
-      idUsuario,
+      idUsuarioNormalizado,
       nombreOriginal,
       nombreOriginal,
       formatoFinal || formatoOriginal,

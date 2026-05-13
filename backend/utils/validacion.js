@@ -23,6 +23,19 @@ function esFecha(valor) {
   return typeof valor === 'string' && !Number.isNaN(Date.parse(valor));
 }
 
+function normalizarIdEntero(valor) {
+  if (typeof valor === 'number' && Number.isSafeInteger(valor) && valor > 0) {
+    return valor;
+  }
+
+  if (typeof valor === 'string' && /^[1-9][0-9]*$/.test(valor)) {
+    const numero = Number(valor);
+    return Number.isSafeInteger(numero) ? numero : null;
+  }
+
+  return null;
+}
+
 function validarCredenciales({ correo, password }) {
   if (!esCorreo(correo)) {
     return 'Ingresa un correo válido';
@@ -115,6 +128,7 @@ function validarEdicionUsuario({
 }
 
 module.exports = {
+  normalizarIdEntero,
   validarCredenciales,
   validarCredencialesAdmin,
   validarUsuario,

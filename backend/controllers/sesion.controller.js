@@ -1,9 +1,15 @@
 // ========== DEPENDENCIAS ==========
 const db = require('../config/db');
+const { normalizarIdEntero } = require('../utils/validacion');
 
 // ========== SESIONES DE EDICIÓN ==========
 function iniciarSesionEdicion(req, res) {
   const { idUsuario } = req.body;
+  const idUsuarioNormalizado = normalizarIdEntero(idUsuario);
+
+  if (idUsuarioNormalizado === null) {
+    return res.status(400).json({ mensaje: 'Datos de sesión inválidos' });
+  }
 
   console.log('📨 Iniciando sesión de edición');
 
@@ -13,7 +19,7 @@ function iniciarSesionEdicion(req, res) {
     VALUES (?, NOW(), 'activa')
   `;
 
-  db.query(query, [idUsuario], (err, result) => {
+  db.query(query, [idUsuarioNormalizado], (err, result) => {
     if (err) {
       console.error('❌ Error al iniciar sesión:', err.message);
       return res.status(500).json({ mensaje: 'Error en el servidor' });
@@ -27,7 +33,11 @@ function iniciarSesionEdicion(req, res) {
 }
 
 function cerrarSesionEdicion(req, res) {
-  const idSesion = parseInt(req.body?.idSesion, 10);
+  const idSesion = normalizarIdEntero(req.body?.idSesion);
+
+  if (idSesion === null) {
+    return res.status(400).json({ mensaje: 'Datos de sesión inválidos' });
+  }
 
   console.log('📨 Cerrando sesión de edición');
 

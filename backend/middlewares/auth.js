@@ -1,4 +1,5 @@
 const { verificarToken } = require('../utils/token');
+const { normalizarIdEntero } = require('../utils/validacion');
 
 function responder401(res, mensaje = 'Token ausente, inválido o expirado') {
   return res.status(401).json({ mensaje });
@@ -51,9 +52,9 @@ function autorizarUsuarioPorParametro(nombreParametro = 'id') {
       return next();
     }
 
-    const valor = parseInt(req.params[nombreParametro], 10);
+    const valor = normalizarIdEntero(req.params[nombreParametro]);
 
-    if (!Number.isInteger(valor) || valor !== req.auth?.id) {
+    if (valor === null || valor !== req.auth?.id) {
       return responder403(res, 'No puedes acceder a recursos de otro usuario');
     }
 
@@ -67,9 +68,9 @@ function autorizarUsuarioPorBody(nombreCampo = 'idUsuario') {
       return next();
     }
 
-    const valor = parseInt(req.body?.[nombreCampo], 10);
+    const valor = normalizarIdEntero(req.body?.[nombreCampo]);
 
-    if (!Number.isInteger(valor) || valor !== req.auth?.id) {
+    if (valor === null || valor !== req.auth?.id) {
       return responder403(res, 'No puedes modificar recursos de otro usuario');
     }
 

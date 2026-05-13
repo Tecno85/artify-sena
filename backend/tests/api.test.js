@@ -421,6 +421,69 @@ test('usuario no puede acceder a recursos de otro usuario', async () => {
   );
 });
 
+test('rutas protegidas rechazan identificadores malformados', async () => {
+  assert.ok(idUsuario);
+  assert.ok(idSesion);
+  assert.ok(tokenUsuario);
+
+  const estadisticas = await request(`/api/estadisticas/${idUsuario}abc`, {
+    headers: { Authorization: `Bearer ${tokenUsuario}` },
+  });
+
+  assert.equal(estadisticas.response.status, 403);
+  assert.equal(
+    estadisticas.body.mensaje,
+    'No puedes acceder a recursos de otro usuario'
+  );
+
+  const sesionInvalida = await request('/api/sesion/iniciar', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${tokenUsuario}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ idUsuario: `${idUsuario}abc` }),
+  });
+
+  assert.equal(sesionInvalida.response.status, 403);
+  assert.equal(
+    sesionInvalida.body.mensaje,
+    'No puedes modificar recursos de otro usuario'
+  );
+
+  const cierreInvalido = await request('/api/sesion/cerrar', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${tokenUsuario}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ idSesion: `${idSesion}abc` }),
+  });
+
+  assert.equal(cierreInvalido.response.status, 400);
+  assert.equal(cierreInvalido.body.mensaje, 'Datos de sesión inválidos');
+
+  const operacionInvalida = await request('/api/operacion', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${tokenUsuario}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      idUsuario,
+      idSesion: `${idSesion}abc`,
+      tipo: 'prueba_id_invalido',
+      descripcion: 'Intento con identificador malformado',
+    }),
+  });
+
+  assert.equal(operacionInvalida.response.status, 400);
+  assert.equal(
+    operacionInvalida.body.mensaje,
+    'Datos de operación inválidos'
+  );
+});
+
 test('admin puede autenticarse y listar usuarios', async () => {
   assert.ok(process.env.ADMIN_USER);
   assert.ok(process.env.ADMIN_PASSWORD);

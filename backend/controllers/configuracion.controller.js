@@ -1,6 +1,7 @@
 // ========== DEPENDENCIAS ==========
 const db = require('../config/db');
 const { parsearConfiguracionAvanzada } = require('../utils/configuracion');
+const { normalizarIdEntero } = require('../utils/validacion');
 
 // ========== CONSULTA DE CONFIGURACIÓN ==========
 function obtenerConfiguracion(req, res) {
@@ -49,6 +50,13 @@ function guardarConfiguracion(req, res) {
     formatoDefecto,
     autoguardado,
   } = req.body;
+  const idUsuarioNormalizado = normalizarIdEntero(idUsuario);
+
+  if (idUsuarioNormalizado === null) {
+    return res
+      .status(400)
+      .json({ mensaje: 'Datos de configuración inválidos' });
+  }
 
   console.log('📨 Guardando configuración de usuario');
 
@@ -62,7 +70,7 @@ function guardarConfiguracion(req, res) {
   const queryBuscar =
     'SELECT * FROM CONFIGURACION WHERE cfg_usr_id_usuario = ?';
 
-  db.query(queryBuscar, [idUsuario], (err, results) => {
+  db.query(queryBuscar, [idUsuarioNormalizado], (err, results) => {
     if (err) {
       console.error('❌ Error al buscar configuración:', err.message);
       return res.status(500).json({ mensaje: 'Error en el servidor' });
@@ -77,7 +85,7 @@ function guardarConfiguracion(req, res) {
 
       return db.query(
         queryInsertar,
-        [idUsuario, calidadExportacion, avanzada],
+        [idUsuarioNormalizado, calidadExportacion, avanzada],
         (errInsertar) => {
           if (errInsertar) {
             console.error(
@@ -104,7 +112,7 @@ function guardarConfiguracion(req, res) {
 
     return db.query(
       queryActualizar,
-      [calidadExportacion, avanzada, idUsuario],
+      [calidadExportacion, avanzada, idUsuarioNormalizado],
       (errActualizar) => {
         if (errActualizar) {
           console.error(
