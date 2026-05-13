@@ -77,9 +77,12 @@ Artify/
 │   └── setup.sh            # Script de configuración inicial
 │
 └── docs/
-    ├── API_ANALYTICS.md           # Documentación API REST Analytics
-    ├── CODING_STANDARDS.md        # Estándares Node.js + JavaScript
-    ├── PLAN_PRUEBAS_AUTENTICACION.md
+    ├── README.md                  # Índice general de documentación
+    ├── proyecto/
+    ├── tecnica/
+    │   ├── api-analytics.md       # Documentación API REST Analytics
+    │   ├── coding-standards.md    # Estándares Node.js + JavaScript
+    │   └── plan-pruebas-autenticacion.md
     └── SKILL_ARTIFY.md            # Buenas prácticas del proyecto
 ```
 
@@ -187,7 +190,7 @@ v_usuarios_activos → resumen de USUARIO + IMAGEN + SESION_EDICION
 
 ### API REST Analytics
 - ✅ 4 endpoints de analytics (filtros, horarios, formatos, conversión)
-- ✅ Documentación completa en `docs/API_ANALYTICS.md`
+- ✅ Documentación completa en `docs/tecnica/api-analytics.md`
 - ✅ Respuestas en formato JSON estructurado
 - ✅ Código completamente comentado
 - ✅ Versión v1 (permite futuras versiones sin conflictos)
@@ -268,7 +271,7 @@ NODE_ENV=development
 - [2026-04-22] Creación de API REST Analytics (4 endpoints)
 - [2026-04-22] Creación de scripts de automatización (setup.sh)
 - [2026-04-21] Normalización de comentarios en backend modular y auth frontend
-- [2026-04-20] Creación de documentación API_ANALYTICS.md
+- [2026-04-20] Creación de documentación api-analytics.md
 
 ---
 

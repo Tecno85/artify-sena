@@ -171,10 +171,13 @@ Artify/
 ├── scripts/                    # Automatización
 │   └── setup.sh                # Configuración inicial
 │
-└── docs/                       # Documentación técnica
-    ├── API_ANALYTICS.md
-    ├── CODING_STANDARDS.md     # Estándares de codificación
-    ├── PLAN_PRUEBAS_AUTENTICACION.md
+└── docs/                       # Documentación del proyecto
+    ├── README.md
+    ├── proyecto/
+    ├── tecnica/
+    │   ├── api-analytics.md
+    │   ├── coding-standards.md
+    │   └── plan-pruebas-autenticacion.md
     └── SKILL_ARTIFY.md         # Buenas prácticas del proyecto
 ```
 
@@ -388,17 +391,18 @@ SELECT * FROM v_usuarios_activos;
 
 ## 📚 Documentación
 
-La documentación técnica del proyecto se encuentra en la carpeta [`docs/`](./docs/).
+La documentación del proyecto se encuentra organizada en la carpeta [`docs/`](./docs/).
 
-- [Plan de pruebas de autenticación](./docs/PLAN_PRUEBAS_AUTENTICACION.md)
-- [Estándares de codificación](./docs/CODING_STANDARDS.md)
-- [API de analíticas](./docs/API_ANALYTICS.md)
+- [Índice de documentación](./docs/README.md)
+- [Plan de pruebas de autenticación](./docs/tecnica/plan-pruebas-autenticacion.md)
+- [Estándares de codificación](./docs/tecnica/coding-standards.md)
+- [API de analíticas](./docs/tecnica/api-analytics.md)
 
 ---
 
 ## 📐 Estándares de Codificación
 
-Este proyecto sigue estándares de codificación documentados. Consulta el archivo [`docs/CODING_STANDARDS.md`](./docs/CODING_STANDARDS.md) para más detalles sobre:
+Este proyecto sigue estándares de codificación documentados. Consulta el archivo [`docs/tecnica/coding-standards.md`](./docs/tecnica/coding-standards.md) para más detalles sobre:
 
 - Nomenclatura de variables, constantes y parámetros
 - Declaración de funciones y métodos

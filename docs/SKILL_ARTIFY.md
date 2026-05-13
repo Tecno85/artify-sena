@@ -18,7 +18,7 @@ Este skill aplica al proyecto completo:
 
 - `CONTEXT.md`: estado actual del proyecto, estructura real, endpoints y flujos activos.
 - `README.md`: instalación, arranque y uso.
-- `docs/CODING_STANDARDS.md`: normas de código, comentarios y convenciones.
+- `docs/tecnica/coding-standards.md`: normas de código, comentarios y convenciones.
 
 ---
 
@@ -28,7 +28,7 @@ Artify ya está organizado con:
 - `frontend/` para la interfaz visual
 - `backend/` modular para rutas, controladores, middlewares y utilidades
 - `database/` para el script SQL
-- `docs/` para documentación técnica y guía de trabajo
+- `docs/` para documentación del proyecto, documentación técnica y guía de trabajo
 
 La autenticación actual usa un token firmado por backend y `sessionStorage` en el frontend.
 
@@ -39,7 +39,7 @@ La autenticación actual usa un token firmado por backend y `sessionStorage` en 
 - Mantener secretos y credenciales fuera del repositorio.
 - Respetar la separación entre frontend, backend y base de datos.
 - Usar `README.md` para instalación y `CONTEXT.md` para el estado real.
-- Revisar `docs/CODING_STANDARDS.md` antes de tocar estilo o comentarios.
+- Revisar `docs/tecnica/coding-standards.md` antes de tocar estilo o comentarios.
 - Usar mensajes de commit en formato `tipo(scope): descripción`.
 
 ---
@@ -83,6 +83,5 @@ Prioridades futuras sugeridas:
 ## Mantenimiento
 
 - Si cambian rutas, endpoints o estructura real, actualizar `CONTEXT.md` primero.
-- Si cambian reglas de estilo, actualizar `docs/CODING_STANDARDS.md`.
+- Si cambian reglas de estilo, actualizar `docs/tecnica/coding-standards.md`.
 - Si cambia la forma de trabajar, reflejarlo aquí sin duplicar el árbol completo del proyecto.
-
