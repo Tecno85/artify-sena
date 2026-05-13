@@ -1,5 +1,6 @@
 const assert = require('node:assert/strict');
 const { after, before, test } = require('node:test');
+const crypto = require('node:crypto');
 const { spawn } = require('node:child_process');
 
 const dotenv = require('dotenv');
@@ -31,6 +32,28 @@ function crearConexionDb() {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
   });
+}
+
+function base64UrlEncode(valor) {
+  return Buffer.from(valor)
+    .toString('base64')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/g, '');
+}
+
+function crearTokenExpirado(payload) {
+  const header = base64UrlEncode(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
+  const body = base64UrlEncode(JSON.stringify(payload));
+  const firma = crypto
+    .createHmac('sha256', process.env.TOKEN_SECRET)
+    .update(`${header}.${body}`)
+    .digest('base64')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/g, '');
+
+  return `${header}.${body}.${firma}`;
 }
 
 async function esperarBackend() {
@@ -291,6 +314,19 @@ test('registro, login y flujo básico de usuario funcionan', async () => {
   assert.equal(cierre.body.mensaje, 'Sesión cerrada');
 });
 
+test('registro rechaza correo o cédula duplicados', async () => {
+  assert.ok(idUsuario);
+
+  const { response, body } = await request('/api/registro', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(usuarioPrueba),
+  });
+
+  assert.equal(response.status, 400);
+  assert.equal(body.mensaje, 'El correo o cédula ya está registrado');
+});
+
 test('login rechaza contraseña incorrecta', async () => {
   assert.ok(idUsuario);
 
@@ -329,6 +365,60 @@ test('rutas protegidas rechazan token inválido', async () => {
 
   assert.equal(response.status, 401);
   assert.equal(body.mensaje, 'Token ausente, inválido o expirado');
+});
+
+test('rutas protegidas rechazan token expirado', async () => {
+  const tokenExpirado = crearTokenExpirado({
+    id: idUsuario || 1,
+    correo: usuarioPrueba.correo,
+    rol: 'usuario',
+    tipo: 'usuario',
+    exp: Math.floor(Date.now() / 1000) - 60,
+  });
+
+  const { response, body } = await request('/api/estadisticas/1', {
+    headers: { Authorization: `Bearer ${tokenExpirado}` },
+  });
+
+  assert.equal(response.status, 401);
+  assert.equal(body.mensaje, 'Token expirado');
+});
+
+test('usuario no puede acceder a recursos de otro usuario', async () => {
+  assert.ok(idUsuario);
+  assert.ok(tokenUsuario);
+
+  const idOtroUsuario = idUsuario + 999999;
+
+  const estadisticas = await request(`/api/estadisticas/${idOtroUsuario}`, {
+    headers: { Authorization: `Bearer ${tokenUsuario}` },
+  });
+
+  assert.equal(estadisticas.response.status, 403);
+  assert.equal(
+    estadisticas.body.mensaje,
+    'No puedes acceder a recursos de otro usuario'
+  );
+
+  const operacion = await request('/api/operacion', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${tokenUsuario}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      idUsuario: idOtroUsuario,
+      idSesion: idSesion || 1,
+      tipo: 'prueba_no_autorizada',
+      descripcion: 'Intento de acceso a recurso ajeno',
+    }),
+  });
+
+  assert.equal(operacion.response.status, 403);
+  assert.equal(
+    operacion.body.mensaje,
+    'No puedes modificar recursos de otro usuario'
+  );
 });
 
 test('admin puede autenticarse y listar usuarios', async () => {
