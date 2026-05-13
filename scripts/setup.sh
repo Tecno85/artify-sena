@@ -12,7 +12,7 @@ echo ""
 # PASO 1: Instalar dependencias del backend
 echo "📦 Paso 1: Instalando dependencias de Node.js..."
 cd backend
-npm install
+pnpm install
 
 if [ $? -eq 0 ]; then
   echo "✅ Dependencias instaladas correctamente"
@@ -53,6 +53,6 @@ echo ""
 echo "📋 Próximos pasos:"
 echo "1. Edita backend/.env con tus datos"
 echo "2. Importa la BD: mysql -u root -p < database/artify_db.sql"
-echo "3. Inicia el servidor: npm start"
+echo "3. Inicia el servidor: pnpm start"
 echo ""
 echo "¡Listo para desarrollar! 🎉"

@@ -202,7 +202,7 @@ cd Artify
 
 ```bash
 cd backend
-npm install
+pnpm install
 ```
 
 ### 3. Configurar variables de entorno
@@ -234,7 +234,7 @@ Luego ejecuta el script SQL del proyecto para crear todas las tablas.
 
 ```bash
 cd backend
-npm start
+pnpm start
 ```
 
 Debes ver:
