@@ -66,7 +66,7 @@ Artify/
 │   ├── server.js           # Arranque del servidor y montaje de rutas
 │   ├── .env
 │   ├── package.json
-│   └── package-lock.json
+│   └── pnpm-lock.yaml
 │
 ├── database/
 │   └── artify_db.sql       # Script SQL completo
@@ -77,6 +77,7 @@ Artify/
 └── docs/
     ├── API_ANALYTICS.md           # Documentación API REST Analytics
     ├── CODING_STANDARDS.md        # Estándares Node.js + JavaScript
+    ├── PLAN_PRUEBAS_AUTENTICACION.md
     └── SKILL_ARTIFY.md            # Buenas prácticas del proyecto
 ```
 
