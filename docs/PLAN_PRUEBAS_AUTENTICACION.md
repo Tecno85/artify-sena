@@ -341,7 +341,7 @@ Comando de ejecucion:
 
 ```bash
 cd backend
-npm test
+pnpm test
 ```
 
 Resultado obtenido:
