@@ -318,19 +318,19 @@ Como complemento del plan de pruebas, agrego evidencias visuales del proceso de 
 
 ### 8.1 Login fallido
 
-![Login fallido](./evidencias/autenticacion/login-fallido.png)
+![Login fallido](./evidencias/autenticacion/login-fallido.svg)
 
 ### 8.2 Login exitoso
 
-![Login exitoso](./evidencias/autenticacion/login-exitoso-editor.png)
+![Login exitoso](./evidencias/autenticacion/login-exitoso-editor.svg)
 
 ### 8.3 Hash bcrypt en base de datos
 
-![Hash bcrypt en base de datos](./evidencias/autenticacion/hash-bcrypt-bd.png)
+![Hash bcrypt en base de datos](./evidencias/autenticacion/hash-bcrypt-bd.svg)
 
 ### 8.4 Resultado de pruebas automatizadas
 
-![Resultado de pruebas automatizadas](./evidencias/autenticacion/pruebas-automatizadas.png)
+![Resultado de pruebas automatizadas](./evidencias/autenticacion/pruebas-automatizadas.svg)
 
 ---
 
