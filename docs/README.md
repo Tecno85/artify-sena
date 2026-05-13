@@ -15,6 +15,7 @@ En esta seccion se ubican los documentos orientados al desarrollo, mantenimiento
 
 - [Arquitectura tecnica](./tecnica/arquitectura.md)
 - [Base de datos](./tecnica/base-datos.md)
+- [Guia de despliegue y ejecucion local](./tecnica/despliegue.md)
 - [Plan de pruebas de autenticacion](./tecnica/plan-pruebas-autenticacion.md)
 - [API de analiticas](./tecnica/api-analytics.md)
 - [Estandares de codificacion](./tecnica/coding-standards.md)

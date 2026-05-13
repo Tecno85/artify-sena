@@ -393,10 +393,7 @@ SELECT * FROM v_usuarios_activos;
 
 La documentación del proyecto se encuentra organizada en la carpeta [`docs/`](./docs/).
 
-- [Índice de documentación](./docs/README.md)
-- [Plan de pruebas de autenticación](./docs/tecnica/plan-pruebas-autenticacion.md)
-- [Estándares de codificación](./docs/tecnica/coding-standards.md)
-- [API de analíticas](./docs/tecnica/api-analytics.md)
+Consulta el [índice de documentación](./docs/README.md) para acceder a la documentación del proyecto, manual técnico, plan de pruebas, arquitectura, base de datos, despliegue y estándares de codificación.
 
 ---
 

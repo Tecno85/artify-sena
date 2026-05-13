@@ -86,6 +86,7 @@ Artify/
     │   ├── api-analytics.md       # Documentación API REST Analytics
     │   ├── base-datos.md          # Modelo y estructura de MySQL
     │   ├── coding-standards.md    # Estándares Node.js + JavaScript
+    │   ├── despliegue.md          # Ejecución local y despliegue técnico
     │   └── plan-pruebas-autenticacion.md
     └── SKILL_ARTIFY.md            # Buenas prácticas del proyecto
 ```
