@@ -312,7 +312,29 @@ usr_sesion_activa: 1
 
 ---
 
-## 8. Evidencia Automatizada Complementaria
+## 8. Evidencias Visuales del Proceso
+
+Como complemento del plan de pruebas, agrego evidencias visuales del proceso de autenticacion. Estas imagenes documentan los escenarios principales que valide durante la ejecucion de las pruebas: rechazo de acceso, login exitoso, almacenamiento de la contrasena como hash bcrypt y resultado de pruebas automatizadas.
+
+### 8.1 Login fallido
+
+![Login fallido](./evidencias/autenticacion/login-fallido.png)
+
+### 8.2 Login exitoso
+
+![Login exitoso](./evidencias/autenticacion/login-exitoso-editor.png)
+
+### 8.3 Hash bcrypt en base de datos
+
+![Hash bcrypt en base de datos](./evidencias/autenticacion/hash-bcrypt-bd.png)
+
+### 8.4 Resultado de pruebas automatizadas
+
+![Resultado de pruebas automatizadas](./evidencias/autenticacion/pruebas-automatizadas.png)
+
+---
+
+## 9. Evidencia Automatizada Complementaria
 
 Como apoyo al plan de pruebas manual, tambien agregue una prueba automatizada de integracion en:
 
@@ -320,7 +342,7 @@ Como apoyo al plan de pruebas manual, tambien agregue una prueba automatizada de
 backend/tests/api.test.js
 ```
 
-Actualmente ejecuto 8 pruebas automatizadas que cubren las siguientes validaciones:
+Actualmente ejecuto 12 pruebas automatizadas que cubren las siguientes validaciones:
 
 - Respuesta del endpoint publico de analiticas.
 - Rechazo de login con correo invalido.
@@ -334,6 +356,9 @@ Actualmente ejecuto 8 pruebas automatizadas que cubren las siguientes validacion
 - Rechazo de login con contrasena incorrecta.
 - Rechazo de rutas protegidas sin token.
 - Rechazo de rutas protegidas con token invalido.
+- Rechazo de rutas protegidas con token expirado.
+- Rechazo de acceso a recursos de otro usuario.
+- Rechazo de identificadores malformados en rutas protegidas.
 - Autenticacion de administrador.
 - Limpieza del usuario temporal en la base de datos.
 
@@ -347,8 +372,8 @@ pnpm test
 Resultado obtenido:
 
 ```text
-8 pruebas ejecutadas
-8 pruebas aprobadas
+12 pruebas ejecutadas
+12 pruebas aprobadas
 0 pruebas fallidas
 ```
 
@@ -356,7 +381,7 @@ Con esta evidencia automatizada complemento las pruebas manuales y confirmo que 
 
 ---
 
-## 9. Criterios de Aceptacion
+## 10. Criterios de Aceptacion
 
 Considero aprobado el modulo de autenticacion si cumple con los siguientes criterios:
 
@@ -372,7 +397,7 @@ Considero aprobado el modulo de autenticacion si cumple con los siguientes crite
 
 ---
 
-## 10. Conclusiones
+## 11. Conclusiones
 
 Despues de realizar este plan de pruebas, concluyo que el modulo de autenticacion de Artify cumple con los criterios basicos de seguridad esperados para el proyecto. La contrasena del usuario se encripta antes de almacenarse en la base de datos mediante `bcrypt`, y durante el login se compara la contrasena ingresada contra el hash almacenado.
 
