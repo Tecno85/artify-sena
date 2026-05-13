@@ -124,6 +124,9 @@
 ```
 Artify/
 ├── README.md                   # Documentación del proyecto
+├── CONTEXT.md                  # Contexto técnico y estado actual
+├── LICENSE                     # Licencia del proyecto
+├── .env.example                # Plantilla de variables de entorno
 ├── .gitignore                  # Archivos ignorados por Git
 │
 ├── frontend/                   # Aplicación frontend organizada
@@ -160,10 +163,12 @@ Artify/
 │   ├── controllers/            # Lógica de negocio por módulo
 │   ├── middlewares/            # Autenticación y autorización
 │   ├── routes/                 # Endpoints por dominio
+│   ├── tests/                  # Pruebas automatizadas
 │   ├── utils/                  # Helpers compartidos
 │   ├── server.js               # Punto de arranque y montaje
 │   ├── .env                    # Variables de entorno (no se sube a GitHub)
-│   └── package.json            # Dependencias del backend
+│   ├── package.json            # Scripts y dependencias del backend
+│   └── pnpm-lock.yaml          # Lockfile de pnpm
 │
 ├── database/                   # Base de datos del proyecto
 │   └── artify_db.sql           # Script SQL completo
@@ -174,9 +179,14 @@ Artify/
 └── docs/                       # Documentación del proyecto
     ├── README.md
     ├── proyecto/
+    │   ├── descripcion-proyecto.md
+    │   └── requerimientos-funcionales.md
     ├── tecnica/
+    │   ├── arquitectura.md
     │   ├── api-analytics.md
+    │   ├── base-datos.md
     │   ├── coding-standards.md
+    │   ├── despliegue.md
     │   └── plan-pruebas-autenticacion.md
     └── SKILL_ARTIFY.md         # Buenas prácticas del proyecto
 ```
