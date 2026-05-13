@@ -5,7 +5,7 @@ const db = require('../config/db');
 function iniciarSesionEdicion(req, res) {
   const { idUsuario } = req.body;
 
-  console.log('📨 Iniciando sesión de edición para usuario ID:', idUsuario);
+  console.log('📨 Iniciando sesión de edición');
 
   const query = `
     INSERT INTO SESION_EDICION
@@ -29,7 +29,7 @@ function iniciarSesionEdicion(req, res) {
 function cerrarSesionEdicion(req, res) {
   const idSesion = parseInt(req.body?.idSesion, 10);
 
-  console.log('📨 Cerrando sesión de edición ID:', idSesion);
+  console.log('📨 Cerrando sesión de edición');
 
   const queryValidar = `
     SELECT ses_id_sesion, ses_usr_id_usuario

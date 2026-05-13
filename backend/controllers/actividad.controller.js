@@ -5,7 +5,7 @@ const db = require('../config/db');
 function obtenerEstadisticas(req, res) {
   const { id } = req.params;
 
-  console.log('📨 Cargando estadísticas del usuario ID:', id);
+  console.log('📨 Cargando estadísticas de usuario');
 
   const querySesiones = `
     SELECT COUNT(*) as total
@@ -167,7 +167,7 @@ function registrarImagen(req, res) {
     tamanoOriginal,
   } = req.body;
 
-  console.log('📨 Registrando imagen editada para usuario ID:', idUsuario);
+  console.log('📨 Registrando imagen editada');
 
   // Persistir los metadatos básicos de la imagen procesada
   const query = `

@@ -18,7 +18,7 @@ function login(req, res) {
     return res.status(400).json({ mensaje: errorValidacion });
   }
 
-  console.log('📨 Intento de login:', correo);
+  console.log('📨 Intento de login recibido');
 
   // Buscar el usuario por correo para validar sus credenciales
   const query = 'SELECT * FROM USUARIO WHERE usr_correo = ?';
@@ -30,7 +30,6 @@ function login(req, res) {
     }
 
     if (results.length === 0) {
-      console.log('❌ Usuario no encontrado en la base de datos');
       return res.status(401).json({ mensaje: 'Usuario no encontrado' });
     }
 
@@ -40,7 +39,6 @@ function login(req, res) {
     const passwordValida = bcrypt.compareSync(password, usuario.usr_contrasena);
 
     if (!passwordValida) {
-      console.log('❌ Contraseña incorrecta');
       return res.status(401).json({ mensaje: 'Contraseña incorrecta' });
     }
 
@@ -102,9 +100,7 @@ function registro(req, res) {
     return res.status(400).json({ mensaje: errorValidacion });
   }
 
-  console.log('📨 Datos de registro recibidos:');
-  console.log('   Nombres:', nombres);
-  console.log('   Correo:', correo);
+  console.log('📨 Solicitud de registro recibida');
 
   const queryBuscar =
     'SELECT * FROM USUARIO WHERE usr_correo = ? OR usr_cedula = ?';
@@ -195,17 +191,16 @@ function loginAdmin(req, res) {
   const { correo, password } = req.body;
   const errorValidacion = validarCredencialesAdmin({ correo, password });
 
-  console.log('📨 Intento de acceso al panel de administración:', correo);
-
   if (errorValidacion) {
     return res.status(400).json({ mensaje: errorValidacion });
   }
+
+  console.log('📨 Intento de acceso al panel de administración recibido');
 
   if (
     correo !== process.env.ADMIN_USER ||
     password !== process.env.ADMIN_PASSWORD
   ) {
-    console.log('❌ Credenciales de administrador incorrectas');
     return res.status(401).json({ mensaje: 'Credenciales incorrectas' });
   }
 

@@ -6,7 +6,7 @@ const { parsearConfiguracionAvanzada } = require('../utils/configuracion');
 function obtenerConfiguracion(req, res) {
   const { id } = req.params;
 
-  console.log('📨 Cargando configuración del usuario ID:', id);
+  console.log('📨 Cargando configuración de usuario');
 
   const query = 'SELECT * FROM CONFIGURACION WHERE cfg_usr_id_usuario = ?';
 
@@ -50,7 +50,7 @@ function guardarConfiguracion(req, res) {
     autoguardado,
   } = req.body;
 
-  console.log('📨 Guardando configuración del usuario ID:', idUsuario);
+  console.log('📨 Guardando configuración de usuario');
 
   // Agrupar preferencias avanzadas en el formato persistido en la base de datos
   const avanzada = JSON.stringify({
