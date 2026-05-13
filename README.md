@@ -5,12 +5,12 @@
 ![Version](https://img.shields.io/badge/versión-2.0.0-4ae3f4?style=for-the-badge)
 ![Status](https://img.shields.io/badge/estado-activo-28ffce?style=for-the-badge)
 ![License](https://img.shields.io/badge/licencia-MIT-blue?style=for-the-badge)
-![Node](https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=node.js)
+![Node](https://img.shields.io/badge/Node.js-22.13+-339933?style=for-the-badge&logo=node.js)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0+-4479A1?style=for-the-badge&logo=mysql)
 
 **Artify** es un editor de imágenes web full stack desarrollado con HTML, CSS, JavaScript vanilla en el frontend y Node.js + Express + MySQL en el backend. Permite a los usuarios editar imágenes de manera intuitiva directamente desde el navegador, con autenticación real, gestión de sesiones y panel de administración.
 
-[🌐 Ver Demo](#-prueba-en-línea) · [🐛 Reportar Bug](https://github.com/Tecno85/Artify/issues) · [💡 Sugerir Feature](https://github.com/Tecno85/Artify/issues)
+[🌐 Ver Demo](#-prueba-en-línea) · [🐛 Reportar Bug](https://github.com/Tecno85/artify-sena/issues) · [💡 Sugerir Feature](https://github.com/Tecno85/artify-sena/issues)
 
 </div>
 
@@ -25,6 +25,7 @@
 - [Requisitos Previos](#-requisitos-previos)
 - [Instalación y Configuración](#-instalación-y-configuración)
 - [Uso](#-uso)
+- [Pruebas](#-pruebas)
 - [Funcionalidades Principales](#-funcionalidades-principales)
 - [Panel de Administración](#-panel-de-administración)
 - [Base de Datos](#-base-de-datos)
@@ -81,13 +82,14 @@
 ### Backend
 | Tecnología | Versión | Uso |
 |------------|---------|-----|
-| Node.js | 18+ | Entorno de ejecución |
+| Node.js | 22.13+ | Entorno de ejecución |
 | Express | 4+ | Framework del servidor |
 | MySQL | 8.0+ | Base de datos relacional |
 | mysql2 | Latest | Conector MySQL para Node.js |
 | bcryptjs | Latest | Encriptación de contraseñas |
 | dotenv | Latest | Variables de entorno |
 | cors | Latest | Control de acceso entre orígenes |
+| pnpm | 11.1.1 | Gestor de paquetes del backend |
 
 ---
 
@@ -182,7 +184,8 @@ Artify/
 
 Antes de instalar el proyecto asegúrate de tener:
 
-- [Node.js](https://nodejs.org/) v18 o superior
+- [Node.js](https://nodejs.org/) v22.13 o superior
+- [pnpm](https://pnpm.io/) v11.1.1
 - [MySQL](https://dev.mysql.com/downloads/) v8.0 o superior
 - [Git](https://git-scm.com/)
 - Un servidor HTTP local (como `npx http-server`)
@@ -194,8 +197,8 @@ Antes de instalar el proyecto asegúrate de tener:
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/Tecno85/Artify.git
-cd Artify
+git clone https://github.com/Tecno85/artify-sena.git
+cd artify-sena
 ```
 
 ### 2. Instalar dependencias del backend
@@ -274,6 +277,24 @@ Si prefieres abrir archivos manualmente, usa `frontend/index.html`, pero para pr
 1. Inicia sesión con las credenciales de administrador
 2. El sistema detecta el rol `admin` y redirige al panel
 3. Gestiona todos los usuarios desde el panel de administración
+
+---
+
+## ✅ Pruebas
+
+El backend incluye pruebas automatizadas de integración para autenticación, rutas protegidas y configuración básica.
+
+```bash
+cd backend
+pnpm test
+```
+
+También puedes validar sintaxis del servidor con:
+
+```bash
+cd backend
+pnpm run check
+```
 
 ---
 
