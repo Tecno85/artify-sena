@@ -1,17 +1,17 @@
-# Guia de Despliegue y Ejecucion Local
+# Guía de Despliegue y Ejecución Local
 
-> **Proyecto:** Artify - Editor de Imagenes Web  
-> **Entorno principal:** Local / desarrollo  
-> **Backend:** Node.js + Express  
-> **Frontend:** HTML, CSS y JavaScript Vanilla  
-> **Base de datos:** MySQL  
+> **Proyecto:** Artify - Editor de Imágenes Web
+> **Entorno principal:** Local / desarrollo
+> **Backend:** Node.js + Express
+> **Frontend:** HTML, CSS y JavaScript Vanilla
+> **Base de datos:** MySQL
 > **Fecha:** Mayo 2026
 
 ---
 
 ## 1. Objetivo del Documento
 
-Este documento describe los pasos tecnicos necesarios para preparar, ejecutar y verificar Artify en un entorno local. Hace parte del manual tecnico y complementa el `README.md`, evitando repetir la descripcion general del proyecto.
+Este documento describe los pasos técnicos necesarios para preparar, ejecutar y verificar Artify en un entorno local. Hace parte del manual técnico y complementa el `README.md`, evitando repetir la descripción general del proyecto.
 
 ---
 
@@ -19,12 +19,12 @@ Este documento describe los pasos tecnicos necesarios para preparar, ejecutar y 
 
 Antes de ejecutar el proyecto se requiere tener instalado:
 
-| Herramienta | Version recomendada | Uso |
+| Herramienta | Versión recomendada | Uso |
 | --- | --- | --- |
 | Node.js | 22.13 o superior | Ejecutar el backend. |
 | pnpm | 11.1.1 | Instalar dependencias y ejecutar scripts del backend. |
 | MySQL | 8.0 o superior | Base de datos relacional. |
-| Git | Version estable | Clonar y versionar el proyecto. |
+| Git | Versión estable | Clonar y versionar el proyecto. |
 | Navegador moderno | Chrome, Edge, Firefox, Safari u Opera | Usar el frontend. |
 
 ---
@@ -78,8 +78,8 @@ NODE_ENV=development
 ### Consideraciones
 
 - `backend/.env` no debe subirse al repositorio.
-- `TOKEN_SECRET` debe ser largo y dificil de adivinar.
-- `ADMIN_PASSWORD` debe cambiarse por una contrasena segura en cada entorno.
+- `TOKEN_SECRET` debe ser largo y difícil de adivinar.
+- `ADMIN_PASSWORD` debe cambiarse por una contraseña segura en cada entorno.
 
 ---
 
@@ -91,13 +91,13 @@ El script principal de base de datos se encuentra en:
 database/artify_db.sql
 ```
 
-Desde la raiz del proyecto se puede importar con:
+Desde la raíz del proyecto se puede importar con:
 
 ```bash
 mysql -u root -p < database/artify_db.sql
 ```
 
-Tambien se puede ejecutar el script desde MySQL Workbench u otra herramienta compatible.
+También se puede ejecutar el script desde MySQL Workbench u otra herramienta compatible.
 
 Al finalizar, debe existir la base de datos:
 
@@ -122,7 +122,7 @@ Conectado a MySQL correctamente
 Servidor corriendo en http://localhost:3000
 ```
 
-Para desarrollo con recarga automatica:
+Para desarrollo con recarga automática:
 
 ```bash
 pnpm run dev
@@ -132,9 +132,9 @@ pnpm run dev
 
 ## 8. Ejecutar el Frontend
 
-El frontend es estatico. Para probar rutas y navegacion de forma mas estable se recomienda servir la carpeta `frontend/` por HTTP.
+El frontend es estático. Para probar rutas y navegación de forma más estable se recomienda servir la carpeta `frontend/` por HTTP.
 
-Desde la raiz del proyecto:
+Desde la raíz del proyecto:
 
 ```bash
 npx http-server frontend -p 8080
@@ -146,13 +146,13 @@ Luego abrir:
 http://127.0.0.1:8080
 ```
 
-Tambien es posible abrir `frontend/index.html` directamente, pero para pruebas completas se recomienda usar servidor local.
+También es posible abrir `frontend/index.html` directamente, pero para pruebas completas se recomienda usar servidor local.
 
 ---
 
 ## 9. Verificar el Funcionamiento
 
-### Verificacion del backend
+### Verificación del backend
 
 ```bash
 cd backend
@@ -166,32 +166,32 @@ cd backend
 pnpm test
 ```
 
-La suite actual valida autenticacion, rutas protegidas, tokens, configuracion basica y limpieza de usuarios temporales.
+La suite actual valida autenticación, rutas protegidas, tokens, configuración básica y limpieza de usuarios temporales.
 
-### Verificacion manual basica
+### Verificación manual básica
 
 1. Abrir `http://127.0.0.1:8080`.
 2. Registrar un usuario de prueba.
-3. Iniciar sesion.
-4. Confirmar redireccion al editor.
+3. Iniciar sesión.
+4. Confirmar redirección al editor.
 5. Cargar una imagen.
-6. Probar una operacion de edicion.
+6. Probar una operación de edición.
 7. Descargar la imagen resultante.
 
 ---
 
 ## 10. Puertos Utilizados
 
-| Servicio | Puerto | Descripcion |
+| Servicio | Puerto | Descripción |
 | --- | --- | --- |
 | Backend Express | `3000` | API principal del sistema. |
-| Frontend local | `8080` | Servidor estatico recomendado para pruebas. |
+| Frontend local | `8080` | Servidor estático recomendado para pruebas. |
 | MySQL | `3306` | Puerto habitual de MySQL. |
 | Backend de pruebas | `3100` | Puerto usado por la suite automatizada cuando aplica. |
 
 ---
 
-## 11. Script de Configuracion Inicial
+## 11. Script de Configuración Inicial
 
 El proyecto incluye un script de apoyo:
 
@@ -199,27 +199,27 @@ El proyecto incluye un script de apoyo:
 scripts/setup.sh
 ```
 
-Este script instala dependencias del backend y crea `backend/.env` desde `.env.example` si todavia no existe.
+Este script instala dependencias del backend y crea `backend/.env` desde `.env.example` si todavía no existe.
 
-Ejecucion:
+Ejecución:
 
 ```bash
 ./scripts/setup.sh
 ```
 
-Despues de ejecutarlo, se debe revisar manualmente `backend/.env` y cargar la base de datos.
+Después de ejecutarlo, se debe revisar manualmente `backend/.env` y cargar la base de datos.
 
 ---
 
 ## 12. Problemas Comunes
 
-| Problema | Posible causa | Solucion |
+| Problema | Posible causa | Solución |
 | --- | --- | --- |
 | `Error al conectar a MySQL` | Credenciales incorrectas o MySQL detenido. | Revisar `backend/.env` e iniciar MySQL. |
-| `Unknown command: pnpm` | pnpm no esta instalado o no esta en el PATH. | Instalar pnpm y abrir una nueva terminal. |
+| `Unknown command: pnpm` | pnpm no está instalado o no está en el PATH. | Instalar pnpm y abrir una nueva terminal. |
 | API no responde | Backend no iniciado o puerto incorrecto. | Ejecutar `pnpm start` en `backend/`. |
-| Login falla aunque el usuario existe | Contrasena incorrecta o hash invalido. | Verificar registro y datos en `USUARIO`. |
-| Frontend no consume API | Backend apagado o URL incorrecta. | Confirmar que API este en `http://localhost:3000`. |
+| Login falla aunque el usuario existe | Contraseña incorrecta o hash inválido. | Verificar registro y datos en `USUARIO`. |
+| Frontend no consume API | Backend apagado o URL incorrecta. | Confirmar que API esté en `http://localhost:3000`. |
 
 ---
 
@@ -228,5 +228,5 @@ Despues de ejecutarlo, se debe revisar manualmente `backend/.env` y cargar la ba
 - Mantener `.env.example` actualizado cuando cambien variables requeridas.
 - Mantener `backend/package.json` como referencia de scripts oficiales.
 - Usar `pnpm-lock.yaml` para reproducibilidad de dependencias.
-- Actualizar esta guia cuando cambien puertos, comandos, gestor de paquetes o pasos de instalacion.
+- Actualizar esta guía cuando cambien puertos, comandos, gestor de paquetes o pasos de instalación.
 - No documentar credenciales reales en archivos versionados.

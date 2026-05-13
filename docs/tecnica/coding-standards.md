@@ -1,8 +1,8 @@
 # Estándares de Codificación — Proyecto Artify
 
-> **Versión:** 1.0  
-> **Fecha:** Marzo 2026  
-> **Autor:** Ivan Dario Madrid Daza  
+> **Versión:** 1.0
+> **Fecha:** Marzo 2026
+> **Autor:** Iván Darío Madrid Daza
 > **Programa:** Análisis y Desarrollo de Software — SENA
 
 ---

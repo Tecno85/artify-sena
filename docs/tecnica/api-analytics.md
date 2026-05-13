@@ -21,7 +21,7 @@ funcionan mejor para vender productos.
 
 ### 1. Filtros Más Usados
 
-**¿Qué hace?** 
+**¿Qué hace?**
 
 Devuelve cuál es el filtro más usado por los usuarios de Artify
 
@@ -76,7 +76,7 @@ Sabe que "convertir" es el filtro favorito. Puede entrenar a vendedores a usarlo
 
 ### 2. Horarios de Edición
 
-**¿Qué hace?** 
+**¿Qué hace?**
 
 Devuelve a qué horas del día los usuarios editan más imágenes
 
@@ -132,7 +132,7 @@ Sabe que 9am es la hora pico. Puede enviar emails a esa hora o lanzar promocione
 
 ### 3. Formatos Preferidos
 
-**¿Qué hace?** 
+**¿Qué hace?**
 
 Devuelve qué formato de imagen es el más descargado (PNG, JPG, etc.)
 
@@ -176,7 +176,7 @@ Sabe que JPEG es preferido (100%). Puede recomendar JPEG a vendedores.
 
 ### 4. Tasa de Conversión
 
-**¿Qué hace?** 
+**¿Qué hace?**
 
 Calcula qué % de usuarios que empezaron a editar terminaron guardando cambios
 
@@ -228,6 +228,6 @@ Una tasa 0% significa que hay un problema. Los usuarios abren pero no guardan.
 
 ---
 
-**Creado por:** Ivan Dario Madrid Daza  
-**Programa:** Análisis y Desarrollo de Software - SENA  
+**Creado por:** Iván Darío Madrid Daza
+**Programa:** Análisis y Desarrollo de Software - SENA
 **Fecha:** Abril 2026

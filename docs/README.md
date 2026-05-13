@@ -1,25 +1,25 @@
-# Documentacion de Artify
+# Documentación de Artify
 
-Esta carpeta centraliza la documentacion del proyecto Artify y la separa en dos grupos principales: documentacion del proyecto y documentacion tecnica.
+Esta carpeta centraliza la documentación del proyecto Artify y la separa en dos grupos principales: documentación del proyecto y documentación técnica.
 
-## Documentacion del proyecto
+## Documentación del proyecto
 
-En esta seccion se ubicaran los documentos que describen el proposito, alcance, requerimientos, evidencias academicas y validaciones funcionales del proyecto.
+En esta sección se ubicarán los documentos que describen el propósito, alcance, requerimientos, evidencias académicas y validaciones funcionales del proyecto.
 
-- [Descripcion del proyecto](./proyecto/descripcion-proyecto.md)
+- [Descripción del proyecto](./proyecto/descripcion-proyecto.md)
 - [Requerimientos funcionales](./proyecto/requerimientos-funcionales.md)
 
-## Documentacion tecnica
+## Documentación técnica
 
-En esta seccion se ubican los documentos orientados al desarrollo, mantenimiento, pruebas tecnicas, API, estandares y soporte tecnico del sistema.
+En esta sección se ubican los documentos orientados al desarrollo, mantenimiento, pruebas técnicas, API, estándares y soporte técnico del sistema.
 
-- [Arquitectura tecnica](./tecnica/arquitectura.md)
+- [Arquitectura técnica](./tecnica/arquitectura.md)
 - [Base de datos](./tecnica/base-datos.md)
-- [Guia de despliegue y ejecucion local](./tecnica/despliegue.md)
-- [Plan de pruebas de autenticacion](./tecnica/plan-pruebas-autenticacion.md)
-- [API de analiticas](./tecnica/api-analytics.md)
-- [Estandares de codificacion](./tecnica/coding-standards.md)
+- [Guía de despliegue y ejecución local](./tecnica/despliegue.md)
+- [Plan de pruebas de autenticación](./tecnica/plan-pruebas-autenticacion.md)
+- [API de analíticas](./tecnica/api-analytics.md)
+- [Estándares de codificación](./tecnica/coding-standards.md)
 
-## Documentacion auxiliar
+## Documentación auxiliar
 
-- [Guia interna de trabajo Artify](./SKILL_ARTIFY.md)
+- [Guía interna de trabajo Artify](./SKILL_ARTIFY.md)
