@@ -56,13 +56,13 @@ Artify/
 Se usa `camelCase` para todas las variables en JavaScript.
 
 ```javascript
-// ✅ Correcto
+// Ejemplo recomendado
 let currentImage = null;
 let zoomLevel = 100;
 let cropMode = false;
 let operationsHistory = [];
 
-// ❌ Incorrecto
+// Incorrecto
 let CurrentImage = null;
 let zoom_level = 100;
 let CROPMODE = false;
@@ -73,12 +73,12 @@ let CROPMODE = false;
 Las constantes que no cambian durante la ejecución se escriben en mayúsculas con guiones bajos.
 
 ```javascript
-// ✅ Correcto — tomado de editor.js
+// Ejemplo recomendado - tomado de editor.js
 const RESOLUCION_MINIMA_ANCHO = 1366;
 const RESOLUCION_MINIMA_ALTO = 768;
 const LOCAL_STORAGE_KEY = 'artify_no_mostrar_modal_resolucion';
 
-// ❌ Incorrecto
+// Incorrecto
 const resolucionMinimaAncho = 1366;
 const resolucionMinimaAlto = 768;
 ```
@@ -86,13 +86,13 @@ const resolucionMinimaAlto = 768;
 ### Variables del DOM — camelCase descriptivo
 
 ```javascript
-// ✅ Correcto — tomado de editor.js
+// Ejemplo recomendado - tomado de editor.js
 let fileInput, btnSubir, btnDescargar, dropZone;
 let btnRecortar, btnRedimensionar, btnRotar;
 let btnDeshacer, btnRehacer;
 let btnZoomIn, btnZoomOut, zoomLevelDisplay;
 
-// ❌ Incorrecto
+// Incorrecto
 let fi, bs, bd, dz;
 let b1, b2, b3;
 ```
@@ -100,12 +100,12 @@ let b1, b2, b3;
 ### Variables del backend — camelCase
 
 ```javascript
-// ✅ Correcto — tomado del backend modular
+// Ejemplo recomendado - tomado del backend modular
 const { correo, password } = req.body;
 const passwordValida = bcrypt.compareSync(password, usuario.usr_contrasena);
 const queryAcceso = `UPDATE USUARIO SET ...`;
 
-// ❌ Incorrecto
+// Incorrecto
 const { Correo, Password } = req.body;
 const password_valida = bcrypt.compareSync(...);
 ```
@@ -113,12 +113,12 @@ const password_valida = bcrypt.compareSync(...);
 ### Parámetros de funciones — camelCase
 
 ```javascript
-// ✅ Correcto
+// Ejemplo recomendado
 function sincronizarImagenYCanvas(callback) { ... }
 function mostrarError(inputId, mensaje) { ... }
 function renderizarTabla(usuarios) { ... }
 
-// ❌ Incorrecto
+// Incorrecto
 function sincronizarImagenYCanvas(CallBack) { ... }
 function mostrarError(InputId, Mensaje) { ... }
 ```
@@ -132,7 +132,7 @@ function mostrarError(InputId, Mensaje) { ... }
 Todas las funciones usan verbos en español que describen claramente su acción.
 
 ```javascript
-// ✅ Correcto — tomado de editor.js y admin.js
+// Ejemplo recomendado - tomado de editor.js y admin.js
 function sincronizarImagenYCanvas(callback) { ... }
 function guardarEstadoEnHistorial() { ... }
 function actualizarEstado(mensaje, tipo) { ... }
@@ -144,7 +144,7 @@ function limpiarErrores() { ... }
 function cerrarModal() { ... }
 function formatearFecha(fechaStr) { ... }
 
-// ❌ Incorrecto
+// Incorrecto
 function sync(cb) { ... }
 function saveState() { ... }
 function update(msg, t) { ... }
@@ -153,7 +153,7 @@ function update(msg, t) { ... }
 ### Funciones asíncronas — async/await
 
 ```javascript
-// ✅ Correcto — tomado de admin.js
+// Ejemplo recomendado - tomado de admin.js
 async function cargarUsuarios() {
   try {
     const res  = await fetch(`${API}/api/admin/usuarios`);
@@ -162,12 +162,12 @@ async function cargarUsuarios() {
       renderizarTabla(data.usuarios);
     }
   } catch (err) {
-    console.error('❌ Error al cargar usuarios:', err);
+    console.error('Error al cargar usuarios:', err);
     mostrarNotificacion('error', 'Error al cargar los usuarios');
   }
 }
 
-// ❌ Incorrecto — mezclar promesas con async/await
+// Incorrecto — mezclar promesas con async/await
 async function cargarUsuarios() {
   fetch(`${API}/api/admin/usuarios`)
     .then(res => res.json())
@@ -178,7 +178,7 @@ async function cargarUsuarios() {
 ### Funciones de evento — addEventListener
 
 ```javascript
-// ✅ Correcto — tomado de admin.js
+// Ejemplo recomendado - tomado de admin.js
 document.getElementById('btnAdminLogin').addEventListener('click', async () => {
   const correo   = document.getElementById('adminEmail').value.trim();
   const password = document.getElementById('adminPassword').value;
@@ -196,7 +196,7 @@ document.getElementById('searchInput').addEventListener('input', (e) => {
 Las funciones que se llaman desde HTML usan `window` para exponerlas globalmente.
 
 ```javascript
-// ✅ Correcto — tomado de admin.js
+// Ejemplo recomendado - tomado de admin.js
 window.abrirEditar = function(id) {
   const usuario = todosLosUsuarios.find(u => u.usr_id_usuario === id);
   // ...
@@ -215,7 +215,7 @@ window.abrirEliminar = function(id, nombre) {
 ### Objetos de configuración — camelCase
 
 ```javascript
-// ✅ Correcto — tomado del backend modular
+// Ejemplo recomendado - tomado del backend modular
 const db = mysql2.createConnection({
   host:     process.env.DB_HOST,
   user:     process.env.DB_USER,
@@ -223,7 +223,7 @@ const db = mysql2.createConnection({
   database: process.env.DB_NAME,
 });
 
-// ✅ Correcto — tomado de editor.js
+// Ejemplo recomendado - tomado de editor.js
 let cropArea = {
   x: 0,
   y: 0,
@@ -235,7 +235,7 @@ let cropArea = {
 ### Objetos de respuesta del backend — camelCase
 
 ```javascript
-// ✅ Correcto — tomado del backend modular
+// Ejemplo recomendado - tomado del backend modular
 res.json({
   mensaje: 'Login exitoso',
   usuario: {
@@ -251,7 +251,7 @@ res.json({
 ### Objetos de configuración por defecto
 
 ```javascript
-// ✅ Correcto — tomado del backend modular
+// Ejemplo recomendado - tomado del backend modular
 const configDefecto = JSON.stringify({
   notificaciones:  true,
   formatoDefecto:  'png',
@@ -266,7 +266,7 @@ const configDefecto = JSON.stringify({
 ### Estructura base
 
 ```html
-<!-- ✅ Correcto — tomado de admin.html -->
+<!-- Ejemplo recomendado - tomado de admin.html -->
 <!doctype html>
 <html lang="es">
   <head>
@@ -286,14 +286,14 @@ const configDefecto = JSON.stringify({
 ### Nomenclatura de IDs y clases — kebab-case
 
 ```html
-<!-- ✅ Correcto — tomado de admin.html -->
+<!-- Ejemplo recomendado - tomado de admin.html -->
 <div class="admin-login-overlay" id="loginOverlay">
 <div class="admin-login-card">
 <div class="modal-overlay" id="modalUsuario">
 <button class="btn-admin-login" id="btnAdminLogin">
 <span class="error-message" id="adminEmail-error">
 
-<!-- ❌ Incorrecto -->
+<!-- Incorrecto -->
 <div class="adminLoginOverlay" id="login_overlay">
 <div class="AdminLoginCard">
 ```
@@ -301,7 +301,7 @@ const configDefecto = JSON.stringify({
 ### Comentarios de secciones en HTML
 
 ```html
-<!-- ✅ Correcto — tomado de admin.html -->
+<!-- Ejemplo recomendado - tomado de admin.html -->
 <!-- ===== LOGIN DEL ADMINISTRADOR ===== -->
 <!-- ===== PANEL PRINCIPAL ===== -->
 <!-- HEADER -->
@@ -316,7 +316,7 @@ const configDefecto = JSON.stringify({
 ### Atributos semánticos
 
 ```html
-<!-- ✅ Correcto — tomado de admin.html -->
+<!-- Ejemplo recomendado - tomado de admin.html -->
 <input type="email" id="adminEmail" placeholder="admin@artify.com" autocomplete="email" />
 <input type="password" id="adminPassword" autocomplete="current-password" />
 <button type="button" class="toggle-password" aria-label="Mostrar contraseña">
@@ -329,7 +329,7 @@ const configDefecto = JSON.stringify({
 ### Variables CSS — kebab-case en :root
 
 ```css
-/* ✅ Correcto — tomado de admin.css */
+/* Ejemplo recomendado - tomado de admin.css */
 :root {
   --bg:           #0a0a0a;
   --card:         #161616;
@@ -350,7 +350,7 @@ const configDefecto = JSON.stringify({
 ### Clases — kebab-case
 
 ```css
-/* ✅ Correcto — tomado de admin.css */
+/* Ejemplo recomendado - tomado de admin.css */
 .admin-login-overlay { ... }
 .admin-login-card { ... }
 .header-title { ... }
@@ -360,7 +360,7 @@ const configDefecto = JSON.stringify({
 .estado-activo { ... }
 .nav-section-title { ... }
 
-/* ❌ Incorrecto */
+/* Incorrecto */
 .adminLoginOverlay { ... }
 .AdminLoginCard { ... }
 .headerTitle { ... }
@@ -369,7 +369,7 @@ const configDefecto = JSON.stringify({
 ### Organización de secciones en CSS
 
 ```css
-/* ✅ Correcto — tomado de admin.css */
+/* Ejemplo recomendado - tomado de admin.css */
 /* ========== VARIABLES ========== */
 /* ========== RESET ========== */
 /* ========== LOGIN OVERLAY ========== */
@@ -387,7 +387,7 @@ const configDefecto = JSON.stringify({
 ### Media queries para responsividad
 
 ```css
-/* ✅ Correcto — tomado de admin.css */
+/* Ejemplo recomendado - tomado de admin.css */
 @media (min-width: 1400px) {
   :root { --sidebar-width: 160px; }
   .admin-content { max-width: 100%; }
@@ -406,7 +406,7 @@ const configDefecto = JSON.stringify({
 ### Organización de secciones
 
 ```javascript
-// ✅ Correcto — tomado de editor.js y admin.js
+// Ejemplo recomendado - tomado de editor.js y admin.js
 // ========== VARIABLES GLOBALES ==========
 // ========== ELEMENTOS DEL DOM ==========
 // ========== CONSTANTES ==========
@@ -419,13 +419,13 @@ const configDefecto = JSON.stringify({
 ### Declaración de variables — let y const
 
 ```javascript
-// ✅ Correcto
+// Ejemplo recomendado
 const API = 'http://localhost:3000';        // Valor que no cambia → const
 let todosLosUsuarios = [];                  // Valor que cambia → let
 let usuarioIdEliminar = null;
 let modoEdicion = false;
 
-// ❌ Incorrecto
+// Incorrecto
 var API = 'http://localhost:3000';          // Nunca usar var
 var todosLosUsuarios = [];
 ```
@@ -433,30 +433,30 @@ var todosLosUsuarios = [];
 ### Manejo de errores — try/catch
 
 ```javascript
-// ✅ Correcto — tomado de admin.js
+// Ejemplo recomendado - tomado de admin.js
 try {
   const res  = await fetch(`${API}/api/admin/usuarios`);
   const data = await res.json();
   renderizarTabla(data.usuarios);
 } catch (err) {
-  console.error('❌ Error al cargar usuarios:', err);
+  console.error('Error al cargar usuarios:', err);
   mostrarNotificacion('error', 'Error al cargar los usuarios');
 }
 ```
 
-### Logs en consola — con emojis descriptivos
+### Logs en consola — mensajes descriptivos
 
 ```javascript
-// ✅ Correcto — tomado del backend modular y admin.js
-console.log('✅ Conectado a MySQL correctamente');
-console.log('🎉 Login exitoso para:', usuario.usr_nombres);
-console.log('👤 Rol:', usuario.usr_rol);
-console.error('❌ Error al conectar a MySQL:', err.message);
-console.warn('⚠️ No se pudo actualizar último acceso:', err.message);
-console.log('📨 Datos recibidos desde el formulario:');
-console.log('🚀 Redirigiendo al editor...');
+// Ejemplo recomendado - tomado del backend modular y admin.js
+console.log('Conectado a MySQL correctamente');
+console.log('Login exitoso para:', usuario.usr_nombres);
+console.log('Rol:', usuario.usr_rol);
+console.error('Error al conectar a MySQL:', err.message);
+console.warn('No se pudo actualizar último acceso:', err.message);
+console.log('Datos recibidos desde el formulario:');
+console.log('Redirigiendo al editor...');
 
-// ❌ Incorrecto
+// Incorrecto
 console.log('connected');
 console.log('ok');
 console.log(err);
@@ -469,7 +469,7 @@ console.log(err);
 ### Organización de endpoints
 
 ```javascript
-// ✅ Correcto — tomado del backend modular
+// Ejemplo recomendado - tomado del backend modular
 // ========== DEPENDENCIAS ==========
 // ========== CONFIGURACIÓN ==========
 // ========== CONEXIÓN A MYSQL ==========
@@ -482,7 +482,7 @@ console.log(err);
 ### Variables de entorno — process.env
 
 ```javascript
-// ✅ Correcto — tomado del backend modular
+// Ejemplo recomendado - tomado del backend modular
 const db = mysql2.createConnection({
   host:     process.env.DB_HOST,
   user:     process.env.DB_USER,
@@ -490,7 +490,7 @@ const db = mysql2.createConnection({
   database: process.env.DB_NAME,
 });
 
-// ❌ Incorrecto — nunca hardcodear credenciales
+// Incorrecto — nunca hardcodear credenciales
 const db = mysql2.createConnection({
   host:     'localhost',
   user:     'root',
@@ -502,7 +502,7 @@ const db = mysql2.createConnection({
 ### Respuestas del servidor — mensajes en español
 
 ```javascript
-// ✅ Correcto — tomado del backend modular
+// Ejemplo recomendado - tomado del backend modular
 return res.status(401).json({ mensaje: 'Usuario no encontrado' });
 return res.status(401).json({ mensaje: 'Contraseña incorrecta' });
 return res.status(500).json({ mensaje: 'Error en el servidor' });
@@ -516,10 +516,10 @@ res.json({ mensaje: 'Usuario eliminado correctamente' });
 ### Estructura de callbacks de MySQL
 
 ```javascript
-// ✅ Correcto — tomado del backend modular
+// Ejemplo recomendado - tomado del backend modular
 db.query(query, [params], (err, results) => {
   if (err) {
-    console.error('❌ Error en la consulta:', err.message);
+    console.error('Error en la consulta:', err.message);
     return res.status(500).json({ mensaje: 'Error en el servidor' });
   }
   // Lógica de éxito
@@ -534,14 +534,14 @@ db.query(query, [params], (err, results) => {
 ### Nombres de tablas — MAYÚSCULAS
 
 ```sql
--- ✅ Correcto
+-- Ejemplo recomendado
 SELECT * FROM USUARIO;
 SELECT * FROM SESION_EDICION;
 SELECT * FROM OPERACION;
 SELECT * FROM CONFIGURACION;
 SELECT * FROM IMAGEN;
 
--- ❌ Incorrecto
+-- Incorrecto
 SELECT * FROM usuario;
 SELECT * FROM sesion_edicion;
 ```
@@ -551,7 +551,7 @@ SELECT * FROM sesion_edicion;
 Cada columna tiene un prefijo de dos o tres letras que identifica a qué tabla pertenece.
 
 ```sql
--- ✅ Correcto
+-- Ejemplo recomendado
 -- Tabla USUARIO       → prefijo usr_
 usr_id_usuario
 usr_nombres
@@ -583,7 +583,7 @@ opr_fecha_hora
 ### Consultas SQL — multilínea con indentación
 
 ```javascript
-// ✅ Correcto — tomado del backend modular
+// Ejemplo recomendado - tomado del backend modular
 const query = `
   SELECT usr_id_usuario, usr_nombres, usr_apellidos,
          usr_cedula, usr_correo, usr_estado_usuario, usr_rol
@@ -598,14 +598,14 @@ const queryUpdate = `
   WHERE usr_id_usuario = ?
 `;
 
-// ❌ Incorrecto
+// Incorrecto
 const query = 'SELECT usr_id_usuario, usr_nombres, usr_apellidos, usr_cedula, usr_correo, usr_estado_usuario, usr_rol FROM USUARIO ORDER BY usr_fecha_registro DESC';
 ```
 
 ### Vistas — prefijo v_
 
 ```sql
--- ✅ Correcto — definido en artify_db
+-- Ejemplo recomendado - definido en artify_db
 CREATE VIEW v_usuarios_activos AS
 SELECT u.usr_id_usuario,
        CONCAT(u.usr_nombres, ' ', u.usr_apellidos) AS nombre_completo,
@@ -622,21 +622,21 @@ WHERE u.usr_estado_usuario = 'activo';
 ### Comentarios de sección — separadores con =
 
 ```javascript
-// ✅ Correcto — usado en todo el proyecto
+// Ejemplo recomendado - usado en todo el proyecto
 // ========== VARIABLES GLOBALES ==========
 // ========== ENDPOINTS PANEL DE ADMINISTRACIÓN ==========
 // ========== LIMPIEZA AUTOMÁTICA DE SESIONES INACTIVAS ==========
 ```
 
 ```css
-/* ✅ Correcto — usado en admin.css */
+/* Ejemplo recomendado - usado en admin.css */
 /* ========== VARIABLES ========== */
 /* ========== HEADER ========== */
 /* ========== TABLA ========== */
 ```
 
 ```html
-<!-- ✅ Correcto — usado en admin.html -->
+<!-- Ejemplo recomendado - usado en admin.html -->
 <!-- ===== LOGIN DEL ADMINISTRADOR ===== -->
 <!-- ===== PANEL PRINCIPAL ===== -->
 ```
@@ -644,7 +644,7 @@ WHERE u.usr_estado_usuario = 'activo';
 ### Comentarios explicativos — antes del bloque
 
 ```javascript
-// ✅ Correcto — tomado del backend modular
+// Ejemplo recomendado - tomado del backend modular
 // Buscar usuario en la base de datos
 const query = 'SELECT * FROM USUARIO WHERE usr_correo = ?';
 
@@ -662,12 +662,12 @@ const queries = [
 ];
 ```
 
-### Comentarios de cambios importantes — con emoji ✅
+### Comentarios de cambios importantes
 
 ```javascript
-// ✅ CAMBIO: Artify en blanco y más grande
-// ✅ Sidebar más angosto
-// ✅ Soporte para ultrawide y pantallas divididas
+// CAMBIO: Artify en blanco y más grande
+// Sidebar más angosto
+// Soporte para ultrawide y pantallas divididas
 ```
 
 ---
@@ -677,7 +677,7 @@ const queries = [
 ### Formato — tipo(alcance): descripción
 
 ```bash
-# ✅ Correcto — commits reales del proyecto Artify
+# Ejemplo recomendado - commits reales del proyecto Artify
 git commit -m "feat(registro): crear configuración por defecto automáticamente al registrar usuario"
 git commit -m "feat(sesion): agregar control de inactividad y limpieza automática de sesiones"
 git commit -m "feat(filtros): registrar operaciones de filtros en MySQL"

@@ -26,10 +26,10 @@ Permite a los usuarios editar imágenes directamente en el navegador con autenti
 ### Backend
 | Componente | Tecnología | Puerto | Estado            |
 | ---------- | ---------- | ------ | ----------------- |
-| Servidor   | Node.js    | 3000   | ✅ Oficial y único |
-| Framework  | Express.js | 3000   | ✅ Oficial y único |
-| BD         | MySQL 8.0+ | 3306   | ✅ Oficial y único |
-| Paquetes   | pnpm 11.1.1 | backend | ✅ Oficial y único |
+| Servidor   | Node.js    | 3000   | Oficial y único |
+| Framework  | Express.js | 3000   | Oficial y único |
+| BD         | MySQL 8.0+ | 3306   | Oficial y único |
+| Paquetes   | pnpm 11.1.1 | backend | Oficial y único |
 
 ### Control de versiones
 - Git + GitHub
@@ -169,36 +169,36 @@ v_usuarios_activos → resumen de USUARIO + IMAGEN + SESION_EDICION
 ## 6. Funcionalidades Implementadas
 
 ### Autenticación y roles
-- ✅ Registro con bcrypt
-- ✅ Login con validación bcrypt
-- ✅ Tokens firmados por backend para rutas protegidas
-- ✅ Redirección por rol: `admin` → `admin.html`, `usuario` → `editor.html`
-- ✅ Control de sesión activa
-- ✅ Cierre automático de sesiones inactivas (cron job, 8h límite)
+- Registro con bcrypt
+- Login con validación bcrypt
+- Tokens firmados por backend para rutas protegidas
+- Redirección por rol: `admin` → `admin.html`, `usuario` → `editor.html`
+- Control de sesión activa
+- Cierre automático de sesiones inactivas (cron job, 8h límite)
 
 ### Editor de imágenes
-- ✅ Drag & drop para subir imágenes
-- ✅ Recortar con proporciones (libre, 1:1, 16:9, 4:3, 3:2)
-- ✅ Redimensionar con bloqueo de proporción
-- ✅ Rotar (90°, 180°, 270°)
-- ✅ Filtros: Blanco y Negro, Sepia, Brillo, Contraste, Convertir
-- ✅ Deshacer/Rehacer (hasta 20 pasos)
-- ✅ Zoom 50%-200%
-- ✅ Registro de operaciones en MySQL
+- Drag & drop para subir imágenes
+- Recortar con proporciones (libre, 1:1, 16:9, 4:3, 3:2)
+- Redimensionar con bloqueo de proporción
+- Rotar (90°, 180°, 270°)
+- Filtros: Blanco y Negro, Sepia, Brillo, Contraste, Convertir
+- Deshacer/Rehacer (hasta 20 pasos)
+- Zoom 50%-200%
+- Registro de operaciones en MySQL
 
 ### Panel de administración
-- ✅ Login protegido con credenciales en `.env`
-- ✅ CRUD completo sobre tabla USUARIO
-- ✅ Búsqueda en tiempo real
-- ✅ Estadísticas de usuarios activos/inactivos
-- ✅ Columna de rol (admin/usuario)
+- Login protegido con credenciales en `.env`
+- CRUD completo sobre tabla USUARIO
+- Búsqueda en tiempo real
+- Estadísticas de usuarios activos/inactivos
+- Columna de rol (admin/usuario)
 
 ### API REST Analytics
-- ✅ 4 endpoints de analytics (filtros, horarios, formatos, conversión)
-- ✅ Documentación completa en `docs/tecnica/api-analytics.md`
-- ✅ Respuestas en formato JSON estructurado
-- ✅ Código completamente comentado
-- ✅ Versión v1 (permite futuras versiones sin conflictos)
+- 4 endpoints de analytics (filtros, horarios, formatos, conversión)
+- Documentación completa en `docs/tecnica/api-analytics.md`
+- Respuestas en formato JSON estructurado
+- Código completamente comentado
+- Versión v1 (permite futuras versiones sin conflictos)
 
 ---
 

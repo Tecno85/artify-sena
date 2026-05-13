@@ -1,4 +1,4 @@
-# 📊 API REST Analytics - Artify
+# API REST Analytics - Artify
 
 Este módulo expone endpoints que ofrecen información sobre el comportamiento de los usuarios.
 
