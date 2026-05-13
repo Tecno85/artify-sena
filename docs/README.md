@@ -14,6 +14,7 @@ En esta seccion se ubicaran los documentos que describen el proposito, alcance, 
 En esta seccion se ubican los documentos orientados al desarrollo, mantenimiento, pruebas tecnicas, API, estandares y soporte tecnico del sistema.
 
 - [Arquitectura tecnica](./tecnica/arquitectura.md)
+- [Base de datos](./tecnica/base-datos.md)
 - [Plan de pruebas de autenticacion](./tecnica/plan-pruebas-autenticacion.md)
 - [API de analiticas](./tecnica/api-analytics.md)
 - [Estandares de codificacion](./tecnica/coding-standards.md)

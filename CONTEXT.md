@@ -79,8 +79,12 @@ Artify/
 └── docs/
     ├── README.md                  # Índice general de documentación
     ├── proyecto/
+    │   ├── descripcion-proyecto.md
+    │   └── requerimientos-funcionales.md
     ├── tecnica/
+    │   ├── arquitectura.md        # Arquitectura técnica del sistema
     │   ├── api-analytics.md       # Documentación API REST Analytics
+    │   ├── base-datos.md          # Modelo y estructura de MySQL
     │   ├── coding-standards.md    # Estándares Node.js + JavaScript
     │   └── plan-pruebas-autenticacion.md
     └── SKILL_ARTIFY.md            # Buenas prácticas del proyecto
