@@ -1,7 +1,7 @@
 # CONTEXT.md — Proyecto Artify
 
 > Archivo de contexto para continuar el desarrollo.
-> Última actualización: Abril 2026
+> Última actualización: Mayo 2026
 
 ---
 
@@ -10,7 +10,7 @@
 Artify es un editor de imágenes web full stack desarrollado como proyecto académico del programa **Análisis y Desarrollo de Software del SENA (Colombia)**.
 
 **Estudiante:** Ivan Dario Madrid Daza
-**GitHub:** https://github.com/Tecno85/Artify
+**GitHub:** https://github.com/Tecno85/artify-sena
 
 Permite a los usuarios editar imágenes directamente en el navegador con autenticación real, gestión de sesiones, panel de administración y **API REST para consumo de terceros**.
 
@@ -29,10 +29,12 @@ Permite a los usuarios editar imágenes directamente en el navegador con autenti
 | Servidor   | Node.js    | 3000   | ✅ Oficial y único |
 | Framework  | Express.js | 3000   | ✅ Oficial y único |
 | BD         | MySQL 8.0+ | 3306   | ✅ Oficial y único |
+| Paquetes   | pnpm 11.1.1 | backend | ✅ Oficial y único |
 
 ### Control de versiones
 - Git + GitHub
 - Convención: Ramas feature + Pull Requests
+- Commits convencionales (`feat:`, `fix:`, `docs:`, `test:`, `chore:`)
 
 ---
 
