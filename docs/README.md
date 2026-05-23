@@ -8,6 +8,7 @@ En esta sección se ubicarán los documentos que describen el propósito, alcanc
 
 - [Descripción del proyecto](./proyecto/descripcion-proyecto.md)
 - [Requerimientos funcionales](./proyecto/requerimientos-funcionales.md)
+- [Evidencia GA10 de hardware, software y redes](./proyecto/evidencia-ga10-hardware-software-redes.md)
 
 ## Documentación técnica
 
