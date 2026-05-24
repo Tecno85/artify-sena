@@ -6,8 +6,6 @@
       <path d="M0,0 L0,7 L10,3.5 z" fill="#475569"/>
     </marker>
     <style>
-      .title { font: 700 24px Arial, Helvetica, sans-serif; fill: #172033; }
-      .subtitle { font: 400 15px Arial, Helvetica, sans-serif; fill: #526174; }
       .card-title { font: 700 18px Arial, Helvetica, sans-serif; fill: #172033; }
       .card-text { font: 400 15px Arial, Helvetica, sans-serif; fill: #3f4f63; }
       .label { font: 700 14px Arial, Helvetica, sans-serif; fill: #3f4f63; }
@@ -16,41 +14,39 @@
   </defs>
   <rect width="1100" height="620" fill="#e6edf5"/>
   <rect x="70" y="54" width="960" height="512" rx="8" fill="#f3f6fa" stroke="#c5ceda"/>
-  <text x="110" y="104" class="title">Flujo web de Artify</text>
-  <text x="110" y="132" class="subtitle">Comunicación básica entre usuario, aplicación web, servidor y base de datos.</text>
 
-  <rect x="110" y="220" width="185" height="126" rx="8" fill="#eef6ff" stroke="#b8d8f4"/>
-  <rect x="132" y="244" width="42" height="30" rx="5" fill="#dbeafe" stroke="#93c5fd"/>
-  <line x1="140" y1="283" x2="166" y2="283" stroke="#93c5fd" stroke-width="4" stroke-linecap="round"/>
-  <text x="132" y="314" class="card-title">Navegador</text>
-  <text x="132" y="336" class="card-text">Usuario final</text>
+  <rect x="110" y="138" width="185" height="142" rx="8" fill="#eef6ff" stroke="#b8d8f4"/>
+  <rect x="132" y="166" width="42" height="30" rx="5" fill="#dbeafe" stroke="#93c5fd"/>
+  <line x1="140" y1="205" x2="166" y2="205" stroke="#93c5fd" stroke-width="4" stroke-linecap="round"/>
+  <text x="132" y="236" class="card-title">Navegador</text>
+  <text x="132" y="258" class="card-text">Usuario final</text>
 
-  <rect x="355" y="220" width="185" height="126" rx="8" fill="#edf2f7" stroke="#cbd5e1"/>
-  <rect x="377" y="244" width="42" height="30" rx="5" fill="#e2e8f0" stroke="#94a3b8"/>
-  <text x="386" y="265" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#475569">&lt;/&gt;</text>
-  <text x="377" y="314" class="card-title">Frontend</text>
-  <text x="377" y="336" class="card-text">HTML, CSS y JS</text>
+  <rect x="355" y="138" width="185" height="142" rx="8" fill="#edf2f7" stroke="#cbd5e1"/>
+  <rect x="377" y="166" width="42" height="30" rx="5" fill="#e2e8f0" stroke="#94a3b8"/>
+  <text x="386" y="187" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#475569">&lt;/&gt;</text>
+  <text x="377" y="236" class="card-title">Frontend</text>
+  <text x="377" y="258" class="card-text">HTML, CSS y JS</text>
 
-  <rect x="600" y="220" width="185" height="126" rx="8" fill="#eefbf4" stroke="#b8dfc8"/>
-  <rect x="622" y="244" width="42" height="30" rx="5" fill="#dcfce7" stroke="#86efac"/>
-  <text x="635" y="265" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#166534">API</text>
-  <text x="622" y="314" class="card-title">Backend</text>
-  <text x="622" y="336" class="card-text">Node.js + Express</text>
+  <rect x="600" y="138" width="185" height="142" rx="8" fill="#eefbf4" stroke="#b8dfc8"/>
+  <rect x="622" y="166" width="42" height="30" rx="5" fill="#dcfce7" stroke="#86efac"/>
+  <text x="635" y="187" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#166534">API</text>
+  <text x="622" y="236" class="card-title">Backend</text>
+  <text x="622" y="258" class="card-text">Node.js + Express</text>
 
-  <rect x="845" y="220" width="145" height="126" rx="8" fill="#fff7ed" stroke="#fed7aa"/>
-  <ellipse cx="917" cy="254" rx="34" ry="12" fill="#ffedd5" stroke="#fdba74"/>
-  <path d="M883 254 V282 C883 289 898 294 917 294 C936 294 951 289 951 282 V254" fill="#ffedd5" stroke="#fdba74"/>
-  <text x="888" y="314" class="card-title">MySQL</text>
-  <text x="888" y="336" class="card-text">Persistencia</text>
+  <rect x="845" y="138" width="145" height="142" rx="8" fill="#fff7ed" stroke="#fed7aa"/>
+  <ellipse cx="917" cy="170" rx="34" ry="12" fill="#ffedd5" stroke="#fdba74"/>
+  <path d="M883 170 V198 C883 205 898 210 917 210 C936 210 951 205 951 198 V170" fill="#ffedd5" stroke="#fdba74"/>
+  <text x="888" y="236" class="card-title">MySQL</text>
+  <text x="888" y="258" class="card-text">Persistencia</text>
 
-  <path d="M302 283 H346" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
-  <path d="M547 283 H591" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
-  <path d="M792 283 H836" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
-  <text x="307" y="260" class="label">HTTP</text>
-  <text x="548" y="260" class="label">API REST</text>
-  <text x="798" y="260" class="label">mysql2</text>
+  <path d="M302 209 H346" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M547 209 H591" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M792 209 H836" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="307" y="188" class="label">HTTP</text>
+  <text x="548" y="188" class="label">API REST</text>
+  <text x="798" y="188" class="label">mysql2</text>
 
-  <rect x="110" y="420" width="880" height="76" rx="8" fill="#eaf0f7" stroke="#c5ceda"/>
-  <text x="142" y="454" class="note">El navegador consume la interfaz web, el frontend solicita datos al backend y el backend consulta MySQL.</text>
-  <text x="142" y="478" class="note">Este flujo resume la conectividad que se valida durante el alistamiento técnico de Artify.</text>
+  <rect x="110" y="380" width="880" height="76" rx="8" fill="#eaf0f7" stroke="#c5ceda"/>
+  <text x="142" y="414" class="note">El navegador consume la interfaz web, el frontend solicita datos al backend y el backend consulta MySQL.</text>
+  <text x="142" y="438" class="note">Este flujo resume la conectividad que se valida durante el alistamiento técnico de Artify.</text>
 </svg>
