@@ -1,27 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620" role="img" aria-labelledby="title desc">
-  <title id="title">Familias de protocolos</title>
-  <desc id="desc">Diagrama comparativo entre familia TCP/IP, modelo OSI y protocolos usados en aplicaciones web.</desc>
+  <title id="title">Familia TCP/IP y modelo OSI</title>
+  <desc id="desc">Diagrama comparativo entre la familia TCP/IP, el modelo OSI y su relación con Artify.</desc>
+  <defs>
+    <style>
+      .title { font: 700 26px Arial, Helvetica, sans-serif; fill: #172033; }
+      .subtitle { font: 400 16px Arial, Helvetica, sans-serif; fill: #64748b; }
+      .section { font: 700 21px Arial, Helvetica, sans-serif; fill: #172033; }
+      .item { font: 400 15px Arial, Helvetica, sans-serif; fill: #34495e; }
+      .tag { font: 700 12px Arial, Helvetica, sans-serif; fill: #475569; }
+      .note { font: 400 15px Arial, Helvetica, sans-serif; fill: #475569; }
+    </style>
+  </defs>
   <rect width="1100" height="620" fill="#f6f8fb"/>
-  <rect x="70" y="64" width="960" height="492" rx="8" fill="#ffffff" stroke="#d8dee8"/>
-  <rect x="70" y="64" width="960" height="64" rx="8" fill="#172033"/>
-  <text x="110" y="104" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#ffffff">Familias de protocolos y referencia de capas</text>
+  <rect x="70" y="54" width="960" height="512" rx="8" fill="#ffffff" stroke="#d8dee8"/>
+  <text x="110" y="104" class="title">Familia TCP/IP y modelo OSI</text>
+  <text x="110" y="132" class="subtitle">Dos formas complementarias de comprender la transmisión y recepción de datos.</text>
 
-  <rect x="120" y="172" width="390" height="274" rx="8" fill="#eef6ff" stroke="#b8d8f4"/>
-  <text x="150" y="220" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#18324a">Familia TCP/IP</text>
-  <text x="150" y="260" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#34495e">IP: direccionamiento y enrutamiento</text>
-  <text x="150" y="296" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#34495e">TCP: entrega confiable</text>
-  <text x="150" y="332" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#34495e">UDP: transmisión rápida</text>
-  <text x="150" y="368" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#34495e">HTTP/HTTPS: comunicación web</text>
-  <text x="150" y="404" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#34495e">DNS: nombres de dominio</text>
+  <rect x="118" y="176" width="404" height="268" rx="8" fill="#eef6ff" stroke="#b8d8f4"/>
+  <text x="150" y="224" class="section">TCP/IP</text>
+  <rect x="150" y="246" width="92" height="28" rx="14" fill="#dbeafe" stroke="#93c5fd"/>
+  <text x="172" y="265" class="tag">USO REAL</text>
+  <text x="150" y="306" class="item">IP: direccionamiento y enrutamiento</text>
+  <text x="150" y="340" class="item">TCP: entrega confiable</text>
+  <text x="150" y="374" class="item">UDP: transmisión rápida</text>
+  <text x="150" y="408" class="item">HTTP/HTTPS y DNS: servicios web</text>
 
-  <rect x="590" y="172" width="390" height="274" rx="8" fill="#f3fbf7" stroke="#b8dfc8"/>
-  <text x="620" y="220" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#166534">Modelo OSI</text>
-  <text x="620" y="260" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#34495e">Aplicación, presentación y sesión</text>
-  <text x="620" y="296" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#34495e">Transporte y red</text>
-  <text x="620" y="332" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#34495e">Enlace de datos y física</text>
-  <text x="620" y="368" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#34495e">Referencia conceptual por capas</text>
-  <text x="620" y="404" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#34495e">Ayuda a analizar la comunicación</text>
+  <rect x="578" y="176" width="404" height="268" rx="8" fill="#eefbf4" stroke="#b8dfc8"/>
+  <text x="610" y="224" class="section">Modelo OSI</text>
+  <rect x="610" y="246" width="142" height="28" rx="14" fill="#dcfce7" stroke="#86efac"/>
+  <text x="631" y="265" class="tag">REFERENCIA</text>
+  <text x="610" y="306" class="item">Aplicación, presentación y sesión</text>
+  <text x="610" y="340" class="item">Transporte y red</text>
+  <text x="610" y="374" class="item">Enlace de datos y capa física</text>
+  <text x="610" y="408" class="item">Permite analizar la comunicación por capas</text>
 
-  <rect x="150" y="480" width="800" height="46" rx="8" fill="#f8fafc" stroke="#d8dee8"/>
-  <text x="185" y="510" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#475569">Artify se entiende mejor relacionando HTTP/HTTPS con las capas de aplicación y transporte.</text>
+  <rect x="118" y="484" width="864" height="48" rx="8" fill="#f8fafc" stroke="#d8dee8"/>
+  <text x="150" y="514" class="note">En Artify, HTTP/HTTPS se ubica en la capa de aplicación y opera sobre la familia TCP/IP.</text>
 </svg>
