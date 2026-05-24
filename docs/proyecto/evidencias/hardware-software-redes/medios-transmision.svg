@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="720" viewBox="0 0 1100 720" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="820" viewBox="0 0 1100 820" role="img" aria-labelledby="title desc">
   <title id="title">Medios de transmisión guiados y no guiados</title>
   <desc id="desc">Diagrama que clasifica los medios de transmisión en guiados y no guiados, con definición, ejemplos, ventajas y relación con Artify.</desc>
   <defs>
@@ -6,50 +6,56 @@
       .title { font: 700 24px Arial, Helvetica, sans-serif; fill: #172033; }
       .subtitle { font: 400 15px Arial, Helvetica, sans-serif; fill: #526174; }
       .section { font: 700 20px Arial, Helvetica, sans-serif; fill: #172033; }
+      .group { font: 700 14px Arial, Helvetica, sans-serif; fill: #26364a; }
       .item { font: 400 15px Arial, Helvetica, sans-serif; fill: #334155; }
-      .item-strong { font: 700 15px Arial, Helvetica, sans-serif; fill: #26364a; }
       .caption { font: 400 15px Arial, Helvetica, sans-serif; fill: #526174; }
       .label { font: 700 13px Arial, Helvetica, sans-serif; fill: #3f4f63; }
       .note { font: 400 15px Arial, Helvetica, sans-serif; fill: #3f4f63; }
     </style>
   </defs>
-  <rect width="1100" height="720" fill="#e6edf5"/>
-  <rect x="70" y="54" width="960" height="612" rx="8" fill="#f3f6fa" stroke="#c5ceda"/>
+  <rect width="1100" height="820" fill="#e6edf5"/>
+  <rect x="70" y="54" width="960" height="710" rx="8" fill="#f3f6fa" stroke="#c5ceda"/>
   <text x="110" y="104" class="title">Medios de transmisión</text>
-  <text x="110" y="132" class="subtitle">Canales usados para transportar datos entre usuarios, red, servidor y servicios de Artify.</text>
+  <text x="110" y="132" class="subtitle">Canales físicos o inalámbricos por donde viajan los datos entre usuario, red y servicios de Artify.</text>
 
-  <rect x="118" y="176" width="404" height="372" rx="8" fill="#fff7ed" stroke="#fed7aa"/>
+  <rect x="118" y="176" width="404" height="486" rx="8" fill="#fff7ed" stroke="#fed7aa"/>
   <rect x="150" y="208" width="82" height="28" rx="14" fill="#ffedd5" stroke="#fdba74"/>
   <text x="168" y="227" class="label">FÍSICOS</text>
   <text x="150" y="272" class="section">Guiados</text>
-  <text x="150" y="302" class="caption">Usan un medio físico para conducir la señal.</text>
+  <text x="150" y="302" class="caption">La señal viaja por un cable o fibra.</text>
   <line x1="150" y1="332" x2="470" y2="332" stroke="#fed7aa" stroke-width="2"/>
-  <text x="150" y="370" class="item-strong">Ejemplos principales</text>
+  <text x="150" y="370" class="group">Ejemplos y función</text>
   <circle cx="162" cy="402" r="6" fill="#f97316"/>
-  <text x="184" y="407" class="item">Par trenzado: redes Ethernet.</text>
+  <text x="184" y="407" class="item">Par trenzado: conecta equipos por Ethernet.</text>
   <circle cx="162" cy="438" r="6" fill="#f97316"/>
-  <text x="184" y="443" class="item">Coaxial: televisión e Internet.</text>
-  <circle cx="162" cy="474" r="6" fill="#f97316"/>
-  <text x="184" y="479" class="item">Fibra óptica: alta velocidad y distancia.</text>
-  <text x="150" y="520" class="caption">Aportan estabilidad para servidores,</text>
-  <text x="150" y="542" class="caption">equipos de red y entornos internos.</text>
+  <text x="184" y="443" class="item">Coaxial: usado en TV, Internet o enlaces</text>
+  <text x="184" y="465" class="item">específicos de telecomunicaciones.</text>
+  <circle cx="162" cy="500" r="6" fill="#f97316"/>
+  <text x="184" y="505" class="item">Fibra óptica: transmite con alta velocidad,</text>
+  <text x="184" y="527" class="item">menor interferencia y mayor distancia.</text>
+  <text x="150" y="576" class="group">Relación con Artify</text>
+  <text x="150" y="604" class="caption">Es conveniente para servidores, routers,</text>
+  <text x="150" y="626" class="caption">equipos institucionales y redes internas.</text>
 
-  <rect x="578" y="176" width="404" height="372" rx="8" fill="#eef6ff" stroke="#b8d8f4"/>
+  <rect x="578" y="176" width="404" height="486" rx="8" fill="#eef6ff" stroke="#b8d8f4"/>
   <rect x="610" y="208" width="112" height="28" rx="14" fill="#dbeafe" stroke="#93c5fd"/>
   <text x="628" y="227" class="label">INALÁMBRICOS</text>
   <text x="610" y="272" class="section">No guiados</text>
-  <text x="610" y="302" class="caption">Transmiten datos mediante ondas.</text>
+  <text x="610" y="302" class="caption">La señal viaja por ondas electromagnéticas.</text>
   <line x1="610" y1="332" x2="930" y2="332" stroke="#b8d8f4" stroke-width="2"/>
-  <text x="610" y="370" class="item-strong">Ejemplos principales</text>
+  <text x="610" y="370" class="group">Ejemplos y función</text>
   <circle cx="622" cy="402" r="6" fill="#2563eb"/>
-  <text x="644" y="407" class="item">Wi-Fi: acceso a redes locales.</text>
+  <text x="644" y="407" class="item">Wi-Fi: acceso a redes locales sin cable.</text>
   <circle cx="622" cy="438" r="6" fill="#2563eb"/>
-  <text x="644" y="443" class="item">Bluetooth: corto alcance.</text>
-  <circle cx="622" cy="474" r="6" fill="#2563eb"/>
-  <text x="644" y="479" class="item">Redes móviles, microondas o satélite.</text>
-  <text x="610" y="520" class="caption">Aportan movilidad para usuarios</text>
-  <text x="610" y="542" class="caption">que acceden desde navegadores.</text>
+  <text x="644" y="443" class="item">Redes móviles: conexión a Internet desde</text>
+  <text x="644" y="465" class="item">operadores celulares.</text>
+  <circle cx="622" cy="500" r="6" fill="#2563eb"/>
+  <text x="644" y="505" class="item">Bluetooth: comunicación de corto alcance;</text>
+  <text x="644" y="527" class="item">no es el medio principal para Artify.</text>
+  <text x="610" y="576" class="group">Relación con Artify</text>
+  <text x="610" y="604" class="caption">Facilita el acceso del usuario final desde</text>
+  <text x="610" y="626" class="caption">portátiles, tabletas o teléfonos.</text>
 
-  <rect x="118" y="586" width="864" height="48" rx="8" fill="#eaf0f7" stroke="#c5ceda"/>
-  <text x="150" y="616" class="note">En Artify, ambos tipos de medios pueden intervenir en el acceso web; lo esencial es mantener conectividad estable.</text>
+  <rect x="118" y="704" width="864" height="36" rx="8" fill="#eaf0f7" stroke="#c5ceda"/>
+  <text x="150" y="727" class="note">Para Artify, lo importante es que el navegador mantenga comunicación estable con frontend, backend y base de datos.</text>
 </svg>
