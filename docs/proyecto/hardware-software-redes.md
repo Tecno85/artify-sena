@@ -1,4 +1,4 @@
-# Evidencia GA10-220501097-AA1-EV01 - Conceptos y Principios de Hardware e Instalación de Software
+# Conceptos y Principios de Hardware e Instalación de Software
 
 > **Proyecto:** Artify - Editor de Imágenes Web
 > **Programa:** Análisis y Desarrollo de Software - SENA
@@ -23,8 +23,6 @@ Para esta evidencia selecciono macOS como sistema operativo del entorno de traba
 Esta selección no significa que Artify dependa de macOS para el usuario final. macOS se toma como plataforma de referencia para documentar el proceso técnico de preparación del ambiente.
 
 La plataforma seleccionada se compone de:
-
-![Plataforma macOS y Artify](./evidencias/hardware-software-redes/plataforma-macos-artify.svg)
 
 | Elemento | Selección |
 | --- | --- |
@@ -92,9 +90,9 @@ Estas organizaciones permiten que una aplicación web como Artify pueda ejecutar
 
 ---
 
-## 6. Familias de Protocolos para Transmisión y Recepción de Datos
+## 6. Familia TCP/IP y Modelo OSI en la Comunicación de Datos
 
-En redes y networking, los protocolos permiten que los datos viajen desde un origen hasta un destino siguiendo reglas conocidas. Para esta evidencia se pueden distinguir dos grandes familias relacionadas con transmisión y recepción de datos.
+En redes y networking, los datos se transmiten y reciben mediante reglas organizadas. En esta evidencia se diferencia la familia TCP/IP, que agrupa protocolos usados directamente en Internet y redes actuales, del modelo OSI, que funciona como una referencia conceptual para comprender la comunicación por capas.
 
 ![Familias de protocolos](./evidencias/hardware-software-redes/familias-protocolos.svg)
 
@@ -114,7 +112,7 @@ Algunos protocolos de esta familia son:
 
 En Artify, esta familia de protocolos se relaciona con el acceso desde el navegador al frontend y con las peticiones HTTP que el frontend realiza al backend.
 
-### 6.2 Familia OSI
+### 6.2 Modelo OSI
 
 El modelo OSI no es una pila de protocolos usada de forma directa como TCP/IP, pero sí funciona como una referencia conceptual para comprender cómo se organiza la comunicación en redes. Divide el proceso en capas, desde la transmisión física de señales hasta la interacción con aplicaciones.
 
@@ -197,16 +195,16 @@ macOS es una plataforma adecuada para el entorno de trabajo y alistamiento porqu
 
 También identifico que los estándares definidos por organizaciones como IEEE, IETF, ISO, ITU-T y W3C son esenciales para que las aplicaciones web puedan comunicarse de manera interoperable. Además, los protocolos de la familia TCP/IP y el modelo OSI permiten comprender cómo viajan los datos desde el usuario hasta los servicios que componen el sistema.
 
-En conjunto, estos conceptos fortalecen la comprensión del alistamiento de infraestructura tecnológica necesario para llevar una aplicación web desde el desarrollo hacia un entorno preparado para pruebas, implantación y uso.
+En conjunto, estos conceptos fortalecen la comprensión del alistamiento de infraestructura tecnológica necesario para llevar una aplicación web desde el desarrollo hacia un entorno preparado para pruebas, implantación y uso. Esta evidencia me permite relacionar los conceptos de hardware, software y redes con el proceso real de preparación técnica del proyecto Artify.
 
 ---
 
 ## 10. Referencias Básicas
 
-- Apple. Documentación de macOS y herramientas para desarrolladores.
-- IEEE. Estándares relacionados con redes Ethernet y Wi-Fi.
-- IETF. Documentos RFC y estándares de Internet.
+- Apple Developer Documentation. Documentación de macOS y herramientas para desarrolladores.
+- IEEE Standards Association. Estándares relacionados con redes Ethernet y Wi-Fi.
+- RFC Editor / IETF. Documentos RFC y estándares de Internet.
 - ISO. Modelo de referencia OSI y estándares internacionales.
 - ITU-T. Recomendaciones para telecomunicaciones y transmisión de datos.
-- W3C. Estándares para tecnologías web como HTML, CSS y accesibilidad.
+- W3C Standards. Estándares para tecnologías web como HTML, CSS y accesibilidad.
 - SENA. Material de formación relacionado con infraestructura tecnológica, redes y alistamiento de sistemas.
