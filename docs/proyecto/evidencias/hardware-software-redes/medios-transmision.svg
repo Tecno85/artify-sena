@@ -15,46 +15,44 @@
   </defs>
   <rect width="1100" height="820" fill="#e6edf5"/>
   <rect x="70" y="54" width="960" height="710" rx="8" fill="#f3f6fa" stroke="#c5ceda"/>
-  <text x="110" y="104" class="title">Medios de transmisión</text>
-  <text x="110" y="132" class="subtitle">Canales físicos o inalámbricos por donde viajan los datos entre usuario, red y servicios de Artify.</text>
 
-  <rect x="118" y="176" width="404" height="486" rx="8" fill="#fff7ed" stroke="#fed7aa"/>
-  <rect x="150" y="208" width="82" height="28" rx="14" fill="#ffedd5" stroke="#fdba74"/>
-  <text x="168" y="227" class="label">FÍSICOS</text>
-  <text x="150" y="272" class="section">Guiados</text>
-  <text x="150" y="302" class="caption">La señal viaja por un cable o fibra.</text>
-  <line x1="150" y1="332" x2="470" y2="332" stroke="#fed7aa" stroke-width="2"/>
-  <text x="150" y="370" class="group">Ejemplos y función</text>
-  <circle cx="162" cy="402" r="6" fill="#f97316"/>
-  <text x="184" y="407" class="item">Par trenzado: conecta equipos por Ethernet.</text>
-  <circle cx="162" cy="438" r="6" fill="#f97316"/>
-  <text x="184" y="443" class="item">Coaxial: usado en TV, Internet o enlaces</text>
-  <text x="184" y="465" class="item">específicos de telecomunicaciones.</text>
-  <circle cx="162" cy="500" r="6" fill="#f97316"/>
-  <text x="184" y="505" class="item">Fibra óptica: transmite con alta velocidad,</text>
-  <text x="184" y="527" class="item">menor interferencia y mayor distancia.</text>
-  <text x="150" y="576" class="group">Relación con Artify</text>
-  <text x="150" y="604" class="caption">Es conveniente para servidores, routers,</text>
-  <text x="150" y="626" class="caption">equipos institucionales y redes internas.</text>
+  <rect x="118" y="112" width="404" height="550" rx="8" fill="#fff7ed" stroke="#fed7aa"/>
+  <rect x="150" y="144" width="82" height="28" rx="14" fill="#ffedd5" stroke="#fdba74"/>
+  <text x="168" y="163" class="label">FÍSICOS</text>
+  <text x="150" y="208" class="section">Guiados</text>
+  <text x="150" y="238" class="caption">La señal viaja por un cable o fibra.</text>
+  <line x1="150" y1="268" x2="470" y2="268" stroke="#fed7aa" stroke-width="2"/>
+  <text x="150" y="306" class="group">Ejemplos y función</text>
+  <circle cx="162" cy="338" r="6" fill="#f97316"/>
+  <text x="184" y="343" class="item">Par trenzado: conecta equipos por Ethernet.</text>
+  <circle cx="162" cy="374" r="6" fill="#f97316"/>
+  <text x="184" y="379" class="item">Coaxial: usado en TV, Internet o enlaces</text>
+  <text x="184" y="401" class="item">específicos de telecomunicaciones.</text>
+  <circle cx="162" cy="436" r="6" fill="#f97316"/>
+  <text x="184" y="441" class="item">Fibra óptica: transmite con alta velocidad,</text>
+  <text x="184" y="463" class="item">menor interferencia y mayor distancia.</text>
+  <text x="150" y="512" class="group">Relación con Artify</text>
+  <text x="150" y="540" class="caption">Es conveniente para servidores, routers,</text>
+  <text x="150" y="562" class="caption">equipos institucionales y redes internas.</text>
 
-  <rect x="578" y="176" width="404" height="486" rx="8" fill="#eef6ff" stroke="#b8d8f4"/>
-  <rect x="610" y="208" width="112" height="28" rx="14" fill="#dbeafe" stroke="#93c5fd"/>
-  <text x="628" y="227" class="label">INALÁMBRICOS</text>
-  <text x="610" y="272" class="section">No guiados</text>
-  <text x="610" y="302" class="caption">La señal viaja por ondas electromagnéticas.</text>
-  <line x1="610" y1="332" x2="930" y2="332" stroke="#b8d8f4" stroke-width="2"/>
-  <text x="610" y="370" class="group">Ejemplos y función</text>
-  <circle cx="622" cy="402" r="6" fill="#2563eb"/>
-  <text x="644" y="407" class="item">Wi-Fi: acceso a redes locales sin cable.</text>
-  <circle cx="622" cy="438" r="6" fill="#2563eb"/>
-  <text x="644" y="443" class="item">Redes móviles: conexión a Internet desde</text>
-  <text x="644" y="465" class="item">operadores celulares.</text>
-  <circle cx="622" cy="500" r="6" fill="#2563eb"/>
-  <text x="644" y="505" class="item">Bluetooth: comunicación de corto alcance;</text>
-  <text x="644" y="527" class="item">no es el medio principal para Artify.</text>
-  <text x="610" y="576" class="group">Relación con Artify</text>
-  <text x="610" y="604" class="caption">Facilita el acceso del usuario final desde</text>
-  <text x="610" y="626" class="caption">portátiles, tabletas o teléfonos.</text>
+  <rect x="578" y="112" width="404" height="550" rx="8" fill="#eef6ff" stroke="#b8d8f4"/>
+  <rect x="610" y="144" width="136" height="28" rx="14" fill="#dbeafe" stroke="#93c5fd"/>
+  <text x="625" y="163" class="label">INALÁMBRICOS</text>
+  <text x="610" y="208" class="section">No guiados</text>
+  <text x="610" y="238" class="caption">La señal viaja por ondas electromagnéticas.</text>
+  <line x1="610" y1="268" x2="930" y2="268" stroke="#b8d8f4" stroke-width="2"/>
+  <text x="610" y="306" class="group">Ejemplos y función</text>
+  <circle cx="622" cy="338" r="6" fill="#2563eb"/>
+  <text x="644" y="343" class="item">Wi-Fi: acceso a redes locales sin cable.</text>
+  <circle cx="622" cy="374" r="6" fill="#2563eb"/>
+  <text x="644" y="379" class="item">Redes móviles: conexión a Internet desde</text>
+  <text x="644" y="401" class="item">operadores celulares.</text>
+  <circle cx="622" cy="436" r="6" fill="#2563eb"/>
+  <text x="644" y="441" class="item">Bluetooth: comunicación de corto alcance;</text>
+  <text x="644" y="463" class="item">no es el medio principal para Artify.</text>
+  <text x="610" y="512" class="group">Relación con Artify</text>
+  <text x="610" y="540" class="caption">Facilita el acceso del usuario final desde</text>
+  <text x="610" y="562" class="caption">portátiles, tabletas o teléfonos.</text>
 
   <rect x="118" y="704" width="864" height="36" rx="8" fill="#eaf0f7" stroke="#c5ceda"/>
   <text x="150" y="727" class="note">Para Artify, lo importante es que el navegador mantenga comunicación estable con frontend, backend y base de datos.</text>
