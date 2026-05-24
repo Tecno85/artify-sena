@@ -6,16 +6,16 @@
       <path d="M0,0 L0,7 L10,3.5 z" fill="#475569"/>
     </marker>
     <style>
-      .title { font: 700 26px Arial, Helvetica, sans-serif; fill: #172033; }
-      .subtitle { font: 400 16px Arial, Helvetica, sans-serif; fill: #64748b; }
-      .card-title { font: 700 19px Arial, Helvetica, sans-serif; fill: #172033; }
-      .card-text { font: 400 14px Arial, Helvetica, sans-serif; fill: #475569; }
-      .label { font: 700 13px Arial, Helvetica, sans-serif; fill: #475569; }
-      .note { font: 400 15px Arial, Helvetica, sans-serif; fill: #475569; }
+      .title { font: 700 24px Arial, Helvetica, sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px Arial, Helvetica, sans-serif; fill: #526174; }
+      .card-title { font: 700 18px Arial, Helvetica, sans-serif; fill: #172033; }
+      .card-text { font: 400 15px Arial, Helvetica, sans-serif; fill: #3f4f63; }
+      .label { font: 700 14px Arial, Helvetica, sans-serif; fill: #3f4f63; }
+      .note { font: 400 15px Arial, Helvetica, sans-serif; fill: #3f4f63; }
     </style>
   </defs>
-  <rect width="1100" height="620" fill="#f6f8fb"/>
-  <rect x="70" y="54" width="960" height="512" rx="8" fill="#ffffff" stroke="#d8dee8"/>
+  <rect width="1100" height="620" fill="#e6edf5"/>
+  <rect x="70" y="54" width="960" height="512" rx="8" fill="#f3f6fa" stroke="#c5ceda"/>
   <text x="110" y="104" class="title">Flujo web de Artify</text>
   <text x="110" y="132" class="subtitle">Comunicación básica entre usuario, aplicación web, servidor y base de datos.</text>
 
@@ -25,7 +25,7 @@
   <text x="132" y="314" class="card-title">Navegador</text>
   <text x="132" y="336" class="card-text">Usuario final</text>
 
-  <rect x="355" y="220" width="185" height="126" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <rect x="355" y="220" width="185" height="126" rx="8" fill="#edf2f7" stroke="#cbd5e1"/>
   <rect x="377" y="244" width="42" height="30" rx="5" fill="#e2e8f0" stroke="#94a3b8"/>
   <text x="386" y="265" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#475569">&lt;/&gt;</text>
   <text x="377" y="314" class="card-title">Frontend</text>
@@ -50,7 +50,7 @@
   <text x="548" y="260" class="label">API REST</text>
   <text x="798" y="260" class="label">mysql2</text>
 
-  <rect x="110" y="420" width="880" height="72" rx="8" fill="#f8fafc" stroke="#d8dee8"/>
+  <rect x="110" y="420" width="880" height="76" rx="8" fill="#eaf0f7" stroke="#c5ceda"/>
   <text x="142" y="454" class="note">El navegador consume la interfaz web, el frontend solicita datos al backend y el backend consulta MySQL.</text>
   <text x="142" y="478" class="note">Este flujo resume la conectividad que se valida durante el alistamiento técnico de Artify.</text>
 </svg>

@@ -3,16 +3,16 @@
   <desc id="desc">Diagrama comparativo entre la familia TCP/IP, el modelo OSI y su relación con Artify.</desc>
   <defs>
     <style>
-      .title { font: 700 26px Arial, Helvetica, sans-serif; fill: #172033; }
-      .subtitle { font: 400 16px Arial, Helvetica, sans-serif; fill: #64748b; }
-      .section { font: 700 21px Arial, Helvetica, sans-serif; fill: #172033; }
-      .item { font: 400 15px Arial, Helvetica, sans-serif; fill: #34495e; }
-      .tag { font: 700 12px Arial, Helvetica, sans-serif; fill: #475569; }
-      .note { font: 400 15px Arial, Helvetica, sans-serif; fill: #475569; }
+      .title { font: 700 24px Arial, Helvetica, sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px Arial, Helvetica, sans-serif; fill: #526174; }
+      .section { font: 700 20px Arial, Helvetica, sans-serif; fill: #172033; }
+      .item { font: 400 15px Arial, Helvetica, sans-serif; fill: #334155; }
+      .tag { font: 700 12px Arial, Helvetica, sans-serif; fill: #3f4f63; }
+      .note { font: 400 15px Arial, Helvetica, sans-serif; fill: #3f4f63; }
     </style>
   </defs>
-  <rect width="1100" height="620" fill="#f6f8fb"/>
-  <rect x="70" y="54" width="960" height="512" rx="8" fill="#ffffff" stroke="#d8dee8"/>
+  <rect width="1100" height="620" fill="#e6edf5"/>
+  <rect x="70" y="54" width="960" height="512" rx="8" fill="#f3f6fa" stroke="#c5ceda"/>
   <text x="110" y="104" class="title">Familia TCP/IP y modelo OSI</text>
   <text x="110" y="132" class="subtitle">Dos formas complementarias de comprender la transmisión y recepción de datos.</text>
 
@@ -34,6 +34,6 @@
   <text x="610" y="374" class="item">Enlace de datos y capa física</text>
   <text x="610" y="408" class="item">Permite analizar la comunicación por capas</text>
 
-  <rect x="118" y="484" width="864" height="48" rx="8" fill="#f8fafc" stroke="#d8dee8"/>
+  <rect x="118" y="484" width="864" height="52" rx="8" fill="#eaf0f7" stroke="#c5ceda"/>
   <text x="150" y="514" class="note">En Artify, HTTP/HTTPS se ubica en la capa de aplicación y opera sobre la familia TCP/IP.</text>
 </svg>
