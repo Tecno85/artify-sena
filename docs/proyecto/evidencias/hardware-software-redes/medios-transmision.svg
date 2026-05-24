@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620" role="img" aria-labelledby="title desc">
+  <title id="title">Medios de transmisión guiados y no guiados</title>
+  <desc id="desc">Diagrama que clasifica los medios de transmisión en guiados y no guiados.</desc>
+  <rect width="1100" height="620" fill="#f6f8fb"/>
+  <rect x="70" y="64" width="960" height="492" rx="8" fill="#ffffff" stroke="#d8dee8"/>
+  <rect x="70" y="64" width="960" height="64" rx="8" fill="#172033"/>
+  <text x="110" y="104" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#ffffff">Medios de transmisión</text>
+
+  <rect x="120" y="172" width="390" height="282" rx="8" fill="#fff7ed" stroke="#fed7aa"/>
+  <text x="150" y="220" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#9a3412">Guiados</text>
+  <text x="150" y="260" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#34495e">Usan un medio físico para transmitir datos.</text>
+  <line x1="150" y1="296" x2="460" y2="296" stroke="#fed7aa" stroke-width="2"/>
+  <text x="150" y="334" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#34495e">Cable de par trenzado</text>
+  <text x="150" y="370" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#34495e">Cable coaxial</text>
+  <text x="150" y="406" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#34495e">Fibra óptica</text>
+
+  <rect x="590" y="172" width="390" height="282" rx="8" fill="#eef6ff" stroke="#b8d8f4"/>
+  <text x="620" y="220" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#18324a">No guiados</text>
+  <text x="620" y="260" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#34495e">Transmiten datos mediante ondas.</text>
+  <line x1="620" y1="296" x2="930" y2="296" stroke="#b8d8f4" stroke-width="2"/>
+  <text x="620" y="334" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#34495e">Wi-Fi</text>
+  <text x="620" y="370" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#34495e">Bluetooth</text>
+  <text x="620" y="406" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#34495e">Redes móviles, microondas o satélite</text>
+
+  <rect x="150" y="490" width="800" height="46" rx="8" fill="#f8fafc" stroke="#d8dee8"/>
+  <text x="185" y="520" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#475569">Artify requiere conectividad estable entre usuario, servidor, backend y base de datos.</text>
+</svg>

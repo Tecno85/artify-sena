@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620" role="img" aria-labelledby="title desc">
+  <title id="title">Flujo web de Artify</title>
+  <desc id="desc">Diagrama del flujo entre navegador, frontend, backend y base de datos usando HTTP y conexión a MySQL.</desc>
+  <rect width="1100" height="620" fill="#f6f8fb"/>
+  <rect x="70" y="64" width="960" height="492" rx="8" fill="#ffffff" stroke="#d8dee8"/>
+  <rect x="70" y="64" width="960" height="64" rx="8" fill="#172033"/>
+  <text x="110" y="104" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#ffffff">Flujo web de Artify</text>
+
+  <rect x="110" y="220" width="190" height="120" rx="8" fill="#eef6ff" stroke="#b8d8f4"/>
+  <text x="142" y="268" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#18324a">Navegador</text>
+  <text x="142" y="304" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#475569">Usuario final</text>
+
+  <rect x="360" y="220" width="190" height="120" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="396" y="268" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#18324a">Frontend</text>
+  <text x="396" y="304" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#475569">HTML, CSS, JS</text>
+
+  <rect x="610" y="220" width="190" height="120" rx="8" fill="#f3fbf7" stroke="#b8dfc8"/>
+  <text x="648" y="268" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#166534">Backend</text>
+  <text x="648" y="304" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#475569">Node.js + Express</text>
+
+  <rect x="860" y="220" width="150" height="120" rx="8" fill="#fff7ed" stroke="#fed7aa"/>
+  <text x="898" y="268" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#9a3412">MySQL</text>
+  <text x="895" y="304" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#475569">Persistencia</text>
+
+  <path d="M300 280 H354" stroke="#64748b" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M550 280 H604" stroke="#64748b" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M800 280 H854" stroke="#64748b" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <text x="315" y="252" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#475569">HTTP</text>
+  <text x="565" y="252" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#475569">API REST</text>
+  <text x="812" y="252" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#475569">mysql2</text>
+
+  <rect x="140" y="416" width="820" height="58" rx="8" fill="#f8fafc" stroke="#d8dee8"/>
+  <text x="170" y="452" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#475569">La comunicación web usa protocolos estandarizados para conectar cliente, servidor y datos.</text>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#64748b"/>
+    </marker>
+  </defs>
+</svg>

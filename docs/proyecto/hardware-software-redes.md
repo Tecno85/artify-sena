@@ -24,6 +24,8 @@ Desde macOS puedo preparar el entorno local necesario para el proyecto, incluyen
 
 La plataforma seleccionada se compone de:
 
+![Plataforma macOS y Artify](./evidencias/hardware-software-redes/plataforma-macos-artify.svg)
+
 | Elemento | Selección |
 | --- | --- |
 | Sistema operativo | macOS |
@@ -67,6 +69,8 @@ Esta característica permite separar dos conceptos:
 
 Por lo tanto, Artify no depende de macOS para funcionar como aplicación web. Sin embargo, macOS sí se utiliza como plataforma seleccionada para el alistamiento del entorno técnico, instalación de software, pruebas de red local y validación del funcionamiento.
 
+![Flujo web de Artify](./evidencias/hardware-software-redes/flujo-web-artify.svg)
+
 ---
 
 ## 5. Organizaciones que Construyen Estándares de Redes y Networking
@@ -91,6 +95,8 @@ Estas organizaciones permiten que una aplicación web como Artify pueda ejecutar
 ## 6. Familias de Protocolos para Transmisión y Recepción de Datos
 
 En redes y networking, los protocolos permiten que los datos viajen desde un origen hasta un destino siguiendo reglas conocidas. Para esta evidencia se pueden distinguir dos grandes familias relacionadas con transmisión y recepción de datos.
+
+![Familias de protocolos](./evidencias/hardware-software-redes/familias-protocolos.svg)
 
 ### 6.1 Familia TCP/IP
 
@@ -131,6 +137,8 @@ Para Artify, este modelo ayuda a comprender que la aplicación web funciona sobr
 ## 7. Medios de Transmisión Guiados y no Guiados
 
 Los medios de transmisión son los canales por los cuales viajan los datos dentro de una red. Se clasifican principalmente en medios guiados y medios no guiados.
+
+![Medios de transmisión](./evidencias/hardware-software-redes/medios-transmision.svg)
 
 ### 7.1 Medios guiados
 
