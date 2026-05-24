@@ -10,17 +10,17 @@
 
 ## 1. Introducción
 
-En este documento presento un artefacto académico-técnico relacionado con la evidencia de conocimiento GA10-220501097-AA1-EV01: conceptos y principios de hardware e instalación de software. El enfoque principal se centra en conceptos básicos de redes, networking, medios de transmisión, familias de protocolos y alistamiento de infraestructura tecnológica.
+En este documento presento un artefacto académico-técnico relacionado con la evidencia de conocimiento GA10-220501097-AA1-EV01: conceptos y principios de hardware e instalación de software.
 
-Aunque Artify es una aplicación web que puede ser usada desde diferentes sistemas operativos mediante un navegador moderno, para esta evidencia selecciono macOS como sistema operativo del entorno de trabajo, desarrollo y alistamiento. Esta selección permite explicar la preparación del ambiente donde se instala el software requerido, se ejecutan servicios locales, se prueba la conectividad y se valida el funcionamiento del proyecto.
+El propósito es relacionar el proyecto Artify con conceptos básicos de infraestructura tecnológica, redes, networking, medios de transmisión y protocolos de comunicación. Para lograrlo, tomo como referencia el entorno de trabajo usado durante el desarrollo y explico cómo se prepara una plataforma local para ejecutar, probar y validar una aplicación web.
 
 ---
 
 ## 2. Selección de la Plataforma
 
-La plataforma seleccionada para el entorno de trabajo es macOS. Esta elección se realiza porque es el sistema operativo que utilizo para desarrollar, probar y documentar Artify durante el proceso de formación.
+Para esta evidencia selecciono macOS como sistema operativo del entorno de trabajo, desarrollo y alistamiento. La elección se realiza porque es la plataforma desde la cual preparo el proyecto Artify, ejecuto comandos, instalo herramientas y valido el funcionamiento local del sistema.
 
-Desde macOS puedo preparar el entorno local necesario para el proyecto, incluyendo herramientas de desarrollo, gestor de paquetes, base de datos, navegador, terminal y control de versiones. En este contexto, macOS no se define como requisito obligatorio para el usuario final, sino como plataforma de alistamiento y trabajo técnico.
+Esta selección no significa que Artify dependa de macOS para el usuario final. macOS se toma como plataforma de referencia para documentar el proceso técnico de preparación del ambiente.
 
 La plataforma seleccionada se compone de:
 
@@ -41,24 +41,24 @@ La plataforma seleccionada se compone de:
 
 ## 3. Características del Sistema Operativo Seleccionado
 
-macOS es un sistema operativo adecuado para el entorno de trabajo de Artify porque ofrece estabilidad, compatibilidad con herramientas de desarrollo web y una terminal integrada que facilita la instalación y ejecución de software.
+macOS es un sistema operativo adecuado para el alistamiento técnico de Artify porque permite instalar herramientas de desarrollo web, administrar servicios locales y trabajar con conectividad de red desde una terminal integrada.
 
-Para esta evidencia, las características relevantes de macOS son:
+Para esta evidencia, las características relevantes del sistema operativo seleccionado son:
 
 - Permite instalar y ejecutar herramientas de desarrollo como Node.js, pnpm, Git y MySQL.
 - Incluye una terminal que facilita la ejecución de comandos, pruebas y scripts.
 - Soporta navegadores modernos para probar aplicaciones web.
 - Permite trabajar con redes locales, puertos, servicios y conexiones HTTP.
-- Ofrece una base estable para preparar entornos de desarrollo y pruebas.
-- Facilita la integración con editores de código, sistemas de control de versiones y herramientas de productividad.
+- Facilita la integración con editores de código y sistemas de control de versiones.
+- Permite verificar servicios locales, como backend, frontend y base de datos.
 
-En el caso de Artify, macOS se usa para preparar el backend, servir el frontend, conectarse a la base de datos y verificar que la aplicación responda correctamente desde el navegador.
+En el caso de Artify, estas características permiten preparar el backend, servir el frontend, conectarse a MySQL y verificar que la aplicación responda correctamente desde el navegador.
 
 ---
 
 ## 4. Relación de Artify con el Entorno Web
 
-Artify está diseñado como una aplicación web. Esto significa que el usuario final no necesita instalar Artify como un programa nativo de macOS, Windows o Linux. El acceso se realiza desde un navegador web moderno, siempre que exista conexión con el servidor donde se ejecuta la aplicación.
+Artify está diseñado como una aplicación web. Esto significa que el usuario final no necesita instalarlo como un programa nativo del sistema operativo. El acceso se realiza desde un navegador moderno conectado al servidor donde se ejecuta la aplicación.
 
 Esta característica permite separar dos conceptos:
 
@@ -67,7 +67,7 @@ Esta característica permite separar dos conceptos:
 | Sistema operativo del usuario final | Puede ser macOS, Windows, Linux u otro sistema compatible con navegadores modernos. |
 | Sistema operativo del entorno de trabajo | Para esta evidencia se selecciona macOS porque allí se prepara, ejecuta y valida el proyecto. |
 
-Por lo tanto, Artify no depende de macOS para funcionar como aplicación web. Sin embargo, macOS sí se utiliza como plataforma seleccionada para el alistamiento del entorno técnico, instalación de software, pruebas de red local y validación del funcionamiento.
+Por lo tanto, la relación entre Artify y el sistema operativo se divide en dos niveles: el usuario final accede desde el navegador, mientras que el entorno técnico requiere una plataforma preparada para ejecutar servicios, instalar dependencias y validar la comunicación entre componentes.
 
 ![Flujo web de Artify](./evidencias/hardware-software-redes/flujo-web-artify.svg)
 
