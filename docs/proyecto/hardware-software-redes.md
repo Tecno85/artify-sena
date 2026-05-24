@@ -146,38 +146,9 @@ Para Artify, este modelo ayuda a comprender que la aplicación web funciona sobr
 
 ## 7. Medios de Transmisión Guiados y no Guiados
 
-Los medios de transmisión son los canales por los cuales viajan los datos dentro de una red. Se clasifican principalmente en medios guiados y medios no guiados.
+Los medios de transmisión son los canales por los cuales viajan los datos dentro de una red. Para evitar repetir la misma información en texto y tablas, resumo la clasificación, los ejemplos y la relación con Artify en el siguiente esquema.
 
 ![Medios de transmisión](./evidencias/hardware-software-redes/medios-transmision.svg)
-
-### 7.1 Medios guiados
-
-Los medios guiados utilizan un elemento físico para transportar la señal. Son comunes en redes cableadas y suelen ofrecer estabilidad, velocidad y menor interferencia.
-
-Ejemplos:
-
-| Medio guiado | Característica |
-| --- | --- |
-| Cable de par trenzado | Usado en redes Ethernet; común en hogares, oficinas e instituciones. |
-| Cable coaxial | Utilizado en algunos sistemas de televisión, Internet y comunicaciones. |
-| Fibra óptica | Transmite datos mediante pulsos de luz; ofrece alta velocidad y gran distancia. |
-
-En un entorno institucional o empresarial, Artify podría estar disponible desde una red cableada interna usando Ethernet o fibra óptica para conectar equipos, servidores y dispositivos de red.
-
-### 7.2 Medios no guiados
-
-Los medios no guiados transmiten información sin cables físicos, usando ondas electromagnéticas. Son comunes en redes inalámbricas.
-
-Ejemplos:
-
-| Medio no guiado | Característica |
-| --- | --- |
-| Wi-Fi | Permite conectar dispositivos a una red local sin cables. |
-| Bluetooth | Se usa para conexiones de corto alcance entre dispositivos. |
-| Redes móviles | Permiten acceso a Internet mediante tecnologías celulares. |
-| Microondas o satélite | Se usan en comunicaciones de mayor alcance o condiciones especiales. |
-
-Para Artify, un usuario podría acceder desde un portátil conectado por Wi-Fi o desde una red cableada. Lo importante es que exista conectividad estable entre el navegador, el servidor web, el backend y la base de datos.
 
 ---
 
