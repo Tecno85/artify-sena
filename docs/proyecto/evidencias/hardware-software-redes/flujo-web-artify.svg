@@ -12,7 +12,7 @@
       .note { font: 400 15px Arial, Helvetica, sans-serif; fill: #3f4f63; }
     </style>
   </defs>
-  <rect x="80" y="108" width="940" height="330" fill="#e6edf5"/>
+  <rect x="80" y="108" width="940" height="330" rx="14" ry="14" fill="#e6edf5"/>
 
   <rect x="110" y="138" width="185" height="142" rx="8" fill="#eef6ff" stroke="#b8d8f4"/>
   <rect x="181" y="166" width="42" height="30" rx="5" fill="#dbeafe" stroke="#93c5fd"/>

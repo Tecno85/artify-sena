@@ -11,7 +11,7 @@
       .note { font: 400 15px Arial, Helvetica, sans-serif; fill: #3f4f63; }
     </style>
   </defs>
-  <rect x="88" y="82" width="924" height="690" fill="#e6edf5"/>
+  <rect x="88" y="82" width="924" height="690" rx="14" ry="14" fill="#e6edf5"/>
 
   <rect x="118" y="112" width="404" height="550" rx="8" fill="#fff7ed" stroke="#fed7aa"/>
   <rect x="150" y="144" width="82" height="28" rx="14" fill="#ffedd5" stroke="#fdba74"/>

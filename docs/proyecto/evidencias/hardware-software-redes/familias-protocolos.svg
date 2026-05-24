@@ -9,7 +9,7 @@
       .note { font: 400 15px Arial, Helvetica, sans-serif; fill: #3f4f63; }
     </style>
   </defs>
-  <rect x="88" y="86" width="924" height="480" fill="#e6edf5"/>
+  <rect x="88" y="86" width="924" height="480" rx="14" ry="14" fill="#e6edf5"/>
 
   <rect x="118" y="116" width="404" height="328" rx="8" fill="#eef6ff" stroke="#b8d8f4"/>
   <text x="150" y="164" class="section">TCP/IP</text>
