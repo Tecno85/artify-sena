@@ -1,10 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="820" viewBox="0 0 1100 820" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="924" height="690" viewBox="88 82 924 690" role="img" aria-labelledby="title desc">
   <title id="title">Medios de transmisión guiados y no guiados</title>
   <desc id="desc">Diagrama que clasifica los medios de transmisión en guiados y no guiados, con definición, ejemplos, ventajas y relación con Artify.</desc>
   <defs>
     <style>
-      .title { font: 700 24px Arial, Helvetica, sans-serif; fill: #172033; }
-      .subtitle { font: 400 15px Arial, Helvetica, sans-serif; fill: #526174; }
       .section { font: 700 20px Arial, Helvetica, sans-serif; fill: #172033; }
       .group { font: 700 14px Arial, Helvetica, sans-serif; fill: #26364a; }
       .item { font: 400 15px Arial, Helvetica, sans-serif; fill: #334155; }
@@ -13,8 +11,7 @@
       .note { font: 400 15px Arial, Helvetica, sans-serif; fill: #3f4f63; }
     </style>
   </defs>
-  <rect width="1100" height="820" fill="#e6edf5"/>
-  <rect x="70" y="54" width="960" height="710" rx="8" fill="#f3f6fa" stroke="#c5ceda"/>
+  <rect x="88" y="82" width="924" height="690" fill="#e6edf5"/>
 
   <rect x="118" y="112" width="404" height="550" rx="8" fill="#fff7ed" stroke="#fed7aa"/>
   <rect x="150" y="144" width="82" height="28" rx="14" fill="#ffedd5" stroke="#fdba74"/>

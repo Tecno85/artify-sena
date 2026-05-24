@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="380" viewBox="80 108 940 380" role="img" aria-labelledby="title desc">
   <title id="title">Flujo web de Artify</title>
   <desc id="desc">Diagrama del flujo entre navegador, frontend, backend y base de datos usando HTTP, API REST y conexión a MySQL.</desc>
   <defs>
@@ -12,8 +12,7 @@
       .note { font: 400 15px Arial, Helvetica, sans-serif; fill: #3f4f63; }
     </style>
   </defs>
-  <rect width="1100" height="620" fill="#e6edf5"/>
-  <rect x="70" y="54" width="960" height="512" rx="8" fill="#f3f6fa" stroke="#c5ceda"/>
+  <rect x="80" y="108" width="940" height="380" fill="#e6edf5"/>
 
   <rect x="110" y="138" width="185" height="142" rx="8" fill="#eef6ff" stroke="#b8d8f4"/>
   <rect x="132" y="166" width="42" height="30" rx="5" fill="#dbeafe" stroke="#93c5fd"/>
