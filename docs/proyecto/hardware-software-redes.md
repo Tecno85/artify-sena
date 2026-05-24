@@ -14,6 +14,18 @@ En este documento presento un artefacto académico-técnico relacionado con la e
 
 El propósito es relacionar el proyecto Artify con conceptos básicos de infraestructura tecnológica, redes, networking, medios de transmisión y protocolos de comunicación. Para lograrlo, tomo como referencia el entorno de trabajo usado durante el desarrollo y explico cómo se prepara una plataforma local para ejecutar, probar y validar una aplicación web.
 
+### 1.1 Cobertura de la evidencia
+
+| Requisito solicitado | Ubicación en el documento |
+| --- | --- |
+| Selección de la plataforma | Sección 2 |
+| Características del sistema operativo seleccionado | Sección 3 |
+| Organizaciones que construyen estándares de redes y networking | Sección 5 |
+| Protocolos relacionados con transmisión y recepción de datos | Sección 6 |
+| Medios de transmisión guiados y no guiados | Sección 7 |
+| Relación con alistamiento de infraestructura tecnológica | Sección 8 |
+| Conclusión y referencias básicas | Secciones 9 y 10 |
+
 ---
 
 ## 2. Selección de la Plataforma
@@ -175,13 +187,15 @@ En la fase de implantación, el alistamiento de infraestructura tecnológica con
 
 Elementos importantes:
 
-- Sistema operativo seleccionado para trabajo técnico: macOS.
-- Instalación de herramientas como Node.js, pnpm, Git y MySQL.
-- Configuración de variables de entorno para el backend.
-- Verificación de puertos usados por el sistema, como el backend en `3000` y el frontend local en `8080`.
-- Revisión de conectividad entre navegador, frontend, backend y base de datos.
-- Uso de protocolos web como HTTP para la comunicación entre cliente y servidor.
-- Validación de que el usuario final pueda acceder desde un navegador moderno.
+| Componente | Herramienta o recurso | Propósito dentro del alistamiento |
+| --- | --- | --- |
+| Sistema operativo | macOS | Preparar el entorno técnico de trabajo y ejecutar herramientas locales. |
+| Backend | Node.js, Express y pnpm | Instalar dependencias, ejecutar el servidor y exponer la API. |
+| Frontend | Navegador moderno y servidor local | Probar la interfaz web y validar el acceso del usuario final. |
+| Base de datos | MySQL | Almacenar usuarios, sesiones, configuraciones y operaciones. |
+| Red local | HTTP, puertos `3000` y `8080` | Verificar comunicación entre navegador, frontend y backend. |
+| Configuración | Variables de entorno | Definir credenciales, puerto, secreto de token y conexión a base de datos. |
+| Control de versiones | Git y GitHub | Mantener trazabilidad de cambios y documentación del proyecto. |
 
 Esta preparación permite confirmar que Artify no solo tiene código funcional, sino también un entorno técnico capaz de ejecutarlo, probarlo y mantenerlo.
 
@@ -201,10 +215,10 @@ En conjunto, estos conceptos fortalecen la comprensión del alistamiento de infr
 
 ## 10. Referencias Básicas
 
-- Apple Developer Documentation. Documentación de macOS y herramientas para desarrolladores.
-- IEEE Standards Association. Estándares relacionados con redes Ethernet y Wi-Fi.
-- RFC Editor / IETF. Documentos RFC y estándares de Internet.
-- ISO. Modelo de referencia OSI y estándares internacionales.
-- ITU-T. Recomendaciones para telecomunicaciones y transmisión de datos.
-- W3C Standards. Estándares para tecnologías web como HTML, CSS y accesibilidad.
-- SENA. Material de formación relacionado con infraestructura tecnológica, redes y alistamiento de sistemas.
+- Apple Developer Documentation. Documentación técnica de macOS y herramientas para desarrolladores.
+- IEEE Standards Association. Estándares IEEE 802 relacionados con Ethernet y Wi-Fi.
+- RFC Editor / IETF. Documentos RFC usados para definir estándares y protocolos de Internet.
+- ISO. Estándares internacionales y modelo de referencia OSI.
+- ITU-T. Recomendaciones técnicas para telecomunicaciones y transmisión de datos.
+- W3C Standards. Recomendaciones y estándares para tecnologías web como HTML, CSS y accesibilidad.
+- SENA. Material de formación sobre infraestructura tecnológica, redes, hardware, software y alistamiento de sistemas.
