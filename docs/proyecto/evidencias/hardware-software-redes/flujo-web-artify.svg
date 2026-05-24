@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="940" height="380" viewBox="80 108 940 380" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="330" viewBox="80 108 940 330" role="img" aria-labelledby="title desc">
   <title id="title">Flujo web de Artify</title>
   <desc id="desc">Diagrama del flujo entre navegador, frontend, backend y base de datos usando HTTP, API REST y conexión a MySQL.</desc>
   <defs>
@@ -12,7 +12,7 @@
       .note { font: 400 15px Arial, Helvetica, sans-serif; fill: #3f4f63; }
     </style>
   </defs>
-  <rect x="80" y="108" width="940" height="380" fill="#e6edf5"/>
+  <rect x="80" y="108" width="940" height="330" fill="#e6edf5"/>
 
   <rect x="110" y="138" width="185" height="142" rx="8" fill="#eef6ff" stroke="#b8d8f4"/>
   <rect x="181" y="166" width="42" height="30" rx="5" fill="#dbeafe" stroke="#93c5fd"/>
@@ -45,7 +45,7 @@
   <text x="569" y="188" class="label">API REST</text>
   <text x="814" y="188" class="label">mysql2</text>
 
-  <rect x="110" y="380" width="880" height="76" rx="8" fill="#eaf0f7" stroke="#c5ceda"/>
-  <text x="142" y="414" class="note">El navegador consume la interfaz web, el frontend solicita datos al backend y el backend consulta MySQL.</text>
-  <text x="142" y="438" class="note">Este flujo resume la conectividad que se valida durante el alistamiento técnico de Artify.</text>
+  <rect x="110" y="326" width="880" height="76" rx="8" fill="#eaf0f7" stroke="#c5ceda"/>
+  <text x="142" y="360" class="note">El navegador consume la interfaz web, el frontend solicita datos al backend y el backend consulta MySQL.</text>
+  <text x="142" y="384" class="note">Este flujo resume la conectividad que se valida durante el alistamiento técnico de Artify.</text>
 </svg>
