@@ -10,7 +10,7 @@
 
 ## 1. Introducción
 
-En este documento presento un artefacto académico-técnico relacionado con la evidencia de conocimiento GA10-220501097-AA1-EV01: conceptos y principios de hardware e instalación de software.
+En este documento presento un artefacto académico-técnico relacionado con la evidencia de conocimiento GA10-220501097-AA1-EV01, enfocada en conceptos y principios de hardware e instalación de software.
 
 El propósito es relacionar el proyecto Artify con conceptos básicos de infraestructura tecnológica, redes, networking, medios de transmisión y protocolos de comunicación. Para lograrlo, tomo como referencia el entorno de trabajo usado durante el desarrollo y explico cómo se prepara una plataforma local para ejecutar, probar y validar una aplicación web.
 
@@ -30,9 +30,9 @@ El propósito es relacionar el proyecto Artify con conceptos básicos de infraes
 
 ## 2. Selección de la Plataforma
 
-Para esta evidencia selecciono macOS como sistema operativo del entorno de trabajo, desarrollo y alistamiento. La elección se realiza porque es la plataforma desde la cual preparo el proyecto Artify, ejecuto comandos, instalo herramientas y valido el funcionamiento local del sistema.
+Para esta evidencia selecciono macOS como sistema operativo del entorno de trabajo, desarrollo y alistamiento. La elección se realiza porque es la plataforma desde la cual preparo Artify, ejecuto comandos, instalo herramientas y valido el funcionamiento local del sistema.
 
-Esta selección no significa que Artify dependa de macOS para el usuario final. macOS se toma como plataforma de referencia para documentar el proceso técnico de preparación del ambiente.
+Esta selección no significa que la aplicación dependa de macOS para el usuario final. En este documento, macOS se toma como plataforma de referencia para describir el proceso técnico de preparación del ambiente.
 
 La plataforma seleccionada se compone de:
 
@@ -51,7 +51,7 @@ La plataforma seleccionada se compone de:
 
 ## 3. Características del Sistema Operativo Seleccionado
 
-macOS es un sistema operativo adecuado para el alistamiento técnico de Artify porque permite instalar herramientas de desarrollo web, administrar servicios locales y trabajar con conectividad de red desde una terminal integrada.
+macOS es un sistema operativo adecuado para el alistamiento técnico porque permite instalar herramientas de desarrollo web, administrar servicios locales y trabajar con conectividad de red desde una terminal integrada.
 
 Para esta evidencia, las características relevantes del sistema operativo seleccionado son:
 
@@ -77,7 +77,7 @@ Esta característica permite separar dos conceptos:
 | Sistema operativo del usuario final | Puede ser macOS, Windows, Linux u otro sistema compatible con navegadores modernos. |
 | Sistema operativo del entorno de trabajo | Para esta evidencia se selecciona macOS porque allí se prepara, ejecuta y valida el proyecto. |
 
-Por lo tanto, la relación entre Artify y el sistema operativo se divide en dos niveles: el usuario final accede desde el navegador, mientras que el entorno técnico requiere una plataforma preparada para ejecutar servicios, instalar dependencias y validar la comunicación entre componentes.
+De esta forma, la relación entre Artify y el sistema operativo se divide en dos niveles: el usuario final accede desde el navegador, mientras que el entorno técnico requiere una plataforma preparada para ejecutar servicios, instalar dependencias y validar la comunicación entre componentes.
 
 ![Flujo web de Artify](./evidencias/hardware-software-redes/flujo-web-artify.svg)
 
@@ -146,7 +146,7 @@ Para Artify, este modelo ayuda a comprender que la aplicación web funciona sobr
 
 ## 7. Medios de Transmisión Guiados y no Guiados
 
-Los medios de transmisión son los canales por los cuales viajan los datos dentro de una red. Para evitar repetir la misma información en texto y tablas, resumo la clasificación, los ejemplos y la relación con Artify en el siguiente esquema.
+Los medios de transmisión son los canales por los cuales viajan los datos dentro de una red. En el siguiente esquema se resume su clasificación, sus ejemplos principales y su relación con el acceso web a Artify.
 
 ![Medios de transmisión](./evidencias/hardware-software-redes/medios-transmision.svg)
 
@@ -168,7 +168,7 @@ Elementos importantes:
 | Configuración | Variables de entorno | Definir credenciales, puerto, secreto de token y conexión a base de datos. |
 | Control de versiones | Git y GitHub | Mantener trazabilidad de cambios y documentación del proyecto. |
 
-Esta preparación permite confirmar que Artify no solo tiene código funcional, sino también un entorno técnico capaz de ejecutarlo, probarlo y mantenerlo.
+Esta preparación permite confirmar que Artify no solo cuenta con código funcional, sino también con un entorno técnico capaz de ejecutarlo, probarlo y mantenerlo.
 
 ---
 
