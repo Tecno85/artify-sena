@@ -17,6 +17,7 @@ En esta sección se ubican los documentos orientados al desarrollo, mantenimient
 - [Arquitectura técnica](./tecnica/arquitectura.md)
 - [Base de datos](./tecnica/base-datos.md)
 - [Guía de despliegue y ejecución local](./tecnica/despliegue.md)
+- [Verificación de hardware para Artify](./tecnica/verificacion-hardware-artify.md)
 - [Plan de pruebas de autenticación](./tecnica/plan-pruebas-autenticacion.md)
 - [API de analíticas](./tecnica/api-analytics.md)
 - [Estándares de codificación](./tecnica/coding-standards.md)
