@@ -14,6 +14,21 @@ En este informe verifico las características mínimas de hardware y software ne
 
 Considero importante diferenciar entre el entorno servidor y el equipo cliente. El servidor debe ejecutar los servicios principales del sistema, mientras que el equipo cliente necesita un navegador moderno y recursos suficientes para interactuar con la aplicación y editar imágenes desde el navegador.
 
+### 1.1 Cobertura de la evidencia
+
+| Requisito solicitado | Ubicación en el documento |
+| --- | --- |
+| Aplicación web desarrollada en JavaScript | Secciones 3 y 9 |
+| Acceso a información persistente para identificación y registro de usuario | Secciones 3, 6 y 11 |
+| Características mínimas de hardware para despliegue | Sección 6 |
+| Características recomendadas de hardware para estabilidad | Sección 7 |
+| Requisitos del equipo cliente | Sección 8 |
+| Requisitos de software, sistema operativo y herramientas | Secciones 9 y 12 |
+| Requisitos de red y conectividad | Sección 10 |
+| Consideración de 250 usuarios activos no concurrentes | Sección 11 |
+| Licenciamiento de software | Sección 12 |
+| Tabla de verificación de cumplimiento | Sección 13 |
+
 ---
 
 ## 2. Objetivo
@@ -196,22 +211,30 @@ Considero importante revisar la licencia de cada herramienta, especialmente si e
 
 La siguiente tabla funciona como lista de chequeo para verificar si la infraestructura disponible cumple con lo necesario para desplegar Artify. En esta primera versión dejo el cumplimiento como `Por verificar`, porque todavía no estoy evaluando un servidor real específico.
 
-| Elemento a verificar | Requisito mínimo | Requisito recomendado | Cumple / No cumple | Observación |
-| --- | --- | --- | --- | --- |
-| Procesador del servidor | 2 vCPU | 2 a 4 vCPU | Por verificar | Validar según proveedor o equipo disponible. |
-| Memoria RAM del servidor | 2 GB | 4 GB | Por verificar | Debe cubrir backend, MySQL y sistema operativo. |
-| Almacenamiento | 40 GB SSD | 80 GB SSD | Por verificar | Considerar base de datos, logs y respaldos. |
-| Sistema operativo | Compatible con Node.js y MySQL | Linux servidor actualizado | Por verificar | Revisar soporte y actualizaciones. |
-| Base de datos | MySQL instalado y configurado | MySQL con respaldos periódicos | Por verificar | Debe contener la estructura de Artify. |
-| Backend | Node.js y pnpm disponibles | Servicio configurado de forma estable | Por verificar | Validar instalación de dependencias. |
-| Frontend | Servidor web o carpeta publicada | Publicación por HTTPS | Por verificar | Debe permitir acceso desde navegador. |
-| Red | Conexión estable | HTTPS y puertos controlados | Por verificar | Verificar comunicación entre componentes. |
-| Cliente | Navegador moderno | Equipo con recursos suficientes | Por verificar | Debe permitir edición de imágenes. |
-| Licenciamiento | Herramientas permitidas para uso | Licencias revisadas antes de producción | Por verificar | Revisar Node.js, Express, MySQL y sistema operativo. |
+| Elemento a verificar | Requisito mínimo | Requisito recomendado | Cumple / No cumple | Evidencia o método de verificación | Observación |
+| --- | --- | --- | --- | --- | --- |
+| Procesador del servidor | 2 vCPU | 2 a 4 vCPU | Por verificar | Revisar ficha técnica del VPS o panel del proveedor. | Validar según proveedor o equipo disponible. |
+| Memoria RAM del servidor | 2 GB | 4 GB | Por verificar | Revisar panel del servidor o comando de recursos del sistema. | Debe cubrir backend, MySQL y sistema operativo. |
+| Almacenamiento | 40 GB SSD | 80 GB SSD | Por verificar | Revisar capacidad del disco y espacio libre disponible. | Considerar base de datos, logs y respaldos. |
+| Sistema operativo | Compatible con Node.js y MySQL | Linux servidor actualizado | Por verificar | Revisar versión del sistema operativo y soporte de paquetes. | Revisar soporte y actualizaciones. |
+| Base de datos | MySQL instalado y configurado | MySQL con respaldos periódicos | Por verificar | Comprobar acceso a MySQL y existencia de la base `artify_db`. | Debe contener la estructura de Artify. |
+| Backend | Node.js y pnpm disponibles | Servicio configurado de forma estable | Por verificar | Ejecutar `node -v`, `pnpm -v` y prueba de arranque del backend. | Validar instalación de dependencias. |
+| Frontend | Servidor web o carpeta publicada | Publicación por HTTPS | Por verificar | Abrir la URL publicada desde un navegador moderno. | Debe permitir acceso desde navegador. |
+| Red | Conexión estable | HTTPS y puertos controlados | Por verificar | Probar acceso HTTP/HTTPS y comunicación con la API. | Verificar comunicación entre componentes. |
+| Cliente | Navegador moderno | Equipo con recursos suficientes | Por verificar | Probar carga de imagen, edición básica y descarga desde el navegador. | Debe permitir edición de imágenes. |
+| Licenciamiento | Herramientas permitidas para uso | Licencias revisadas antes de producción | Por verificar | Revisar documentación oficial de licencias de cada herramienta. | Revisar Node.js, Express, MySQL y sistema operativo. |
 
 ---
 
-## 14. Conclusión
+## 14. Resultado de la Verificación
+
+Con base en los criterios revisados, considero que Artify puede desplegarse inicialmente en un VPS moderado, siempre que se verifiquen los recursos mínimos definidos en la tabla de cumplimiento. La arquitectura del proyecto no exige una infraestructura de alta concurrencia en esta etapa, pero sí requiere que el servidor tenga capacidad suficiente para ejecutar el backend, operar MySQL, atender solicitudes de autenticación y mantener una conexión estable con los usuarios.
+
+El resultado de esta verificación queda como `Por verificar` porque todavía no estoy evaluando una infraestructura real específica. Sin embargo, el informe deja definidos los elementos que debo comprobar antes de realizar un despliegue formal.
+
+---
+
+## 15. Conclusión
 
 Después de revisar los elementos mínimos de hardware, software, sistema operativo, red y licenciamiento, concluyo que Artify puede desplegarse inicialmente en una infraestructura moderada. Esto se debe a que es una aplicación web desarrollada con JavaScript, con backend Node.js, base de datos MySQL y una proyección de 250 usuarios activos no concurrentes.
 
@@ -221,7 +244,7 @@ Esta verificación me permite reconocer que el despliegue de una aplicación web
 
 ---
 
-## 15. Referencias Básicas
+## 16. Referencias Básicas
 
 - Node.js Documentation. Documentación oficial del entorno de ejecución Node.js.
 - Express Documentation. Documentación oficial del framework Express.

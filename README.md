@@ -180,14 +180,18 @@ Artify/
     ├── README.md
     ├── proyecto/
     │   ├── descripcion-proyecto.md
-    │   └── requerimientos-funcionales.md
+    │   ├── hardware-software-redes.md
+    │   ├── requerimientos-funcionales.md
+    │   └── evidencias/
     ├── tecnica/
     │   ├── arquitectura.md
     │   ├── api-analytics.md
     │   ├── base-datos.md
     │   ├── coding-standards.md
     │   ├── despliegue.md
-    │   └── plan-pruebas-autenticacion.md
+    │   ├── plan-pruebas-autenticacion.md
+    │   ├── verificacion-hardware-artify.md
+    │   └── evidencias/
     └── SKILL_ARTIFY.md         # Buenas prácticas del proyecto
 ```
 
