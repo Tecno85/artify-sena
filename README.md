@@ -189,6 +189,7 @@ Artify/
     │   ├── base-datos.md
     │   ├── coding-standards.md
     │   ├── despliegue.md
+    │   ├── plan-instalacion-artify.md
     │   ├── plan-pruebas-autenticacion.md
     │   ├── verificacion-hardware-artify.md
     │   └── evidencias/
