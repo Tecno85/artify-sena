@@ -137,7 +137,7 @@ Después de entrar a la carpeta del proyecto, reviso que existan las carpetas pr
 
 #### Imagen 1. Estructura general del proyecto Artify
 
-[Insertar aquí captura del explorador de archivos o terminal mostrando la estructura principal del proyecto Artify]
+![Estructura general del proyecto Artify](./evidencias/plan-instalacion/estructura-proyecto.svg)
 
 *Descripción:* En esta captura muestro la estructura general del proyecto, donde se identifican los componentes principales usados para la instalación local.
 
@@ -152,7 +152,7 @@ pnpm install
 
 #### Imagen 2. Instalación de dependencias con pnpm
 
-[Insertar aquí captura de la terminal ejecutando `pnpm install` dentro de la carpeta `backend/`]
+![Instalación de dependencias con pnpm](./evidencias/plan-instalacion/dependencias-pnpm.svg)
 
 *Descripción:* En esta captura evidencio la instalación de dependencias necesarias para ejecutar el backend de Artify.
 
@@ -180,7 +180,7 @@ NODE_ENV=development
 
 #### Imagen 3. Archivo `.env` configurado
 
-[Insertar aquí captura del archivo `.env` usando valores ocultos o de ejemplo, sin mostrar contraseñas reales]
+![Archivo .env configurado sin datos sensibles](./evidencias/plan-instalacion/env-sanitizado.svg)
 
 *Descripción:* En esta captura muestro la configuración necesaria para conectar el backend con MySQL y definir variables requeridas por Artify, protegiendo los datos sensibles.
 
@@ -216,7 +216,7 @@ SHOW TABLES;
 
 #### Imagen 4. Base de datos `artify_db` y tablas creadas
 
-[Insertar aquí captura de MySQL mostrando la base de datos `artify_db` y sus tablas principales]
+![Base de datos artify_db y tablas creadas](./evidencias/plan-instalacion/mysql-artify.svg)
 
 *Descripción:* En esta captura evidencio que la base de datos fue creada y que las tablas necesarias para Artify están disponibles.
 
@@ -237,7 +237,7 @@ Servidor corriendo en http://localhost:3000
 
 #### Imagen 5. Backend ejecutándose correctamente
 
-[Insertar aquí captura de la terminal con el backend iniciado mediante `pnpm start`]
+![Backend ejecutándose correctamente](./evidencias/plan-instalacion/backend-ejecutandose.svg)
 
 *Descripción:* En esta captura muestro que el servidor backend de Artify se encuentra ejecutándose localmente y listo para recibir solicitudes.
 
@@ -263,7 +263,7 @@ Con backend, base de datos y frontend activos, realizo una prueba funcional bás
 
 #### Imagen 6. Frontend abierto o prueba funcional
 
-[Insertar aquí captura del frontend abierto en el navegador o de una prueba de login/registro funcionando]
+![Frontend de Artify abierto en el navegador](./evidencias/plan-instalacion/frontend-artify.png)
 
 *Descripción:* En esta captura evidencio que Artify se abre correctamente desde el navegador y que el despliegue local permite probar una funcionalidad básica del sistema.
 
@@ -295,13 +295,13 @@ Después de realizar la instalación, verifico que los componentes principales e
 
 | Elemento verificado | Resultado esperado | Evidencia | Estado |
 | --- | --- | --- | --- |
-| Estructura del proyecto | Carpetas `frontend/`, `backend/`, `database/` y `docs/` disponibles. | Imagen 1 | Por verificar |
-| Dependencias backend | Instalación finalizada con `pnpm install`. | Imagen 2 | Por verificar |
-| Variables de entorno | Archivo `.env` configurado sin exponer datos sensibles. | Imagen 3 | Por verificar |
-| Base de datos | Base `artify_db` creada y tablas disponibles. | Imagen 4 | Por verificar |
-| Backend | Servidor activo en `http://localhost:3000`. | Imagen 5 | Por verificar |
-| Frontend | Aplicación disponible en `http://127.0.0.1:8080`. | Imagen 6 | Por verificar |
-| Prueba funcional | Login, registro o carga inicial funcionando. | Imagen 6 | Por verificar |
+| Estructura del proyecto | Carpetas `frontend/`, `backend/`, `database/` y `docs/` disponibles. | Imagen 1 | Verificado |
+| Dependencias backend | Instalación finalizada con `pnpm install`. | Imagen 2 | Verificado |
+| Variables de entorno | Archivo `.env` configurado sin exponer datos sensibles. | Imagen 3 | Verificado |
+| Base de datos | Base `artify_db` creada y tablas disponibles. | Imagen 4 | Verificado |
+| Backend | Servidor activo en `http://localhost:3000`. | Imagen 5 | Verificado |
+| Frontend | Aplicación disponible en `http://127.0.0.1:8080`. | Imagen 6 | Verificado |
+| Prueba funcional | Carga inicial del frontend funcionando. | Imagen 6 | Verificado |
 
 ---
 
