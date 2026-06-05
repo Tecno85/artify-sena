@@ -31,7 +31,7 @@ En su estado actual, Artify se trabaja como un proyecto académico y no utiliza 
 ---
 
 <p align="center">
-  <img src="./evidencias/alta-disponibilidad-clusteres/arquitectura-alta-disponibilidad-artify.png" alt="Arquitectura de alta disponibilidad para Artify" style="border-radius: 10px;">
+  <img src="./evidencias/alta-disponibilidad-clusteres/arquitectura-alta-disponibilidad-artify.png" alt="Arquitectura de alta disponibilidad para Artify">
 </p>
 
 ## 4. Concepto de clúster
@@ -113,7 +113,7 @@ Para Artify, como proyecto académico, propongo los siguientes valores de refere
 | RTO | 2 a 4 horas | Es un tiempo razonable para restaurar backend, base de datos y frontend en un entorno controlado. |
 
 <p align="center">
-  <img src="./evidencias/alta-disponibilidad-clusteres/rpo-rto-artify.png" alt="RPO y RTO propuestos para Artify" style="border-radius: 10px;">
+  <img src="./evidencias/alta-disponibilidad-clusteres/rpo-rto-artify.png" alt="RPO y RTO propuestos para Artify">
 </p>
 
 ---
@@ -131,7 +131,7 @@ Para fortalecer la continuidad de Artify, propongo aplicar acciones básicas que
 - Registrar cambios importantes en configuración para facilitar futuras revisiones.
 
 <p align="center">
-  <img src="./evidencias/alta-disponibilidad-clusteres/flujo-recuperacion-desastres-artify.png" alt="Flujo de recuperación de desastres para Artify" style="border-radius: 10px;">
+  <img src="./evidencias/alta-disponibilidad-clusteres/flujo-recuperacion-desastres-artify.png" alt="Flujo de recuperación de desastres para Artify">
 </p>
 
 ---
@@ -178,7 +178,7 @@ Para un escenario básico, propongo verificar:
 - Que los datos puedan guardarse y consultarse después de una restauración.
 
 <p align="center">
-  <img src="./evidencias/alta-disponibilidad-clusteres/pruebas-operacion-recuperacion-artify.png" alt="Pruebas de operación y recuperación para Artify" style="border-radius: 10px;">
+  <img src="./evidencias/alta-disponibilidad-clusteres/pruebas-operacion-recuperacion-artify.png" alt="Pruebas de operación y recuperación para Artify">
 </p>
 
 Estas pruebas permiten detectar fallos de configuración antes de considerar que el sistema está recuperado o disponible.
