@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 
 const db = require('../config/db');
 const {
+  normalizarIdEntero,
   validarUsuario,
   validarEdicionUsuario,
 } = require('../utils/validacion');
@@ -106,9 +107,14 @@ function crearUsuario(req, res) {
 
 // ========== EDICIÓN DE USUARIO ==========
 function editarUsuario(req, res) {
-  const { id } = req.params;
+  const id = normalizarIdEntero(req.params.id);
   const { nombres, apellidos, cedula, fechaNacimiento, correo, estado } =
     req.body;
+
+  if (id === null) {
+    return res.status(400).json({ mensaje: 'Identificador de usuario inválido' });
+  }
+
   const errorValidacion = validarEdicionUsuario({
     nombres,
     apellidos,
@@ -136,10 +142,14 @@ function editarUsuario(req, res) {
   db.query(
     query,
     [nombres, apellidos, cedula, fechaNacimiento, correo, estado, id],
-    (err) => {
+    (err, result) => {
       if (err) {
         console.error('❌ Error al editar usuario:', err.message);
         return res.status(500).json({ mensaje: 'Error al editar usuario' });
+      }
+
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ mensaje: 'Usuario no encontrado' });
       }
 
       return res.json({ mensaje: 'Usuario editado correctamente' });
@@ -149,8 +159,12 @@ function editarUsuario(req, res) {
 
 // ========== ELIMINACIÓN DE USUARIO ==========
 async function eliminarUsuario(req, res) {
-  const id = parseInt(req.params.id, 10);
+  const id = normalizarIdEntero(req.params.id);
   const dbPromise = db.promise();
+
+  if (id === null) {
+    return res.status(400).json({ mensaje: 'Identificador de usuario inválido' });
+  }
 
   // Eliminar primero las tablas más dependientes para evitar errores de integridad referencial
   const pasos = [

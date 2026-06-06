@@ -7,7 +7,10 @@ function filtrosPopulares(req, res) {
     SELECT
       opr_tipo_operacion as filtro,
       COUNT(*) as usos,
-      ROUND(100 * COUNT(*) / (SELECT COUNT(*) FROM OPERACION), 2) as porcentaje
+      COALESCE(
+        ROUND(100 * COUNT(*) / NULLIF((SELECT COUNT(*) FROM OPERACION), 0), 2),
+        0
+      ) as porcentaje
     FROM OPERACION
     WHERE opr_estado_operacion = 'completada'
     GROUP BY opr_tipo_operacion
@@ -43,7 +46,10 @@ function horariosEdicion(req, res) {
     SELECT
       HOUR(opr_fecha_hora) as hora,
       COUNT(*) as cantidad_ediciones,
-      ROUND(100 * COUNT(*) / (SELECT COUNT(*) FROM OPERACION), 2) as porcentaje
+      COALESCE(
+        ROUND(100 * COUNT(*) / NULLIF((SELECT COUNT(*) FROM OPERACION), 0), 2),
+        0
+      ) as porcentaje
     FROM OPERACION
     WHERE opr_estado_operacion = 'completada'
     GROUP BY HOUR(opr_fecha_hora)
@@ -78,7 +84,10 @@ function formatosPreferidos(req, res) {
     SELECT
       img_formato as formato,
       COUNT(*) as descargas,
-      ROUND(100 * COUNT(*) / (SELECT COUNT(*) FROM IMAGEN), 2) as porcentaje
+      COALESCE(
+        ROUND(100 * COUNT(*) / NULLIF((SELECT COUNT(*) FROM IMAGEN), 0), 2),
+        0
+      ) as porcentaje
     FROM IMAGEN
     WHERE img_estado_imagen = 'activa'
     GROUP BY img_formato
@@ -111,9 +120,15 @@ function formatosPreferidos(req, res) {
 function tasaConversion(req, res) {
   const query = `
     SELECT
-      ROUND(100 * SUM(CASE WHEN ses_cambios_guardados = 1 THEN 1 ELSE 0 END) / COUNT(*), 2) as tasa_conversion_porcentaje,
+      COALESCE(
+        ROUND(
+          100 * SUM(CASE WHEN ses_cambios_guardados = 1 THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0),
+          2
+        ),
+        0
+      ) as tasa_conversion_porcentaje,
       COUNT(*) as total_sesiones,
-      SUM(CASE WHEN ses_cambios_guardados = 1 THEN 1 ELSE 0 END) as sesiones_exitosas
+      COALESCE(SUM(CASE WHEN ses_cambios_guardados = 1 THEN 1 ELSE 0 END), 0) as sesiones_exitosas
     FROM SESION_EDICION
     WHERE ses_estado_sesion = 'finalizada'
   `;

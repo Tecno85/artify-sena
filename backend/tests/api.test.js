@@ -508,4 +508,30 @@ test('admin puede autenticarse y listar usuarios', async () => {
   assert.equal(usuarios.response.status, 200);
   assert.equal(usuarios.body.mensaje, 'ok');
   assert.ok(Array.isArray(usuarios.body.usuarios));
+
+  const editarIdInvalido = await request('/api/admin/usuario/abc', {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${login.body.token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({}),
+  });
+
+  assert.equal(editarIdInvalido.response.status, 400);
+  assert.equal(
+    editarIdInvalido.body.mensaje,
+    'Identificador de usuario inválido'
+  );
+
+  const eliminarIdInvalido = await request('/api/admin/usuario/abc', {
+    method: 'DELETE',
+    headers: { Authorization: `Bearer ${login.body.token}` },
+  });
+
+  assert.equal(eliminarIdInvalido.response.status, 400);
+  assert.equal(
+    eliminarIdInvalido.body.mensaje,
+    'Identificador de usuario inválido'
+  );
 });

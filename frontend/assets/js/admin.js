@@ -40,6 +40,15 @@ function formatearFecha(fechaStr) {
   });
 }
 
+function escaparHtml(valor) {
+  return String(valor ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 // ========== LOGIN DEL ADMINISTRADOR ==========
 document.getElementById('btnAdminLogin').addEventListener('click', async () => {
   const correo = document.getElementById('adminEmail').value.trim();
@@ -155,35 +164,41 @@ function renderizarTabla(usuarios) {
 
   tbody.innerHTML = usuarios
     .map(
-      (u) => `
+      (u) => {
+        const idUsuario = Number(u.usr_id_usuario);
+        const estado = escaparHtml(u.usr_estado_usuario);
+        const estadoTexto = estado.charAt(0).toUpperCase() + estado.slice(1);
+        const rolEsAdmin = u.usr_rol === 'admin';
+
+        return `
     <tr>
-      <td>${u.usr_id_usuario}</td>
-      <td>${u.usr_nombres}</td>
-      <td>${u.usr_apellidos}</td>
-      <td>${u.usr_cedula}</td>
-      <td>${u.usr_correo}</td>
-      <td>${formatearFecha(u.usr_fecha_nacimiento)}</td>
-      <td>${formatearFecha(u.usr_fecha_registro)}</td>
+      <td>${idUsuario}</td>
+      <td>${escaparHtml(u.usr_nombres)}</td>
+      <td>${escaparHtml(u.usr_apellidos)}</td>
+      <td>${escaparHtml(u.usr_cedula)}</td>
+      <td>${escaparHtml(u.usr_correo)}</td>
+      <td>${escaparHtml(formatearFecha(u.usr_fecha_nacimiento))}</td>
+      <td>${escaparHtml(formatearFecha(u.usr_fecha_registro))}</td>
       <td>
-        <span class="estado-badge estado-${u.usr_estado_usuario}">
-          ${u.usr_estado_usuario.charAt(0).toUpperCase() + u.usr_estado_usuario.slice(1)}
+        <span class="estado-badge estado-${estado}">
+          ${estadoTexto}
         </span>
       </td>
       <td>
-        <span class="estado-badge ${u.usr_rol === 'admin' ? 'estado-activo' : 'estado-inactivo'}">
-          ${u.usr_rol === 'admin' ? '👑 Admin' : '👤 Usuario'}
+        <span class="estado-badge ${rolEsAdmin ? 'estado-activo' : 'estado-inactivo'}">
+          ${rolEsAdmin ? 'Admin' : 'Usuario'}
         </span>
       </td>
       <td>
         <div class="acciones-cell">
-          <button class="btn-editar" onclick="abrirEditar(${u.usr_id_usuario})">
+          <button class="btn-editar" onclick="abrirEditar(${idUsuario})">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
               <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
             </svg>
             Editar
           </button>
-          <button class="btn-eliminar-row" onclick="abrirEliminar(${u.usr_id_usuario}, '${u.usr_nombres} ${u.usr_apellidos}')">
+          <button class="btn-eliminar-row" onclick="abrirEliminar(${idUsuario})">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="3 6 5 6 21 6"></polyline>
               <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
@@ -196,7 +211,8 @@ function renderizarTabla(usuarios) {
         </div>
       </td>
     </tr>
-  `
+  `;
+      }
     )
     .join('');
 }
@@ -358,7 +374,12 @@ document
   });
 
 // ========== DELETE — ELIMINAR USUARIO ==========
-window.abrirEliminar = function (id, nombre) {
+window.abrirEliminar = function (id) {
+  const usuario = todosLosUsuarios.find((u) => u.usr_id_usuario === id);
+  const nombre = usuario
+    ? `${usuario.usr_nombres} ${usuario.usr_apellidos}`
+    : `usuario #${id}`;
+
   usuarioIdEliminar = id;
   document.getElementById('nombreEliminar').textContent = nombre;
   document.getElementById('modalEliminar').style.display = 'flex';

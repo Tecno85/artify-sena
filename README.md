@@ -83,7 +83,7 @@
 | Tecnología | Versión | Uso |
 |------------|---------|-----|
 | Node.js | 22.13+ | Entorno de ejecución |
-| Express | 4+ | Framework del servidor |
+| Express | 5.2+ | Framework del servidor |
 | MySQL | 8.0+ | Base de datos relacional |
 | mysql2 | Latest | Conector MySQL para Node.js |
 | bcryptjs | Latest | Encriptación de contraseñas |
@@ -176,24 +176,27 @@ Artify/
 ├── scripts/                    # Automatización
 │   └── setup.sh                # Configuración inicial
 │
-└── docs/                       # Documentación del proyecto
-    ├── README.md
-    ├── proyecto/
-    │   ├── descripcion-proyecto.md
-    │   ├── hardware-software-redes.md
-    │   ├── requerimientos-funcionales.md
-    │   └── evidencias/
-    ├── tecnica/
-    │   ├── arquitectura.md
-    │   ├── api-analytics.md
-    │   ├── base-datos.md
-    │   ├── coding-standards.md
-    │   ├── despliegue.md
-    │   ├── plan-instalacion-artify.md
-    │   ├── plan-pruebas-autenticacion.md
-    │   ├── verificacion-hardware-artify.md
-    │   └── evidencias/
-    └── SKILL_ARTIFY.md         # Buenas prácticas del proyecto
+├── docs/                       # Documentación del proyecto
+│   ├── proyecto/
+│   │   ├── descripcion-proyecto.md
+│   │   ├── hardware-software-redes.md
+│   │   ├── requerimientos-funcionales.md
+│   │   └── evidencias/
+│   ├── tecnica/
+│   │   ├── arquitectura.md
+│   │   ├── api-analytics.md
+│   │   ├── base-datos.md
+│   │   ├── coding-standards.md
+│   │   ├── despliegue.md
+│   │   ├── plan-instalacion-artify.md
+│   │   ├── plan-pruebas-autenticacion.md
+│   │   ├── verificacion-hardware-artify.md
+│   │   └── evidencias/
+│
+└── skills/                     # Skills instalables de Codex
+    └── artify-sena/
+        ├── SKILL.md            # Guía oficial de trabajo con Codex
+        └── agents/openai.yaml  # Metadata del skill
 ```
 
 ---
@@ -406,9 +409,24 @@ SELECT * FROM v_usuarios_activos;
 
 ## 📚 Documentación
 
-La documentación del proyecto se encuentra organizada en la carpeta [`docs/`](./docs/).
+La documentación del proyecto se encuentra organizada en la carpeta [`docs/`](./docs/) y se consulta directamente desde este README.
 
-Consulta el [índice de documentación](./docs/README.md) para acceder a la documentación del proyecto, manual técnico, plan de pruebas, arquitectura, base de datos, despliegue y estándares de codificación.
+### Documentación del proyecto
+
+- [Descripción del proyecto](./docs/proyecto/descripcion-proyecto.md)
+- [Requerimientos funcionales](./docs/proyecto/requerimientos-funcionales.md)
+- [Evidencia GA10 de hardware, software y redes](./docs/proyecto/hardware-software-redes.md)
+
+### Documentación técnica
+
+- [Arquitectura técnica](./docs/tecnica/arquitectura.md)
+- [Base de datos](./docs/tecnica/base-datos.md)
+- [Guía de despliegue y ejecución local](./docs/tecnica/despliegue.md)
+- [Plan de instalación local de Artify](./docs/tecnica/plan-instalacion-artify.md)
+- [Verificación de hardware para Artify](./docs/tecnica/verificacion-hardware-artify.md)
+- [Plan de pruebas de autenticación](./docs/tecnica/plan-pruebas-autenticacion.md)
+- [API de analíticas](./docs/tecnica/api-analytics.md)
+- [Estándares de codificación](./docs/tecnica/coding-standards.md)
 
 ---
 
