@@ -7,7 +7,7 @@ description: Usar cuando se trabaje en Artify SENA: código, documentación, pru
 
 ## Propósito
 
-Este skill guía cómo trabajar en Artify sin duplicar su documentación. Usar `CONTEXT.md` para estado actual y `README.md` para instalación, uso e índice documental.
+Este skill guía cómo trabajar en Artify sin duplicar su documentación. Usar `CONTEXT.md` para estado actual y `README.md` para instalación, uso e índice documental principal.
 
 ## Lectura Inicial
 
@@ -19,7 +19,7 @@ Leer solo lo necesario para la tarea:
 - Base de datos: `database/artify_db.sql` y `docs/tecnica/base-datos.md`.
 - Analytics, despliegue, pruebas o evidencias: documento técnico correspondiente dentro de `docs/tecnica/`.
 
-Si cambia el estado real del proyecto, actualizar `CONTEXT.md` en el mismo trabajo. Si se agregan o eliminan documentos relevantes, actualizar el índice documental del `README.md`.
+Si cambia el estado real del proyecto, actualizar `CONTEXT.md` en el mismo trabajo. Si se agregan o eliminan documentos relevantes, actualizar el índice documental del `README.md`; no depender de `docs/README.md` como índice principal.
 
 ## Reglas De Trabajo
 
@@ -51,9 +51,11 @@ Si cambia el estado real del proyecto, actualizar `CONTEXT.md` en el mismo traba
 ## Documentación Y Evidencias
 
 - Mantener implementado y futuro separados: no documentar ideas planeadas como funcionalidades existentes.
+- No prometer demo pública, atajos de teclado, formatos de imagen u otras funciones si no existen en la aplicación real.
 - Actualizar docs con el mismo cambio que modifica el comportamiento correspondiente.
 - Usar `docs/proyecto/` para material funcional/académico y `docs/tecnica/` para arquitectura, base de datos, despliegue, pruebas, analytics y estándares.
 - Crear o modificar evidencias en `docs/**/evidencias/` solo cuando el usuario lo pida o la entrega académica lo requiera.
+- Si cambian formatos admitidos por el editor, mantener coherentes `frontend/pages/editor.html`, `frontend/assets/js/editor.js`, `README.md` y documentación relacionada.
 
 ## Validación
 
