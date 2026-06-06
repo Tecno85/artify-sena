@@ -291,7 +291,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (!tiposValidos.includes(file.type)) {
       mostrarNotificacion(
         'error',
-        'Formato no válido. Solo JPG, PNG, WebP y AVIF'
+        'Formato no válido. Solo JPG, PNG y WebP'
       );
       return;
     }
@@ -639,7 +639,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     const calidadNumero = calidadMap[calidad];
 
-    // Mapeo de formatos con soporte para WebP y AVIF
+    // Mapeo de formatos con soporte para WebP
     const mimeTypeMap = {
       png: 'image/png',
       jpeg: 'image/jpeg',

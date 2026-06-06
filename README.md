@@ -10,65 +10,64 @@
 
 **Artify** es un editor de imágenes web full stack desarrollado con HTML, CSS, JavaScript vanilla en el frontend y Node.js + Express + MySQL en el backend. Permite a los usuarios editar imágenes de manera intuitiva directamente desde el navegador, con autenticación real, gestión de sesiones y panel de administración.
 
-[🌐 Ver Demo](#-prueba-en-línea) · [🐛 Reportar Bug](https://github.com/Tecno85/artify-sena/issues) · [💡 Sugerir Feature](https://github.com/Tecno85/artify-sena/issues)
+[Reportar Bug](https://github.com/Tecno85/artify-sena/issues) · [Sugerir Feature](https://github.com/Tecno85/artify-sena/issues)
 
 </div>
 
 ---
 
-## 📋 Tabla de Contenidos
+## Tabla de Contenidos
 
-- [Características](#-características)
-- [Tecnologías](#-tecnologías)
-- [Arquitectura](#-arquitectura)
-- [Estructura del Proyecto](#-estructura-del-proyecto)
-- [Requisitos Previos](#-requisitos-previos)
-- [Instalación y Configuración](#-instalación-y-configuración)
-- [Uso](#-uso)
-- [Pruebas](#-pruebas)
-- [Funcionalidades Principales](#-funcionalidades-principales)
-- [Panel de Administración](#-panel-de-administración)
-- [Base de Datos](#-base-de-datos)
-- [Atajos de Teclado](#️-atajos-de-teclado)
-- [Navegadores Soportados](#-navegadores-soportados)
-- [Documentación](#-documentación)
-- [Estándares de Codificación](#-estándares-de-codificación)
-- [Notas Importantes](#-notas-importantes)
-- [Autor](#-autor)
+- [Características](#características)
+- [Tecnologías](#tecnologías)
+- [Arquitectura](#arquitectura)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Requisitos Previos](#requisitos-previos)
+- [Instalación y Configuración](#instalación-y-configuración)
+- [Uso](#uso)
+- [Pruebas](#pruebas)
+- [Funcionalidades Principales](#funcionalidades-principales)
+- [Panel de Administración](#panel-de-administración)
+- [Base de Datos](#base-de-datos)
+- [Navegadores Soportados](#navegadores-soportados)
+- [Documentación](#documentación)
+- [Estándares de Codificación](#estándares-de-codificación)
+- [Notas Importantes](#notas-importantes)
+- [Autor](#autor)
 
 ---
 
-## ✨ Características
+## Características
 
 ### Frontend
-- 🖼️ **Carga de imágenes** mediante drag & drop o selector de archivos
-- ✂️ **Recortar** con proporciones personalizables (libre, 1:1, 16:9, 4:3, 3:2)
-- 📏 **Redimensionar** con opción de mantener proporción
-- 🔄 **Rotar** en ángulos de 90°, 180° y 270°
-- 🎨 **Filtros artísticos**: Blanco y Negro, Sepia, Brillo, Contraste
-- 🔄 **Convertir formato**: PNG, JPEG, WebP con ajuste de calidad
-- ⏪ **Deshacer/Rehacer** (historial de hasta 20 pasos)
-- 🔍 **Zoom** in/out (50% - 200%)
-- 💾 **Descarga** con configuración personalizable
-- 🌙 **Tema oscuro** moderno y profesional
+- **Carga de imágenes** mediante drag & drop o selector de archivos
+- **Recortar** con proporciones personalizables (libre, 1:1, 16:9, 4:3, 3:2)
+- **Redimensionar** con opción de mantener proporción
+- **Rotar** en ángulos de 90°, 180° y 270°
+- **Filtros artísticos**: Blanco y Negro, Sepia, Brillo, Contraste
+- **Convertir formato**: PNG, JPEG, WebP con ajuste de calidad
+- **Deshacer/Rehacer** (historial de hasta 20 pasos)
+- **Zoom** in/out (50% - 200%)
+- **Descarga** con configuración personalizable
+- **Tema oscuro** moderno y profesional
 
 ### Backend y Autenticación
-- 🔐 **Autenticación real** con MySQL y encriptación bcrypt
-- 👤 **Sistema de roles**: administrador y usuario
-- 🔑 **Redirección automática** según el rol al iniciar sesión
-- 📊 **Registro de operaciones** en base de datos
-- 🕐 **Control de sesiones** con cierre automático por inactividad
-- ⚙️ **Configuración personalizada** por usuario en MySQL
+- **Autenticación real** con MySQL y encriptación bcrypt
+- **Sistema de roles**: administrador y usuario
+- **Redirección automática** según el rol al iniciar sesión
+- **Registro de operaciones** en base de datos
+- **Control de sesiones** con cierre automático por inactividad
+- **Configuración personalizada** por usuario en MySQL
 
 ### Panel de Administración
-- 📋 **CRUD completo** sobre la tabla USUARIO
-- 🔍 **Búsqueda en tiempo real** de usuarios
-- 📈 **Estadísticas** de usuarios activos e inactivos
-- 🛡️ **Acceso protegido** con credenciales de administrador
+- **CRUD completo** sobre la tabla USUARIO
+- **Búsqueda en tiempo real** de usuarios
+- **Estadísticas** de usuarios activos e inactivos
+- **Acceso protegido** con credenciales de administrador
 
 ---
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 ### Frontend
 | Tecnología | Uso |
@@ -93,7 +92,7 @@
 
 ---
 
-## 🏗️ Arquitectura
+## Arquitectura
 
 ```
 ┌─────────────────────────────────────────────────┐
@@ -119,7 +118,7 @@
 
 ---
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 Artify/
@@ -201,7 +200,7 @@ Artify/
 
 ---
 
-## ✅ Requisitos Previos
+## Requisitos Previos
 
 Antes de instalar el proyecto asegúrate de tener:
 
@@ -213,7 +212,7 @@ Antes de instalar el proyecto asegúrate de tener:
 
 ---
 
-## 🚀 Instalación y Configuración
+## Instalación y Configuración
 
 ### 1. Clonar el repositorio
 
@@ -285,7 +284,7 @@ Si prefieres abrir archivos manualmente, usa `frontend/index.html`, pero para pr
 
 ---
 
-## 🎯 Uso
+## Uso
 
 ### Usuario normal
 1. Abre `http://127.0.0.1:8080`
@@ -301,7 +300,7 @@ Si prefieres abrir archivos manualmente, usa `frontend/index.html`, pero para pr
 
 ---
 
-## ✅ Pruebas
+## Pruebas
 
 El backend incluye pruebas automatizadas de integración para autenticación, rutas protegidas y configuración básica.
 
@@ -319,7 +318,7 @@ pnpm run check
 
 ---
 
-## 🎨 Funcionalidades Principales
+## Funcionalidades Principales
 
 ### Cargar Imagen
 - **Drag & Drop** — Arrastra una imagen al área punteada
@@ -329,33 +328,33 @@ pnpm run check
 
 ### Herramientas de Edición
 
-#### ✂️ Recortar
+#### Recortar
 - Selecciona el área arrastrando sobre la imagen
 - Proporciones: Libre, 1:1, 16:9, 4:3, 3:2
 - Guías visuales de tercios incluidas
 
-#### 📏 Redimensionar
+#### Redimensionar
 - Ingresa nuevas dimensiones en píxeles
 - Opción de mantener proporción automáticamente
 
-#### 🔄 Rotar
+#### Rotar
 - Rotación rápida: 90°, 180°, 270°
 - Ajuste automático de dimensiones del canvas
 
-#### 🎨 Filtros
+#### Filtros
 - **Blanco y Negro** — Convierte a escala de grises
 - **Sepia** — Efecto vintage
 - **Brillo** — Ajusta luminosidad
 - **Contraste** — Intensifica diferencias tonales
 - Todos con intensidad ajustable (0-100%)
 
-#### 🔄 Convertir Formato
+#### Convertir Formato
 - Convierte entre PNG, JPEG y WebP
 - Ajuste de calidad para JPEG/WebP
 
 ---
 
-## 🛡️ Panel de Administración
+## Panel de Administración
 
 El panel de administración implementa un **CRUD completo** sobre la tabla USUARIO que es la entidad fuerte no dependiente del modelo de datos.
 
@@ -370,7 +369,7 @@ El panel de administración implementa un **CRUD completo** sobre la tabla USUAR
 
 ---
 
-## 🗄️ Base de Datos
+## Base de Datos
 
 ### Tablas principales
 
@@ -393,7 +392,7 @@ SELECT * FROM v_usuarios_activos;
 ---
 
 
-## 🌐 Navegadores Soportados
+## Navegadores Soportados
 
 | Navegador | Versión Mínima |
 |-----------|----------------|
@@ -407,7 +406,7 @@ SELECT * FROM v_usuarios_activos;
 
 ---
 
-## 📚 Documentación
+## Documentación
 
 La documentación del proyecto se encuentra organizada en la carpeta [`docs/`](./docs/) y se consulta directamente desde este README.
 
@@ -424,13 +423,14 @@ La documentación del proyecto se encuentra organizada en la carpeta [`docs/`](.
 - [Guía de despliegue y ejecución local](./docs/tecnica/despliegue.md)
 - [Plan de instalación local de Artify](./docs/tecnica/plan-instalacion-artify.md)
 - [Verificación de hardware para Artify](./docs/tecnica/verificacion-hardware-artify.md)
+- [Alta disponibilidad y clústeres](./docs/tecnica/alta-disponibilidad-clusteres.md)
 - [Plan de pruebas de autenticación](./docs/tecnica/plan-pruebas-autenticacion.md)
 - [API de analíticas](./docs/tecnica/api-analytics.md)
 - [Estándares de codificación](./docs/tecnica/coding-standards.md)
 
 ---
 
-## 📐 Estándares de Codificación
+## Estándares de Codificación
 
 Este proyecto sigue estándares de codificación documentados. Consulta el archivo [`docs/tecnica/coding-standards.md`](./docs/tecnica/coding-standards.md) para más detalles sobre:
 
@@ -443,7 +443,7 @@ Este proyecto sigue estándares de codificación documentados. Consulta el archi
 
 ---
 
-## 📌 Notas Importantes
+## Notas Importantes
 
 ### Resolución Recomendada
 - **Mínima:** 1366 x 768 px
@@ -460,7 +460,7 @@ Este proyecto sigue estándares de codificación documentados. Consulta el archi
 
 ---
 
-## 👨‍💻 Autor
+## Autor
 
 **Ivan Dario Madrid Daza**
 - GitHub: [@Tecno85](https://github.com/Tecno85)
@@ -469,13 +469,13 @@ Este proyecto sigue estándares de codificación documentados. Consulta el archi
 
 ---
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
 
 ---
 
-## 🤝 Contribuciones
+## Contribuciones
 
 Las contribuciones son bienvenidas. Por favor:
 
@@ -487,9 +487,9 @@ Las contribuciones son bienvenidas. Por favor:
 
 ---
 
-## 🔮 Roadmap Futuro
+## Roadmap Futuro
 
-- [ ] Agregar pruebas automatizadas para frontend y backend
+- [ ] Agregar pruebas automatizadas para frontend y ampliar cobertura backend
 - [ ] Paginación en el historial de operaciones
 - [ ] Más filtros avanzados (blur, sharpen, pixelate)
 - [ ] Herramienta de texto sobre imágenes
@@ -502,7 +502,7 @@ Las contribuciones son bienvenidas. Por favor:
 
 <div align="center">
 
-Hecho con ❤️ usando HTML, CSS, JavaScript, Node.js y MySQL
+Hecho con HTML, CSS, JavaScript, Node.js y MySQL
 
 **[⬆ Volver arriba](#-artify--editor-de-imágenes-web)**
 

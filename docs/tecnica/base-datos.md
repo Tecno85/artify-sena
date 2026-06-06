@@ -80,7 +80,7 @@ Almacena preferencias de usuario para personalizar la experiencia dentro del edi
 | `cfg_usr_id_usuario` | `int` | Usuario propietario de la configuración. |
 | `cfg_tema` | `enum` | Tema visual: `claro`, `oscuro` o `auto`. |
 | `cfg_idioma` | `varchar(10)` | Idioma preferido. |
-| `cfg_atajos_teclado` | `json` | Configuración de atajos. |
+| `cfg_atajos_teclado` | `json` | Campo reservado en el modelo; no usado actualmente por la aplicación. |
 | `cfg_mostrar_ayudas` | `tinyint(1)` | Indicador para mostrar ayudas. |
 | `cfg_calidad_exportacion` | `enum` | Calidad: `baja`, `media`, `alta`, `maxima`. |
 | `cfg_configuracion_avanzada` | `json` | Preferencias avanzadas usadas por el sistema. |
