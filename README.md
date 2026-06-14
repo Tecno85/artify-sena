@@ -186,6 +186,7 @@ Artify/
 │   │   ├── api-analytics.md
 │   │   ├── base-datos.md
 │   │   ├── coding-standards.md
+│   │   ├── configuracion-servicios-artify.md
 │   │   ├── despliegue.md
 │   │   ├── plan-instalacion-artify.md
 │   │   ├── plan-pruebas-autenticacion.md
@@ -420,6 +421,7 @@ La documentación del proyecto se encuentra organizada en la carpeta [`docs/`](.
 
 - [Arquitectura técnica](./docs/tecnica/arquitectura.md)
 - [Base de datos](./docs/tecnica/base-datos.md)
+- [Configuración de servicios, base de datos y software para Artify](./docs/tecnica/configuracion-servicios-artify.md)
 - [Guía de despliegue y ejecución local](./docs/tecnica/despliegue.md)
 - [Plan de instalación local de Artify](./docs/tecnica/plan-instalacion-artify.md)
 - [Verificación de hardware para Artify](./docs/tecnica/verificacion-hardware-artify.md)
