@@ -71,7 +71,8 @@ header {
   align-items: center;
   font-size: 1.1rem;
   letter-spacing: 1.4px;
-  gap: 5px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .enlace {
@@ -84,6 +85,10 @@ header {
   gap: 8px;
   padding: 8px 14px;
   transition: all 0.5s ease;
+}
+
+.btn-editor {
+  border: 0.5px solid rgba(227, 72, 0, 0.7);
 }
 
 .btn:hover {
